@@ -1,0 +1,46 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+
+	<table class="panel_table">
+		<tr>
+			<td class="panel_td">
+				<h5>
+					<wicket:message key="p.day_task.tb_title_ward" />
+				</h5> 
+			</td>
+			<td class="panel_td">
+				<h5>
+					<wicket:message key="p.day_task.tb_title_patient" />
+				</h5> 
+			</td>
+			<td class="panel_td">
+				<h5>
+					<wicket:message key="p.day_task.tb_title_diagnoz" />
+				</h5> 
+			</td>
+			<td class="panel_td">
+				<h5>
+					<wicket:message key="p.day_task.tb_title_day" />
+				</h5> 
+			</td>
+		</tr>
+		<wicket:container wicket:id="caseRecord">
+			<tr class="list_tr">
+				<td class="panel_td">
+				<div wicket:id="caseRecordWard"></div>
+				</td>
+				<td class="panel_td">
+				<div wicket:id="caseRecordPatient"></div>
+				</td>
+				<td class="panel_td">
+				<div wicket:id="caseRecordDiagnoz"></div>
+				</td>
+				<td class="panel_td">
+				<div wicket:id="caseRecordDay"></div>
+				</td>
+				
+			</tr>
+		</wicket:container>
+
+
+	</table>
+</wicket:extend>
