@@ -54,12 +54,12 @@ public class DayTask extends BaseLayout {
 						setResponsePage(new CaseRecord(visit.getId()));
 					}
 				};
-				// link.add(new Label("caseRecordPatient", new
-				// Model<String>(patientName)));
+				link.add(new Label("caseRecordPatient", new Model<String>(patientName)));
 
 				item.add(new Label("caseRecordWard", new Model<Integer>(visit.getWard().getWardNum())));
 				item.add(link);
-				item.add(new Label("caseRecordPatient", new Model<String>(patientName)));
+				// item.add(new Label("caseRecordPatient", new
+				// Model<String>(patientName)));
 				item.add(new Label("caseRecordDiagnoz", new Model<String>(visit.getFirstDs())));
 				item.add(new Label("caseRecordDay", new Model<Integer>(HelpUtil.getDayDelta(visit.getStartDt()))));
 
