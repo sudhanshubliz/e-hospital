@@ -19,6 +19,6 @@
 
 <import resource="classpath:spring-context.xml" />
 
-    <context:component-scan base-package="by.kipind.hospital.webapp.app" />
+    <context:component-scan base-package="com.kipind.hospital.webapp.app" />
 
 </beans>

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-	<groupId>by.kipind.hospital</groupId>
+	<groupId>com.kipind.hospital</groupId>
 	<artifactId>ehospital-project</artifactId>
 	<version>1.0.0</version>
 
@@ -29,22 +29,22 @@
 		<dependencies>
 			<!--Begin Project modules -->
 			<dependency>
-				<groupId>by.kipind.hospital</groupId>
+				<groupId>com.kipind.hospital</groupId>
 				<artifactId>datamodel</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
-				<groupId>by.kipind.hospital</groupId>
+				<groupId>com.kipind.hospital</groupId>
 				<artifactId>dataaccess</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
-				<groupId>by.kipind.hospital</groupId>
+				<groupId>com.kipind.hospital</groupId>
 				<artifactId>services</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
-				<groupId>by.kipind.hospital</groupId>
+				<groupId>com.kipind.hospital</groupId>
 				<artifactId>webapp</artifactId>
 				<version>1.0.0</version>
 			</dependency>

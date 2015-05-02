@@ -1,0 +1,37 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+
+
+	<h3>
+		<wicket:message key="p.start.patient_reg" />
+	</h3>
+	<br />
+	<form action="" wicket:id="patientRegForm">
+		<table>
+			<tr>
+				<td>
+				    <input type="text" id="form_social_num"	wicket:id="socialNumber" /> <br />
+				    <input type="text" id="form_name" wicket:id="firstName" /> <br /> 
+				    <input type="text" id="form_surname" wicket:id="lastName" /> <br /> 
+				    <input type="text" id="form_address" wicket:id="address" /> <br />
+				    <input type="text" id="form_birth_day" wicket:id="birthDt" /> <br /> 
+				    <wicket:message key="p.patient_reg.form_sex" /> <br /> 
+				    <span wicket:id="sex">
+						<input type="radio">1</input>
+				    </span>
+				</td>
+				<td>
+				    <wicket:message key="p.patient_reg.form_ward" /> <br /> 
+			     	<select wicket:id="wardNum">
+						<option>1</option>
+			    	</select>
+				</td>
+			</tr>
+		</table>
+		<br /> <input type="submit" value="" name="save"
+			wicket:id="submitButton" />
+	</form>
+
+
+
+
+</wicket:extend>
