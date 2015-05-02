@@ -21,11 +21,11 @@
 
 	<Loggers>
 
-		<Logger name="by.kipind.hospital.dataaccess" level="WARN" additivity="true">
+		<Logger name="com.kipind.hospital.dataaccess" level="WARN" additivity="true">
 			<AppenderRef ref="LOGFILE" />
 		</Logger>
 
-		<Logger name="by.kipind.hospital" level="INFO" additivity="false">
+		<Logger name="com.kipind.hospital" level="INFO" additivity="false">
 			<AppenderRef ref="CONSOLE" />
 		</Logger>
 

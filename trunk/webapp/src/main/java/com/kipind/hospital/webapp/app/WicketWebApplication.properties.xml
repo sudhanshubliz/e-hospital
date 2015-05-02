@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!-- заголовки страниц -->
+	<entry key="page.start.label">Главное меню.</entry>
+	<entry key="page.patient_reg.label">Регистрация пациента.</entry>
+	<entry key="page.case_record.label">История болезни.</entry>
+	<entry key="page.day_task.label">Дневной план.</entry>
+
+
+	<!-- end -->
+	<!--Standart Buttons -->
+	<entry key="button.save">Сохранить</entry>
+	<entry key="button.delete">Удалить</entry>
+
+
+	<!-- end -->
+
+	<entry key="header.to_mainMenu">Главное меню</entry>
+	<entry key="header.to_logout">Выход</entry>
+	<entry key="header.lb_hello">Здравствуйте: Иван Петович </entry>
+
+	
+	<entry key="panel.visit_details.name">Пациент:</entry>
+	<entry key="panel.visit_details.age">Возраст:</entry>
+	<entry key="panel.visit_details.diagnoz">Текущий диагноз:</entry>
+	<entry key="panel.visit_details.start_dt">Дата поступления:</entry>
+
+
+
+
+
+	<entry key="p.start.patients">Пациенты</entry>
+	<entry key="p.start.reports">Отчетность</entry>
+	<entry key="p.start.patient_reg">Регистрация пациента</entry>
+	<entry key="p.start.meeting">Совещание</entry>
+
+
+	<entry key="p.patient_reg.form_name">Имя</entry>
+	<entry key="p.patient_reg.form_surname">Фамилия</entry>
+	<entry key="p.patient_reg.form_birth_day">Дата рождения</entry>
+	<entry key="p.patient_reg.form_address">Адрес</entry>
+	<entry key="p.patient_reg.form_social_num">Номер соц. страховки</entry>
+	<entry key="p.patient_reg.form_sex">Пол</entry>
+	<entry key="p.patient_reg.form_sex_female">Женский</entry>
+	<entry key="p.patient_reg.form_sex_male">Мужской</entry>
+	<entry key="p.patient_reg.form_ward">Палата № (занято\всего коек)</entry>
+
+
+	<entry key="p.case_record.tb_title_date">Дата записи</entry>
+	<entry key="p.case_record.tb_title_record">Запись</entry>
+	<entry key="p.case_record.tb_title_executor">Исполнитель</entry>
+
+
+	<entry key="p.day_task.tb_title_ward">Палата</entry>
+	<entry key="p.day_task.tb_title_patient">Пациент</entry>
+	<entry key="p.day_task.tb_title_diagnoz">Текущий диагноз</entry>
+	<entry key="p.day_task.tb_title_day">Продолжительность лечения</entry>
+
+
+
+</properties>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru"
+	xmlns:wicket="http://wicket.apache.org">
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title wicket:id="pageTitle">[Page title]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link href="./images/hart_ico.png" type="image/vnd.microsoft.icon"
+	rel="icon" />
+
+</head>
+
+<body>
+	<div id="upPanel">
+
+		<table>
+			<tr>
+				<td text-align="left" width="50%"><wicket:message key="header.lb_hello" /></td>
+				<td text-align="right" width="50%"><a wicket:id="mainMenu"><wicket:message
+							key="header.to_mainMenu" /></a> || <a wicket:id="logout"><wicket:message
+							key="header.to_logout" /></a></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+	<br />
+<div id="form_container">
+	
+
+	<wicket:child />
+</div>
+</body>
+</html>

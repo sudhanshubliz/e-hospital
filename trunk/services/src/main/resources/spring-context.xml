@@ -10,7 +10,7 @@
 	    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 	
-	<context:component-scan base-package="by.kipind.hospital" />
+	<context:component-scan base-package="com.kipind.hospital" />
 	
 	<context:property-placeholder
 		ignore-unresolvable="true"
@@ -25,7 +25,7 @@
 
 
 	<tx:annotation-driven />
-	<bean id="dataSource" class="by.kipind.hospital.datamodel.dbUtil.SchemaNameAwareBasicDataSource"
+	<bean id="dataSource" class="com.kipind.hospital.datamodel.dbUtil.SchemaNameAwareBasicDataSource"
 		destroy-method="close" p:driverClassName="org.postgresql.Driver"
 		p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}"
 		p:schema="${db.schema}" />
