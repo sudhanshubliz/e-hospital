@@ -1,0 +1,39 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+<div wicket:id="visitPanel"></div>
+	
+	<table class="list_table">
+		<tr>
+			<td class="panel_td">
+				<h5>
+					<wicket:message key="p.case_record.tb_title_date" />
+				</h5> 
+			</td>
+			<td class="panel_td">
+				<h5>
+					<wicket:message key="p.case_record.tb_title_record" />
+				</h5> 
+			</td>
+			<td class="panel_td">
+				<h5>
+					<wicket:message key="p.case_record.tb_title_executor" />
+				</h5> 
+			</td>
+		</tr>
+		<wicket:container wicket:id="caseRecord">
+			<tr class="list_tr">
+				<td class="panel_td">
+				<div wicket:id="caseRecordDate"></div>
+				</td>
+				<td class="panel_td">
+				<div wicket:id="caseRecordData"></div>
+				</td>
+				<td class="panel_td">
+				<div wicket:id="caseRecordExecutor"></div>
+				</td>
+				
+			</tr>
+		</wicket:container>
+
+
+	</table>
+</wicket:extend>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>Авторизация</title>
+	<link rel='StyleSheet' href='login.css' type='text/css'>
+	<!-- <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'> -->
+</head>
+<body>
+
+
+<div id="login_container">
+	<div id="form_container">
+		<p class="login-text">Авторизация</p>
+		<form method='POST'>
+		<input type='text' onFocus="if(this.value=='Логин')this.value=''" onblur="if(this.value=='')this.value='Логин'" name='username' value='Логин' class='text_input' />
+		<input type="password" onFocus="if(this.value=='Пароль')this.value=''" onblur="if(this.value=='')this.value='Пароль'" name='password' value='Пароль' class='text_input' />
+		<input type='submit' value='' id='login' name='login' />
+		</form>
+	</div>
+</div>
+</body>
+</html>
