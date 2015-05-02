@@ -8,19 +8,10 @@ body {
 	background: url('../images/background.png') top left repeat;
 }
 
-#upPanel {
-	background: url('../images/text_input.png') top center repeat-x;
-}
-
-#form_container {
-	width: 50%;
-	margin: 0px auto;
-	padding-top: 50px;
-}
-
 table {
-	border: 1px solid #98bf21;
-	width: 70%;
+	frame:box;
+	border: 2px solid #98bf21;
+	width: 100%;
 	background-color: #EAF2D3;
 };
 td, th {
@@ -33,9 +24,13 @@ th {
 	color: #fff;
 }
 
-#tr:nth-child(odd) {
-	background-color: #EAF2D3;}
+.form_container {
+	width: 70%;
+	margin: 0px auto;
+	padding-top: 50px;
 }
+
+
 
 .panel_table {
 	border: 0px;
@@ -44,8 +39,18 @@ th {
 	padding: 5px;
 }
 
+.daytask_table {
+	rules:all; 
+	border: 1px;
+	width: 100%;
+	background-color: #EAF2D3 ;
+	background-image:url("../images/bg_table.bmp");
+	background-position:center;
+	background-repeat:no-repeat;
+	padding: 5px;
+}
+
 .panel_td {
-	border: 0px;
 	padding: 3px 7px 2px 7px;
 }
 

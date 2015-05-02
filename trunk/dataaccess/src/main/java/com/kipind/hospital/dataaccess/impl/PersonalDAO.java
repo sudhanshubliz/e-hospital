@@ -19,7 +19,6 @@ import com.kipind.hospital.datamodel.Personal;
 import com.kipind.hospital.datamodel.Personal_;
 import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.datamodel.Visit_;
-import com.kipind.hospital.datamodel.Ward;
 import com.kipind.hospital.datamodel.enam.EDischargeStatus;
 
 @Repository
@@ -131,7 +130,7 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 		CriteriaQuery<Visit> criteriaQuery = cBuilder.createQuery(Visit.class);
 		Root<Visit> visit = criteriaQuery.from(Visit.class);
 		Root<Personal> personal = criteriaQuery.from(Personal.class);
-		Root<Ward> ward = criteriaQuery.from(Ward.class);
+		// Root<Ward> ward = criteriaQuery.from(Ward.class);
 
 		criteriaQuery.select(visit);
 
