@@ -9,7 +9,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.SetAttribute;
+import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -86,6 +89,7 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 
 	}
 
+	@Override
 	public Personal getByIdFull(Long id) {
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
 
@@ -124,6 +128,7 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 		return results;
 	}
 
+	@Override
 	public List<Visit> GetAllOpenVisitByPersId(Long persId) {
 
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
@@ -145,6 +150,26 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 		TypedQuery<Visit> query = getEm().createQuery(criteriaQuery);
 		List<Visit> results = query.getResultList();
 		return results;
+	}
+
+	@Override
+	public List<Personal> getAllByFieldFull(final SingularAttribute<? super Personal, ?> whereAttr, final Object whereVal,
+			SetAttribute<? super Personal, ?> fetchArr) {
+		Validate.notNull(whereVal, "Search attributes can't be empty. Attribute: " + whereAttr.getName());
+		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+		CriteriaQuery<Personal> criteriaQuery = cBuilder.createQuery(Personal.class);
+		Root<Personal> entity = criteriaQuery.from(Personal.class);
+
+		criteriaQuery.select(entity);
+		criteriaQuery.where(cBuilder.equal(entity.get(whereAttr), whereVal));
+
+		// for (SingularAttribute<? super Entity, ?> singularAttribute :
+		// fetchArr) {
+		entity.fetch(Personal_.wards, JoinType.LEFT);
+
+		// }
+
+		return getEm().createQuery(criteriaQuery).getResultList();
 	}
 
 }

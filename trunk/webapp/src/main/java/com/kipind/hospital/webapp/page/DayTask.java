@@ -28,7 +28,7 @@ public class DayTask extends BaseLayout {
 	private Long userId; //
 
 	public DayTask() {
-		this.userId = 34l;// из сессии
+		this.userId = 2629l;// из сессии
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.slf4j.Logger;
@@ -93,7 +94,12 @@ public class PersonalService implements IPersonalService {
 	@Override
 	public List<Personal> getAllByField(SingularAttribute<? super Personal, ?> attribute, Object value) {
 
-		return getAllByField(attribute, value);
+		return personalDAO.getAllByField(attribute, value);
 	}
 
+	@Override
+	public List<Personal> getAllByFieldFull(SingularAttribute<? super Personal, ?> whereAttr, Object whereVal,
+			SetAttribute<? super Personal, ?> fetchArr) {
+		return personalDAO.getAllByFieldFull(whereAttr, whereVal, fetchArr);
+	}
 }

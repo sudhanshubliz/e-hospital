@@ -9,7 +9,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.commons.lang3.Validate;
@@ -47,7 +49,7 @@ public abstract class AbstractDAO<ID, Entity> implements IAbstractDAO<ID, Entity
 	}
 
 	// ===================================================
-
+	@Override
 	public Entity getById(ID id) {
 		// return em.find(getEntityClass(), id);
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
@@ -69,6 +71,7 @@ public abstract class AbstractDAO<ID, Entity> implements IAbstractDAO<ID, Entity
 
 	public abstract Entity getByIdFull(ID id);
 
+	@Override
 	public List<Entity> getAll() {
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
 		CriteriaQuery<Entity> criteriaQuery = cBuilder.createQuery(getEntityClass());
@@ -81,6 +84,7 @@ public abstract class AbstractDAO<ID, Entity> implements IAbstractDAO<ID, Entity
 		return results;
 	}
 
+	@Override
 	public List<Entity> getAllByField(final SingularAttribute<? super Entity, ?> attribute, final Object value) {
 		Validate.notNull(value, "Search attributes can't be empty. Attribute: " + attribute.getName());
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
@@ -89,6 +93,26 @@ public abstract class AbstractDAO<ID, Entity> implements IAbstractDAO<ID, Entity
 
 		criteriaQuery.select(entity);
 		criteriaQuery.where(cBuilder.equal(entity.get(attribute), value));
+
+		return getEm().createQuery(criteriaQuery).getResultList();
+	}
+
+	@Override
+	public List<Entity> getAllByFieldFull(final SingularAttribute<? super Entity, ?> whereAttr, final Object whereVal,
+			SetAttribute<? super Entity, ?> fetchArr) {
+		Validate.notNull(whereVal, "Search attributes can't be empty. Attribute: " + whereAttr.getName());
+		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+		CriteriaQuery<Entity> criteriaQuery = cBuilder.createQuery(getEntityClass());
+		Root<Entity> entity = criteriaQuery.from(getEntityClass());
+
+		criteriaQuery.select(entity);
+		criteriaQuery.where(cBuilder.equal(entity.get(whereAttr), whereVal));
+
+		// for (SingularAttribute<? super Entity, ?> singularAttribute :
+		// fetchArr) {
+		entity.fetch(fetchArr, JoinType.LEFT);
+
+		// }
 
 		return getEm().createQuery(criteriaQuery).getResultList();
 	}
@@ -124,6 +148,7 @@ public abstract class AbstractDAO<ID, Entity> implements IAbstractDAO<ID, Entity
 	}
 
 	// фенкциональное удаление
+	@Override
 	public void deleteAll() {
 
 		Query q1 = em.createQuery(String.format("delete from %s", getEntityClass().getSimpleName()));
@@ -133,6 +158,7 @@ public abstract class AbstractDAO<ID, Entity> implements IAbstractDAO<ID, Entity
 	}
 
 	// для очистки базы
+	@Override
 	public void dropAll() {
 		Query q1 = em.createQuery(String.format("delete from %s", getEntityClass().getSimpleName()));
 		q1.executeUpdate();

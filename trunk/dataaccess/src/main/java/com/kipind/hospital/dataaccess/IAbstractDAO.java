@@ -2,6 +2,7 @@ package com.kipind.hospital.dataaccess;
 
 import java.util.List;
 
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 
 public interface IAbstractDAO<ID, Entity> {
@@ -14,6 +15,8 @@ public interface IAbstractDAO<ID, Entity> {
 
 	List<Entity> getAllByField(final SingularAttribute<? super Entity, ?> attribute, final Object value);
 
+	List<Entity> getAllByFieldFull(SingularAttribute<? super Entity, ?> whereAttr, Object whereVal, SetAttribute<? super Entity, ?> fetchArr);
+
 	Entity insert(Entity entity);
 
 	Entity update(Entity entity);
@@ -23,5 +26,7 @@ public interface IAbstractDAO<ID, Entity> {
 	void delete(List<ID> ids);
 
 	void dropAll(); //
+
+	void deleteAll(); //
 
 }
