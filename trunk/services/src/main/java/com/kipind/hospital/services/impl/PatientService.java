@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,5 +77,12 @@ public class PatientService implements IPatientService {
 		return patientDAO.getAll();
 
 	}
+
+	@Override
+	public List<Patient> getAllByField(SingularAttribute<? super Patient, ?> attribute, Object value) {
+
+		return patientDAO.getAllByField(attribute, value);
+
+	};
 
 }

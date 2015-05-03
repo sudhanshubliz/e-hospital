@@ -2,6 +2,8 @@ package com.kipind.hospital.services;
 
 import java.util.List;
 
+import javax.persistence.metamodel.SingularAttribute;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kipind.hospital.datamodel.Patient;
@@ -23,5 +25,7 @@ public interface IPatientService {
 	void deleteAll();
 
 	List<Patient> getAllPatients();
+
+	List<Patient> getAllByField(SingularAttribute<? super Patient, ?> attribute, Object value);
 
 }
