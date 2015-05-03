@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,6 +88,12 @@ public class PersonalService implements IPersonalService {
 	@Override
 	public List<Visit> GetLinkedPatients(Long persId) {
 		return personalDAO.GetAllOpenVisitByPersId(persId);
+	}
+
+	@Override
+	public List<Personal> getAllByField(SingularAttribute<? super Personal, ?> attribute, Object value) {
+
+		return getAllByField(attribute, value);
 	}
 
 }

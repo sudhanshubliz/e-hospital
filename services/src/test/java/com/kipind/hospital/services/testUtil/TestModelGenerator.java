@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Patient;
 import com.kipind.hospital.datamodel.Personal;
 import com.kipind.hospital.datamodel.Visit;
@@ -94,4 +95,32 @@ public abstract class TestModelGenerator extends TestRandomVal {
 
 		return resultSet;
 	}
+
+	public static List<Checkup> getCheckupsForVisit(Set<Visit> existVisits, Personal pers) {
+		List<Checkup> resultSet = new ArrayList<Checkup>();
+
+		Date chDt;
+		for (Visit visit : existVisits) {
+			if (pers.getWards().contains(visit.getWard())) {
+				chDt = visit.getStartDt();
+				int n = randomInteger(1, 10);
+				for (int i = 1; i <= n; i++) {
+					Checkup checkup = new Checkup();
+					checkup.setPersonal(pers);
+					checkup.setVisit(visit);
+					checkup.setChDt(chDt);
+					checkup.setInterview(randomString());
+					checkup.setDiagnosis(randomString());
+
+					resultSet.add(checkup);
+					chDt = DateUtils.addDays(chDt, 1);
+				}
+
+			}
+		}
+
+		return resultSet;
+
+	}
+
 }
