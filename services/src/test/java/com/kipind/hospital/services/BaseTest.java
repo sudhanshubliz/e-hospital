@@ -60,7 +60,7 @@ public class BaseTest extends TestModelGenerator {
 
 	}
 
-	@Test
+	// @Test
 	public void cleanDB() {
 		checkupService.deleteAll();// link: personal, visit
 		Assert.assertEquals(0, checkupService.getAllCheckups().size());
@@ -81,6 +81,12 @@ public class BaseTest extends TestModelGenerator {
 	@Test
 	public void generateDB() {
 		if (personalService.getAllPersonal().size() == 0) {
+			existPersonal.clear();
+			existPatients.clear();
+			existWards.clear();
+			existVisits.clear();
+			existCheckups.clear();
+
 			// создаем персонал
 			int n = TestRandomVal.randomInteger(1, BASIC_SIZE); //
 			for (int i = 1; i <= n; i++) {
@@ -97,9 +103,9 @@ public class BaseTest extends TestModelGenerator {
 
 			// создаем палаты
 			n = TestRandomVal.randomInteger(2, Math.round(BASIC_SIZE * 0.1f));
-			for (int i = 1; i <= n - 1; i++) {
-				Set<Personal> pers = TestRandomVal.randomSubCollection(personalService.getAllByField(Personal_.prof, EProf.DOCTOR), 1);
-				pers.addAll(TestRandomVal.randomSubCollection(personalService.getAllByField(Personal_.prof, EProf.NERS), 2));
+			for (int i = 1; i <= n; i++) {
+				Set<Personal> pers = TestRandomVal.randomSubCollection(personalService.getAllByField(Personal_.prof, EProf.DOCTOR.ordinal()), 1);
+				pers.addAll(TestRandomVal.randomSubCollection(personalService.getAllByField(Personal_.prof, EProf.NERS.ordinal()), 2));
 				existWards.add(wardService.saveOrUpdate(TestModelGenerator.getWard(pers)));
 			}
 			Assert.assertEquals(n, wardService.getAllWards().size());
@@ -117,13 +123,14 @@ public class BaseTest extends TestModelGenerator {
 			// создаем осмотр
 			n = 0;
 			List<Checkup> checkupPerVisit = new ArrayList<Checkup>();
-			for (Personal person : personalService.getAllByField(Personal_.prof, EProf.DOCTOR)) {
+			for (Personal person : personalService.getAllByField(Personal_.prof, EProf.DOCTOR.ordinal())) {
+				person = personalService.getByIdFull(person.getId());
 				checkupPerVisit = TestModelGenerator.getCheckupsForVisit(existVisits, person);
 				n = n + checkupPerVisit.size();
-				existCheckups.addAll(checkupPerVisit);
+				existCheckups.addAll(checkupService.saveOrUpdate(checkupPerVisit));
 
 			}
-			Assert.assertEquals(n, visitService.getAllVisits().size());
+			Assert.assertEquals(n, checkupService.getAllCheckups().size());
 		}
 
 	}
