@@ -14,14 +14,15 @@
 </head>
 
 <body>
-	<div >
+	<div>
 
 		<table>
+			<tr align="right">
+				<td><div wicket:id="upPanel"></div></td>
+			</tr>
 			<tr>
-				<td text-align="left" width="50%"><wicket:message key="header.lb_hello" /></td>
-				<td text-align="right" width="50%"><a wicket:id="mainMenu"><wicket:message
-							key="header.to_mainMenu" /></a> || <a wicket:id="logout"><wicket:message
-							key="header.to_logout" /></a></td>
+				<td valign="top"><div wicket:id="mainMenuPanel"></div></td>
+				<td valign="top"><wicket:child /></td>
 
 			</tr>
 
@@ -29,9 +30,9 @@
 
 	</div>
 
-	<br />
+	<!-- <br />
 <div class="form_container">
-	<wicket:child />
-</div>
+	
+</div> -->
 </body>
 </html>

@@ -1,63 +1,161 @@
-* {
-	margin: 2px;
-	padding: 0;
-	
-}
-
 body {
 	background: url('../images/background.png') top left repeat;
 }
-
-table {
-	frame:box;
-	border: 2px solid #98bf21;
-	width: 100%;
-	background-color: #EAF2D3;
-};
-td, th {
-	border: 1px solid #98bf21;
-	padding: 3px 7px 2px 7px;
+/* таблицы */
+.CSS_Table_Example {
+	margin:0px;padding:0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	-moz-border-radius-bottomleft:9px;
+	-webkit-border-bottom-left-radius:9px;
+	border-bottom-left-radius:9px;
+	-moz-border-radius-bottomright:9px;
+	-webkit-border-bottom-right-radius:9px;
+	border-bottom-right-radius:9px;
+	-moz-border-radius-topright:9px;
+	-webkit-border-top-right-radius:9px;
+	border-top-right-radius:9px;
+	-moz-border-radius-topleft:9px;
+	-webkit-border-top-left-radius:9px;
+	border-top-left-radius:9px;
+}.CSS_Table_Example table{
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.CSS_Table_Example tr:last-child td:last-child {
+	-moz-border-radius-bottomright:9px;
+	-webkit-border-bottom-right-radius:9px;
+	border-bottom-right-radius:9px;
+}.CSS_Table_Example table tr:first-child td:first-child {
+	-moz-border-radius-topleft:9px;
+	-webkit-border-top-left-radius:9px;
+	border-top-left-radius:9px;
+}.CSS_Table_Example table tr:first-child td:last-child {
+	-moz-border-radius-topright:9px;
+	-webkit-border-top-right-radius:9px;
+	border-top-right-radius:9px;
+}.CSS_Table_Example tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:9px;
+	-webkit-border-bottom-left-radius:9px;
+	border-bottom-left-radius:9px;
+}.CSS_Table_Example tr:hover td{
+	background-color:#82c0ff;
+	background:-o-linear-gradient(bottom, #82c0ff 5%, #56aaff 100%);	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #82c0ff), color-stop(1, #56aaff) );
+	background:-moz-linear-gradient( center top, #82c0ff 5%, #56aaff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#82c0ff", endColorstr="#56aaff");	background: -o-linear-gradient(top,#82c0ff,56aaff);
+}.CSS_Table_Example tr:first-child td{
+	background:-o-linear-gradient(bottom, #0069d3 5%, #007fff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0069d3), color-stop(1, #007fff) );
+	background:-moz-linear-gradient( center top, #0069d3 5%, #007fff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0069d3", endColorstr="#007fff");	background: -o-linear-gradient(top,#0069d3,007fff);
+	background-color:#0069d3;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:18px;
+	font-family:Comic Sans MS;
+	font-weight:bold;
+	color:#ffffff;
+}.CSSTableGenerator tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #0069d3 5%, #007fff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0069d3), color-stop(1, #007fff) );
+	background:-moz-linear-gradient( center top, #0069d3 5%, #007fff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0069d3", endColorstr="#007fff");	background: -o-linear-gradient(top,#0069d3,007fff);
+	background-color:#0069d3;
+}.CSS_Table_Example tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}.CSS_Table_Example tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}.CSS_Table_Example td{
+	background:-o-linear-gradient(bottom, #56aaff 5%, #82c0ff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #56aaff), color-stop(1, #82c0ff) ); 
+	background:-moz-linear-gradient( center top, #56aaff 5%, #82c0ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56aaff", endColorstr="#82c0ff");	background: -o-linear-gradient(top,#56aaff,82c0ff);
+	background-color:#56aaff;
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:7px;
+	font-size:12px;
+	font-family:Comic Sans MS;
+	font-weight:bold;
+	color:#000000;
+}.CSS_Table_Example tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.CSS_Table_Example tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.CSS_Table_Example tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
 }
-th {
-	text-align: left;
-	padding: 5px;
-	color: #fff;
+
+/* меню */
+ul#menu {list-style-type:none; margin:0; padding:0;}
+
+ul#menu li a{
+	color:#909090; /* цвет букв в обычном состоянии */
+	background: url(../images/vert_menu.png) no-repeat 0 0; /* путь к изображению */
+	text-decoration:none; 
+	width: 200px;
+	height: 55px;
+	display:block;
+	border:none;
+	text-shadow: #ddd 2px 2px 0; /* цвет тени у букв в обычном состоянии */	
 }
 
-.form_container {
-	width: 70%;
-	margin: 0px auto;
-	padding-top: 50px;
+ul#menu li a:hover{
+	background-position: 50% 100%;
+	width: 200px;
+	height: 55px;
+	display:block;
+	color:#fff; /* цвет букв в активном состоянии */
+	text-shadow: #1185EE 2px 2px 0;	/* цвет тени у букв в активном состоянии */
 }
 
-
-
-.panel_table {
-	border: 0px;
-	width: 100%;
-	background-color: #7ac1c7 ;
-	padding: 5px;
+ul#menu li a span{
+	font-family:sans-serif; /* Шрифт букв */
+	font-size:18px; /* размер букв */
+	padding:17px 0 0 20px;
+	display:block;	
 }
 
-.daytask_table {
-	rules:all; 
-	border: 1px;
-	width: 100%;
-	background-color: #EAF2D3 ;
-	background-image:url("../images/bg_table.bmp");
-	background-position:center;
-	background-repeat:no-repeat;
-	padding: 5px;
+/* меню 2*/
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
-.panel_td {
-	padding: 3px 7px 2px 7px;
+#menu3 img {
+	border: none;
 }
 
+#menu3 {
+	width: 200px;
+	border: 1px solid #ccc;
+	margin: 10px;
+}
 
-.list_table {
-	border: 1px;
-	width: 50%;
-	background-color: #e2f2f3 ;
-	padding: 5px;
-	}
+#menu3 li a {
+	height: 32px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	font-size: 10pt;
+	font-weight: bold;
+	background: #FFF;
+	height: 24px;
+	text-decoration: none;
+}
+
+#menu3 li a:link, #menu3 li
+a:visited {
+	color: #888;
+	display: block;
+	background:	url(../images/menu3.gif);
+	padding: 8px 0 0 30px;
+}
+
+#menu3 li a:hover, #menu3 li #current, #menu3
+li a:active {
+	color: #283A50;
+	background:	url(../images/menu3.gif)
+		0 -32px;
+	padding: 8px 0 0 30px;
+}
