@@ -42,8 +42,8 @@
 	<entry key="p.patient_reg.form_address">Адрес</entry>
 	<entry key="p.patient_reg.form_social_num">Номер соц. страховки</entry>
 	<entry key="p.patient_reg.form_sex">Пол</entry>
-	<entry key="p.patient_reg.form_sex_female">Женский</entry>
-	<entry key="p.patient_reg.form_sex_male">Мужской</entry>
+	<entry key="p.patient_reg.form_sex_FEMALE">Женский</entry>
+	<entry key="p.patient_reg.form_sex_MALE">Мужской</entry>
 	<entry key="p.patient_reg.form_ward">Палата № (занято\всего коек)</entry>
 
 
