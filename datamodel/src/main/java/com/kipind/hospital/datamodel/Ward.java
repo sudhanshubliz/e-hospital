@@ -53,6 +53,10 @@ public class Ward extends AbstractEntity {
 		this.wardNum = wardNum;
 	}
 
+	public void setWardNum(String wardNum) {
+		this.wardNum = Integer.valueOf(wardNum);
+	}
+
 	public void setComfortLvl(EWardComfort comfortLvl) {
 		this.comfortLvl = comfortLvl;
 	}

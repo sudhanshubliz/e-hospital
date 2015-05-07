@@ -11,15 +11,21 @@ import javax.inject.Inject;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.form.AbstractTextComponent;
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
 import com.kipind.hospital.datamodel.Patient;
+import com.kipind.hospital.datamodel.Visit;
+import com.kipind.hospital.datamodel.Ward;
 import com.kipind.hospital.datamodel.enam.EHumanSex;
 import com.kipind.hospital.services.IPatientService;
+import com.kipind.hospital.services.IWardService;
 
 public class PatientRegistration extends BaseLayout {
 
@@ -30,8 +36,13 @@ public class PatientRegistration extends BaseLayout {
 	 */
 
 	@Inject
+	private IWardService wardService;
+	@Inject
 	private IPatientService patientService;
+
 	private Patient patient = new Patient();
+	private Visit visit = new Visit();
+	private Ward ward = new Ward();
 
 	public PatientRegistration() {
 		super();
@@ -73,12 +84,40 @@ public class PatientRegistration extends BaseLayout {
 		 * RadioChoice<ChoiceRender>("sex", choiceList,
 		 * FormChoiceRender.INSTANCE));
 		 */
+
+		List<Ward> choiceList = new ArrayList<Ward>();
+		String resStr;
+		/*
+		 * for (Ward ward : wardService.getAllWards()) { choiceList.add(new
+		 * ChoiceRender(ward.getId(), ward.getWardNum() + "(" +
+		 * ward.getPlaceNumBisy() + "/" + ward.getPlaceNumBisy() + ")")); }
+		 */
+
+		choiceList = wardService.getAllWards();
+
+		add(new DropDownChoice<Ward>("wardNum", new PropertyModel<Ward>(ward, "wardNum"), choiceList, new IChoiceRenderer<Ward>() {
+
+			@Override
+			public Object getDisplayValue(Ward ward) {
+				return ward.getWardNum();
+			}
+
+			@Override
+			public String getIdValue(Ward ward, int index) {
+				return ward.getWardNum().toString();
+			}
+
+		}));
+
+		// new DropDownChoice<ChoiceRender>("wardNum", new Model<Ward>(),
+		// choiceList, FormChoiceRender.INSTANCE)
 		Button submitButton = new Button("submitButton") {
 
 			@Override
 			public void onSubmit() {
 				p.setSex(EHumanSex.MALE);
 				patientService.saveOrUpdate(p);
+				info("ward number: " + ward.getWardNum());
 			}
 		};
 		submitButton.add(AttributeModifier.append("value", new ResourceModel("button.save").getObject()));
