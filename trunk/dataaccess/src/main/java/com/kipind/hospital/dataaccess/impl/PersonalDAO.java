@@ -153,6 +153,30 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 	}
 
 	@Override
+	public List<Visit> GetLinkedPatientsWithPaging(Long personalId, int first, int count) {
+		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+		CriteriaQuery<Visit> criteriaQuery = cBuilder.createQuery(Visit.class);
+		Root<Visit> visit = criteriaQuery.from(Visit.class);
+		Root<Personal> personal = criteriaQuery.from(Personal.class);
+
+		criteriaQuery.select(visit);
+
+		criteriaQuery.where(cBuilder.and(cBuilder.isMember(visit.get(Visit_.ward), personal.get(Personal_.wards)), visit.get(Visit_.dischargeFlag)
+				.in(EDischargeStatus.CURING, EDischargeStatus.DENY)));
+
+		visit.fetch(Visit_.patient);
+		visit.fetch(Visit_.ward);
+		criteriaQuery.distinct(true);
+
+		TypedQuery<Visit> query = getEm().createQuery(criteriaQuery);
+		query.setFirstResult(first);
+		query.setMaxResults(count);
+
+		List<Visit> results = query.getResultList();
+		return results;
+	}
+
+	@Override
 	public List<Personal> getAllByFieldFull(final SingularAttribute<? super Personal, ?> whereAttr, final Object whereVal,
 			SetAttribute<? super Personal, ?> fetchArr) {
 		Validate.notNull(whereVal, "Search attributes can't be empty. Attribute: " + whereAttr.getName());

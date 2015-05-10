@@ -1,13 +1,16 @@
 package com.kipind.hospital.webapp.page;
 
-import java.util.List;
+import java.util.Iterator;
 
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -27,24 +30,26 @@ public class DayTask extends BaseLayout {
 
 	private Long userId; //
 
+	/*
+	 * public DayTask() { super(); this.userId = 2629l;// из сессии }
+	 */
 	public DayTask() {
+		super();
 		this.userId = 2629l;// из сессии
-	}
 
-	@Override
-	protected void onInitialize() {
-		super.onInitialize();
+		// setOutputMarkupId(true);
+		DayTaskDataProvider dayTaskDataProvider = new DayTaskDataProvider();
 
-		// final Set<Ward> userWards =
-		// personalService.getByIdFull(userId).getWards();
-		final List<Visit> openVisitsForUser = personalService.GetLinkedPatients(userId);
+		WebMarkupContainer tableBody = new WebMarkupContainer("caseRecord");
+		tableBody.setOutputMarkupId(true);
+		add(tableBody);
 
-		add(new ListView<Visit>("caseRecord", openVisitsForUser) {
+		DataView<Visit> dataView = new DataView<Visit>("taskList", dayTaskDataProvider, 3) {
 
 			String patientName;
 
 			@Override
-			protected void populateItem(ListItem<Visit> item) {
+			protected void populateItem(Item<Visit> item) {
 				Visit visit = item.getModelObject();
 				patientName = visit.getPatient().getLastName() + " " + visit.getPatient().getFirstName();
 				Link<Void> link = new Link<Void>("caseRecordPatientLink") {
@@ -58,13 +63,36 @@ public class DayTask extends BaseLayout {
 
 				item.add(new Label("caseRecordWard", new Model<Integer>(visit.getWard().getWardNum())));
 				item.add(link);
-				// item.add(new Label("caseRecordPatient", new
-				// Model<String>(patientName)));
 				item.add(new Label("caseRecordDiagnoz", new Model<String>(visit.getFirstDs())));
 				item.add(new Label("caseRecordDay", new Model<Integer>(HelpUtil.getDayDelta(visit.getStartDt()))));
 
 			}
-		});
+		};
+
+		tableBody.add(dataView);
+
+	}
+
+	private class DayTaskDataProvider extends SortableDataProvider<Visit, SingularAttribute<Visit, ?>> {
+
+		@Override
+		public Iterator<? extends Visit> iterator(long first, long count) {
+			return personalService.GetLinkedPatients(userId).iterator();
+			// personalService.GetLinkedPatientsWithPaging(userId, (int) first,
+			// (int) count).iterator();
+
+		}
+
+		@Override
+		public long size() {
+			return personalService.GetLinkedPatients(userId).size();
+		}
+
+		@Override
+		public IModel<Visit> model(Visit visit) {
+			return new Model<Visit>(visit);
+		}
+
 	}
 
 	@Override

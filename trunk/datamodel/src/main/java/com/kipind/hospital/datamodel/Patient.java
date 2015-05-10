@@ -14,14 +14,9 @@ public class Patient extends AbstractEntity {
 
 	private String socialNumber;
 	private String firstName;
-	@Column
 	private String lastName;
-	@Column
 	private Date birthDt;
-	@Column
 	private String address;
-	@Column
-	@Enumerated(EnumType.ORDINAL)
 	private EHumanSex sex;
 
 	@Column

@@ -92,6 +92,11 @@ public class PersonalService implements IPersonalService {
 	}
 
 	@Override
+	public List<Visit> GetLinkedPatientsWithPaging(Long personalId, Integer first, Integer count) {
+		return personalDAO.GetLinkedPatientsWithPaging(personalId, (int) first, (int) count);
+	}
+
+	@Override
 	public List<Personal> getAllByField(SingularAttribute<? super Personal, ?> attribute, Object value) {
 
 		return personalDAO.getAllByField(attribute, value);

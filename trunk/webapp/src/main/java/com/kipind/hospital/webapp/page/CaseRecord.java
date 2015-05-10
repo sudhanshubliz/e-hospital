@@ -1,14 +1,17 @@
 package com.kipind.hospital.webapp.page;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Iterator;
 
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
@@ -22,6 +25,7 @@ public class CaseRecord extends BaseLayout {
 
 	@Inject
 	private ICheckupService checkupService;
+	// private Checkup checkup;
 	private Long visitId; //
 
 	public CaseRecord(Visit curVisit) {
@@ -37,14 +41,18 @@ public class CaseRecord extends BaseLayout {
 		super.onInitialize();
 		add(new VisitDetailsPanel("visitPanel", visitId));
 
-		final List<Checkup> caseRecord = checkupService.getAllCheckupsOfVisit(visitId);
+		CaseRecordDataProvider caseRecordDataProvider = new CaseRecordDataProvider();
 
-		add(new ListView<Checkup>("caseRecord", caseRecord) {
+		WebMarkupContainer iterBody = new WebMarkupContainer("caseRecord");
+		iterBody.setOutputMarkupId(true);
+		add(iterBody);
+
+		DataView<Checkup> dataView = new DataView<Checkup>("elemList", caseRecordDataProvider) {
 
 			String personalName;
 
 			@Override
-			protected void populateItem(ListItem<Checkup> item) {
+			protected void populateItem(Item<Checkup> item) {
 				Checkup checkup = item.getModelObject();
 				personalName = checkup.getPersonal().getSecondName() + " " + checkup.getPersonal().getFirstName().substring(0, 1) + ".";
 				item.add(new Label("caseRecordDate", new Model<Date>(checkup.getChDt())));
@@ -52,9 +60,32 @@ public class CaseRecord extends BaseLayout {
 				item.add(new Label("caseRecordExecutor", new Model<String>(personalName)));
 
 			}
-		});
+		};
+
+		iterBody.add(dataView);
+
 		add(new BookmarkablePageLink<Void>("btInterview", HomePage.class));
 		add(new BookmarkablePageLink<Void>("btPrescribe", HomePage.class));
+
+	}
+
+	private class CaseRecordDataProvider extends SortableDataProvider<Checkup, SingularAttribute<Checkup, ?>> {
+
+		@Override
+		public Iterator<? extends Checkup> iterator(long first, long count) {
+			return checkupService.getAllCheckupsOfVisit(visitId).iterator();
+
+		}
+
+		@Override
+		public long size() {
+			return checkupService.getAllCheckupsOfVisit(visitId).size();
+		}
+
+		@Override
+		public IModel<Checkup> model(Checkup checkupObj) {
+			return new Model<Checkup>(checkupObj);
+		}
 
 	}
 

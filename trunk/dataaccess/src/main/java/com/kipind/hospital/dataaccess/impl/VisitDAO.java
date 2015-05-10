@@ -26,6 +26,7 @@ public class VisitDAO extends AbstractDAO<Long, Visit> implements IVisitDAO {
 		super(Visit.class);
 	}
 
+	@Override
 	public Long getCount() {
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
 
@@ -38,6 +39,7 @@ public class VisitDAO extends AbstractDAO<Long, Visit> implements IVisitDAO {
 		return query.getSingleResult();
 	}
 
+	@Override
 	public List<Visit> getAllVisits(SingularAttribute<Visit, ?> attr, boolean ascending, int startRecord, int pageSize) {
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
 
