@@ -37,6 +37,8 @@ public interface IPersonalService {
 	// ------
 	List<Visit> GetLinkedPatients(Long personalId);
 
+	List<Visit> GetLinkedPatientsWithPaging(Long personalId, Integer first, Integer count);
+
 	// Object getAllByFieldFull(SingularAttribute<Personal, EProf> prof, int
 	// ordinal, SetAttribute<Personal, Ward> wards);
 }

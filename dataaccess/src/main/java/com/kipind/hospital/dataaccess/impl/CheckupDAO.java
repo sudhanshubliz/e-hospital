@@ -15,7 +15,6 @@ import com.kipind.hospital.dataaccess.ICheckupDAO;
 import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Checkup_;
 import com.kipind.hospital.datamodel.Visit;
-import com.kipind.hospital.datamodel.Visit_;
 
 @Repository
 public class CheckupDAO extends AbstractDAO<Long, Checkup> implements ICheckupDAO {
@@ -51,16 +50,18 @@ public class CheckupDAO extends AbstractDAO<Long, Checkup> implements ICheckupDA
 	@Override
 	public List<Checkup> getAllCheckupsOfVisit(Long visitId) {
 		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+
 		CriteriaQuery<Checkup> criteriaQuery = cBuilder.createQuery(Checkup.class);
 		Root<Checkup> checkup = criteriaQuery.from(Checkup.class);
 		Root<Visit> visit = criteriaQuery.from(Visit.class);
 
 		criteriaQuery.select(checkup);
 
-		criteriaQuery.where(cBuilder.equal(visit.get(Visit_.id), visitId));
+		criteriaQuery.where(cBuilder.equal(checkup.get(Checkup_.visit), visitId));
 
-		checkup.fetch(Checkup_.visit);
-		checkup.fetch(Checkup_.personal);
+		checkup.fetch(Checkup_.visit, JoinType.LEFT);
+		checkup.fetch(Checkup_.personal, JoinType.LEFT);
+		criteriaQuery.distinct(true);
 
 		TypedQuery<Checkup> query = getEm().createQuery(criteriaQuery);
 		List<Checkup> results = query.getResultList();

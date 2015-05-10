@@ -1,50 +1,60 @@
 package com.kipind.hospital.datamodel;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.kipind.hospital.datamodel.enam.EProf;
 import com.kipind.hospital.datamodel.enam.EWardComfort;
 
 @Entity
 public class Ward extends AbstractEntity {
 
+	@Column
 	private Integer wardNum;
+	@Column
 	private EWardComfort comfortLvl;
+	@Column
 	@JoinTable(name = "ward_2_personal", joinColumns = { @JoinColumn(name = "ward_id") }, inverseJoinColumns = { @JoinColumn(name = "personal_id") })
 	@ManyToMany(targetEntity = Personal.class, fetch = FetchType.LAZY)
 	private Set<Personal> personal;
+	@Column
 	private Integer placeNumSum;
+	@Column
 	private Integer placeNumBisy;
 
-	@Column
 	public Integer getWardNum() {
 		return wardNum;
 	}
 
-	@Column
-	@Enumerated(EnumType.ORDINAL)
 	public EWardComfort getComfortLvl() {
 		return comfortLvl;
+	}
+
+	public Set<Personal> getDoctorPersonal() {
+		Set<Personal> res = new HashSet<Personal>();
+		for (Personal personal : this.personal) {
+			if (personal.getProf().equals(EProf.DOCTOR)) {
+				res.add(personal);
+			}
+		}
+		return res;
 	}
 
 	public Set<Personal> getPersonal() {
 		return personal;
 	}
 
-	@Column
 	public Integer getPlaceNumSum() {
 		return placeNumSum;
 	}
 
-	@Column
 	public Integer getPlaceNumBisy() {
 		return placeNumBisy;
 	}

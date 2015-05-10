@@ -1,122 +1,367 @@
 body {
 	background: url('../images/background.png') top left repeat;
 }
+
+.CSSTableGenerator {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	box-shadow: 10px 10px 5px #888888;
+	border: 1px solid #000000;
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.CSSTableGenerator table {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.CSSTableGenerator tr:last-child td:first-child {
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.CSSTableGenerator tr:hover td {
+	
+}
+
+.CSSTableGenerator tr:nth-child(odd) {
+	background-color: #aad4ff;
+}
+
+.CSSTableGenerator tr:nth-child(even) {
+	background-color: #ffffff;
+}
+
+.CSSTableGenerator td {
+	vertical-align: middle;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 7px;
+	font-size: 10px;
+	font-family: arial;
+	font-weight: normal;
+	color: #000000;
+}
+
+.CSSTableGenerator tr:last-child td {
+	border-width: 0px 1px 0px 0px;
+}
+
+.CSSTableGenerator tr td:last-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+	border-width: 0px 0px 0px 0px;
+}
+
+.CSSTableGenerator tr:first-child td {
+	background: -o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #005fbf
+		), color-stop(1, #003f7f));
+	background: -moz-linear-gradient(center top, #005fbf 5%, #003f7f 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf",
+		endColorstr="#003f7f");
+	background: -o-linear-gradient(top, #005fbf, 003f7f);
+	background-color: #005fbf;
+	border: 0px solid #000000;
+	text-align: center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 14px;
+	font-family: arial;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.CSSTableGenerator tr:first-child:hover td {
+	background: -o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #005fbf
+		), color-stop(1, #003f7f));
+	background: -moz-linear-gradient(center top, #005fbf 5%, #003f7f 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf",
+		endColorstr="#003f7f");
+	background: -o-linear-gradient(top, #005fbf, 003f7f);
+	background-color: #005fbf;
+}
+
+.CSSTableGenerator tr:first-child td:first-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:first-child td:last-child {
+	border-width: 0px 0px 1px 1px;
+}
+
 /* таблицы */
 .CSS_Table_Example {
-	margin:0px;padding:0px;
-	width:100%;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
 	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #000000;
-	-moz-border-radius-bottomleft:9px;
-	-webkit-border-bottom-left-radius:9px;
-	border-bottom-left-radius:9px;
-	-moz-border-radius-bottomright:9px;
-	-webkit-border-bottom-right-radius:9px;
-	border-bottom-right-radius:9px;
-	-moz-border-radius-topright:9px;
-	-webkit-border-top-right-radius:9px;
-	border-top-right-radius:9px;
-	-moz-border-radius-topleft:9px;
-	-webkit-border-top-left-radius:9px;
-	border-top-left-radius:9px;
-}.CSS_Table_Example table{
-	width:100%;
-	height:100%;
-	margin:0px;padding:0px;
-}.CSS_Table_Example tr:last-child td:last-child {
-	-moz-border-radius-bottomright:9px;
-	-webkit-border-bottom-right-radius:9px;
-	border-bottom-right-radius:9px;
-}.CSS_Table_Example table tr:first-child td:first-child {
-	-moz-border-radius-topleft:9px;
-	-webkit-border-top-left-radius:9px;
-	border-top-left-radius:9px;
-}.CSS_Table_Example table tr:first-child td:last-child {
-	-moz-border-radius-topright:9px;
-	-webkit-border-top-right-radius:9px;
-	border-top-right-radius:9px;
-}.CSS_Table_Example tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:9px;
-	-webkit-border-bottom-left-radius:9px;
-	border-bottom-left-radius:9px;
-}.CSS_Table_Example tr:hover td{
-	background-color:#82c0ff;
-	background:-o-linear-gradient(bottom, #82c0ff 5%, #56aaff 100%);	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #82c0ff), color-stop(1, #56aaff) );
-	background:-moz-linear-gradient( center top, #82c0ff 5%, #56aaff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#82c0ff", endColorstr="#56aaff");	background: -o-linear-gradient(top,#82c0ff,56aaff);
-}.CSS_Table_Example tr:first-child td{
-	background:-o-linear-gradient(bottom, #0069d3 5%, #007fff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0069d3), color-stop(1, #007fff) );
-	background:-moz-linear-gradient( center top, #0069d3 5%, #007fff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0069d3", endColorstr="#007fff");	background: -o-linear-gradient(top,#0069d3,007fff);
-	background-color:#0069d3;
-	border:0px solid #000000;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:18px;
-	font-family:Comic Sans MS;
-	font-weight:bold;
-	color:#ffffff;
-}.CSSTableGenerator tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #0069d3 5%, #007fff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0069d3), color-stop(1, #007fff) );
-	background:-moz-linear-gradient( center top, #0069d3 5%, #007fff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0069d3", endColorstr="#007fff");	background: -o-linear-gradient(top,#0069d3,007fff);
-	background-color:#0069d3;
-}.CSS_Table_Example tr:first-child td:first-child{
-	border-width:0px 0px 1px 0px;
-}.CSS_Table_Example tr:first-child td:last-child{
-	border-width:0px 0px 1px 1px;
-}.CSS_Table_Example td{
-	background:-o-linear-gradient(bottom, #56aaff 5%, #82c0ff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #56aaff), color-stop(1, #82c0ff) ); 
-	background:-moz-linear-gradient( center top, #56aaff 5%, #82c0ff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56aaff", endColorstr="#82c0ff");	background: -o-linear-gradient(top,#56aaff,82c0ff);
-	background-color:#56aaff;
-	border:1px solid #000000;
-	border-width:0px 1px 1px 0px;
-	text-align:left;
-	padding:7px;
-	font-size:12px;
-	font-family:Comic Sans MS;
-	font-weight:bold;
-	color:#000000;
-}.CSS_Table_Example tr:last-child td{
-	border-width:0px 1px 0px 0px;
-}.CSS_Table_Example tr td:last-child{
-	border-width:0px 0px 1px 0px;
-}.CSS_Table_Example tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
+	border: 1px solid #000000;
+	-moz-border-radius-bottomleft: 9px;
+	-webkit-border-bottom-left-radius: 9px;
+	border-bottom-left-radius: 9px;
+	-moz-border-radius-bottomright: 9px;
+	-webkit-border-bottom-right-radius: 9px;
+	border-bottom-right-radius: 9px;
+	-moz-border-radius-topright: 9px;
+	-webkit-border-top-right-radius: 9px;
+	border-top-right-radius: 9px;
+	-moz-border-radius-topleft: 9px;
+	-webkit-border-top-left-radius: 9px;
+	border-top-left-radius: 9px;
+}
+
+.CSS_Table_Example thead {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.CSS_Table_Example tr:last-child td:last-child {
+	-moz-border-radius-bottomright: 9px;
+	-webkit-border-bottom-right-radius: 9px;
+	border-bottom-right-radius: 9px;
+}
+
+.CSS_Table_Example thead tr:first-child td:first-child {
+	-moz-border-radius-topleft: 9px;
+	-webkit-border-top-left-radius: 9px;
+	border-top-left-radius: 9px;
+}
+
+.CSS_Table_Example thead tr:first-child td:last-child {
+	-moz-border-radius-topright: 9px;
+	-webkit-border-top-right-radius: 9px;
+	border-top-right-radius: 9px;
+}
+
+.CSS_Table_Example tr:last-child td:first-child {
+	-moz-border-radius-bottomleft: 9px;
+	-webkit-border-bottom-left-radius: 9px;
+	border-bottom-left-radius: 9px;
+}
+
+.CSS_Table_Example tr:hover td {
+	background-color: #82c0ff;
+	background: -o-linear-gradient(bottom, #82c0ff 5%, #56aaff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #82c0ff
+		), color-stop(1, #56aaff));
+	background: -moz-linear-gradient(center top, #82c0ff 5%, #56aaff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#82c0ff",
+		endColorstr="#56aaff");
+	background: -o-linear-gradient(top, #82c0ff, 56aaff);
+}
+
+.CSS_Table_Example tr:first-child td {
+	background: -o-linear-gradient(bottom, #0069d3 5%, #007fff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0069d3
+		), color-stop(1, #007fff));
+	background: -moz-linear-gradient(center top, #0069d3 5%, #007fff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0069d3",
+		endColorstr="#007fff");
+	background: -o-linear-gradient(top, #0069d3, 007fff);
+	background-color: #0069d3;
+	border: 0px solid #000000;
+	text-align: center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 18px;
+	font-family: Comic Sans MS;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.CSSTableGenerator tr:first-child:hover td {
+	background: -o-linear-gradient(bottom, #0069d3 5%, #007fff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0069d3
+		), color-stop(1, #007fff));
+	background: -moz-linear-gradient(center top, #0069d3 5%, #007fff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0069d3",
+		endColorstr="#007fff");
+	background: -o-linear-gradient(top, #0069d3, 007fff);
+	background-color: #0069d3;
+}
+
+.CSS_Table_Example tr:first-child td:first-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSS_Table_Example tr:first-child td:last-child {
+	border-width: 0px 0px 1px 1px;
+}
+
+.CSS_Table_Example td {
+	background: -o-linear-gradient(bottom, #56aaff 5%, #82c0ff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #56aaff
+		), color-stop(1, #82c0ff));
+	background: -moz-linear-gradient(center top, #56aaff 5%, #82c0ff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56aaff",
+		endColorstr="#82c0ff");
+	background: -o-linear-gradient(top, #56aaff, 82c0ff);
+	background-color: #56aaff;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 7px;
+	font-size: 12px;
+	font-family: Comic Sans MS;
+	font-weight: bold;
+	color: #000000;
+}
+
+.CSS_Table_Example tr:last-child td {
+	border-width: 0px 1px 0px 0px;
+}
+
+.CSS_Table_Example tr td:last-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSS_Table_Example tr:last-child td:last-child {
+	border-width: 0px 0px 0px 0px;
+}
+
+
+/* меню 5 */
+.menu5 {
+	padding: 5px 0 0 1em;
+	margin: 0;
+	list-style: none;
+	height: 40px;
+	position: relative;
+	background: transparent url(../images/menu5_img/pro_five_0c.gif) repeat-x left bottom;
+	font-size: 11px;
+}
+
+.menu5 li {
+	float: left;
+	height: 40px;
+	margin-right: 1px;
+}
+
+.menu5 li a {
+	display: block;
+	float: left;
+	height: 40px;
+	line-height: 35px;
+	color: #333;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	padding: 0 0 0 4px;
+	cursor: pointer;
+	background: url(../images/menu5_img/pro_five_0a.gif) no-repeat;
+}
+
+.menu5 li a b {
+	float: left;
+	display: block;
+	padding: 0 16px 5px 12px;
+	background: url(../images/menu5_img/pro_five_0b.gif) no-repeat right top;
+}
+
+.menu5 li.current a {
+	color: #000;
+	background: url(../images/menu5_img/pro_five_2a.gif) no-repeat;
+}
+
+.menu5 li.current a b {
+	background: url(../images/menu5_img/pro_five_2b.gif) no-repeat right top;
+}
+
+.menu5 li a:hover {
+	color: #000;
+	background: url(../images/menu5_img/pro_five_1a.gif) no-repeat;
+}
+
+.menu5 li a:hover b {
+	background: url(../images/menu5_img/pro_five_1b.gif) no-repeat right top;
+}
+
+.menu5 li.current a:hover {
+	color: #000;
+	background: url(../images/menu5_img/pro_five_2a.gif) no-repeat;
+	cursor: default;
+}
+
+.menu5 li.current a:hover b {
+	background: url(../images/menu5_img/pro_five_2b.gif) no-repeat right top;
 }
 
 /* меню */
-ul#menu {list-style-type:none; margin:0; padding:0;}
-
-ul#menu li a{
-	color:#909090; /* цвет букв в обычном состоянии */
-	background: url(../images/vert_menu.png) no-repeat 0 0; /* путь к изображению */
-	text-decoration:none; 
-	width: 200px;
-	height: 55px;
-	display:block;
-	border:none;
-	text-shadow: #ddd 2px 2px 0; /* цвет тени у букв в обычном состоянии */	
+ul#menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
-ul#menu li a:hover{
+ul#menu li a {
+	color: #909090; /* цвет букв в обычном состоянии */
+	background: url(../images/vert_menu.png) no-repeat 0 0;
+	/* путь к изображению */
+	text-decoration: none;
+	width: 200px;
+	height: 55px;
+	display: block;
+	border: none;
+	text-shadow: #ddd 2px 2px 0; /* цвет тени у букв в обычном состоянии */
+}
+
+ul#menu li a:hover {
 	background-position: 50% 100%;
 	width: 200px;
 	height: 55px;
-	display:block;
-	color:#fff; /* цвет букв в активном состоянии */
-	text-shadow: #1185EE 2px 2px 0;	/* цвет тени у букв в активном состоянии */
+	display: block;
+	color: #fff; /* цвет букв в активном состоянии */
+	text-shadow: #1185EE 2px 2px 0;
+	/* цвет тени у букв в активном состоянии */
 }
 
-ul#menu li a span{
-	font-family:sans-serif; /* Шрифт букв */
-	font-size:18px; /* размер букв */
-	padding:17px 0 0 20px;
-	display:block;	
+ul#menu li a span {
+	font-family: sans-serif; /* Шрифт букв */
+	font-size: 18px; /* размер букв */
+	padding: 17px 0 0 20px;
+	display: block;
 }
 
-/* меню 2*/
+/* меню 2 вертик*/
 ul {
 	list-style: none;
 	margin: 0;
@@ -148,14 +393,13 @@ ul {
 a:visited {
 	color: #888;
 	display: block;
-	background:	url(../images/menu3.gif);
+	background: url(../images/menu3.gif);
 	padding: 8px 0 0 30px;
 }
 
 #menu3 li a:hover, #menu3 li #current, #menu3
 li a:active {
 	color: #283A50;
-	background:	url(../images/menu3.gif)
-		0 -32px;
+	background: url(../images/menu3.gif) 0 -32px;
 	padding: 8px 0 0 30px;
 }
