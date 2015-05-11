@@ -20,7 +20,13 @@ public class VisitDetailsPanel extends Panel {
 
 	public VisitDetailsPanel(String id, Long visitId) {
 		super(id);
-		visit = visitService.getByIdFull(visitId);
+		this.visit = visitService.getByIdFull(visitId);
+
+	}
+
+	public VisitDetailsPanel(String id, Visit visit) {
+		super(id);
+		this.visit = visit;
 
 	}
 

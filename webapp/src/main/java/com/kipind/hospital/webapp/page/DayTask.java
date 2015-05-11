@@ -15,6 +15,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
+import com.kipind.hospital.datamodel.Personal;
 import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IWardService;
@@ -28,14 +29,12 @@ public class DayTask extends BaseLayout {
 	@Inject
 	private IPersonalService personalService;
 
-	private Long userId; //
+	private Personal user; //
 
-	/*
-	 * public DayTask() { super(); this.userId = 2629l;// из сессии }
-	 */
 	public DayTask() {
 		super();
-		this.userId = 2629l;// из сессии
+		// TODO: id from session
+		this.user = personalService.getByIdFull(2629l);// из сессии
 
 		// setOutputMarkupId(true);
 		DayTaskDataProvider dayTaskDataProvider = new DayTaskDataProvider();
@@ -77,7 +76,7 @@ public class DayTask extends BaseLayout {
 
 		@Override
 		public Iterator<? extends Visit> iterator(long first, long count) {
-			return personalService.GetLinkedPatients(userId).iterator();
+			return personalService.GetLinkedPatients(user.getId()).iterator();
 			// personalService.GetLinkedPatientsWithPaging(userId, (int) first,
 			// (int) count).iterator();
 
@@ -85,7 +84,7 @@ public class DayTask extends BaseLayout {
 
 		@Override
 		public long size() {
-			return personalService.GetLinkedPatients(userId).size();
+			return personalService.GetLinkedPatients(user.getId()).size();
 		}
 
 		@Override

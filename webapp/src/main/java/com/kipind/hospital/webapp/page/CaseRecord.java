@@ -10,6 +10,7 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
@@ -19,27 +20,29 @@ import org.apache.wicket.model.ResourceModel;
 import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.ICheckupService;
+import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
 public class CaseRecord extends BaseLayout {
 
 	@Inject
 	private ICheckupService checkupService;
-	// private Checkup checkup;
-	private Long visitId; //
+	@Inject
+	private IVisitService visitService;
+	private Visit visit;
 
 	public CaseRecord(Visit curVisit) {
-		this.visitId = curVisit.getId();
+		this.visit = curVisit;
 	}
 
 	public CaseRecord(Long vId) {
-		this.visitId = vId;
+		this.visit = visitService.getByIdFull(vId);
 	}
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		add(new VisitDetailsPanel("visitPanel", visitId));
+		add(new VisitDetailsPanel("visitPanel", visit));
 
 		CaseRecordDataProvider caseRecordDataProvider = new CaseRecordDataProvider();
 
@@ -64,7 +67,14 @@ public class CaseRecord extends BaseLayout {
 
 		iterBody.add(dataView);
 
-		add(new BookmarkablePageLink<Void>("btInterview", HomePage.class));
+		add(new Link<Void>("btInterview") {
+
+			@Override
+			public void onClick() {
+				setResponsePage(new Interview(visit));
+			}
+		});
+
 		add(new BookmarkablePageLink<Void>("btPrescribe", HomePage.class));
 
 	}
@@ -73,13 +83,13 @@ public class CaseRecord extends BaseLayout {
 
 		@Override
 		public Iterator<? extends Checkup> iterator(long first, long count) {
-			return checkupService.getAllCheckupsOfVisit(visitId).iterator();
+			return checkupService.getAllCheckupsOfVisit(visit.getId()).iterator();
 
 		}
 
 		@Override
 		public long size() {
-			return checkupService.getAllCheckupsOfVisit(visitId).size();
+			return checkupService.getAllCheckupsOfVisit(visit.getId()).size();
 		}
 
 		@Override

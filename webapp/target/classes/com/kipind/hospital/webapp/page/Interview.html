@@ -1,0 +1,19 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<div wicket:id="visitPanel"></div>
+
+	<form class="contact_form"  name="contact_form"   wicket:id="interviewForm">
+		<ul>
+			<li></li>
+			<li><label><wicket:message	key="p.interview.lb_textarea" /></label>
+			     <textarea cols="40" rows="6" wicket:id="interview"></textarea></li>
+			<li><label><wicket:message key="p.interview.lb_ds" /></label>
+				<input type="text"  wicket:id="diagnosis" />
+			</li>
+			<li>
+				<button class="submit" type="submit" wicket:id="submitButton">
+					<wicket:message key="button.save" />
+				</button>
+			</li>
+		</ul>
+	</form>
+</wicket:extend>
