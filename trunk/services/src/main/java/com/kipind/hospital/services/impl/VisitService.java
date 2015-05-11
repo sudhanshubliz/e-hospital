@@ -99,4 +99,8 @@ public class VisitService implements IVisitService {
 
 	}
 
+	@Override
+	public Visit getOpenVisitForPatient(Long patientId) {
+		return getOpenVisitForPatient(patientId);
+	}
 }

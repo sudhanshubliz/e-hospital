@@ -12,4 +12,7 @@ public interface IVisitDAO extends IAbstractDAO<Long, Visit> {
 
 	List<Visit> getAllVisits(SingularAttribute<Visit, ?> attr, boolean ascending, int startRecord, int pageSize);
 
+	// -----------------------
+	Visit getOpenVisitForPatient(Long patientId);
+
 }

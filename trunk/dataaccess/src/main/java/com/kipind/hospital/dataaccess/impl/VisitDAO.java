@@ -82,4 +82,29 @@ public class VisitDAO extends AbstractDAO<Long, Visit> implements IVisitDAO {
 
 	}
 
+	@Override
+	public Visit getOpenVisitForPatient(Long patientId) {
+		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+		CriteriaQuery<Visit> criteriaQuery = cBuilder.createQuery(Visit.class);
+
+		Root<Visit> visit = criteriaQuery.from(Visit.class);
+
+		criteriaQuery.select(visit);
+
+		criteriaQuery.where(cBuilder.and(cBuilder.equal(visit.get(Visit_.patient), patientId), cBuilder.equal(visit.get(Visit_.endDt), null)));
+
+		visit.fetch(Visit_.patient, JoinType.LEFT);
+		visit.fetch(Visit_.ward, JoinType.LEFT);
+		criteriaQuery.distinct(true);
+
+		TypedQuery<Visit> query = getEm().createQuery(criteriaQuery);
+
+		List<Visit> result = query.getResultList();
+		if (result.size() == 0) {
+			return null;
+		} else {
+			return result.get(0);
+		}
+
+	}
 }

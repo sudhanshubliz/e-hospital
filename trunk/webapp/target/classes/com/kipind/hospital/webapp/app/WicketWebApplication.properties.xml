@@ -6,6 +6,7 @@
 	<entry key="page.patient_reg.label">Регистрация пациента.</entry>
 	<entry key="page.case_record.label">История болезни.</entry>
 	<entry key="page.day_task.label">Дневной план.</entry>
+<entry key="page.interview.label">Осмотр пациента.</entry>
 
 
 	<!-- end -->
@@ -50,14 +51,17 @@
 	<entry key="p.case_record.tb_title_date">Дата записи</entry>
 	<entry key="p.case_record.tb_title_record">Запись</entry>
 	<entry key="p.case_record.tb_title_executor">Исполнитель</entry>
-<entry key="p.case_record.bt_interview">Опрос</entry>
-<entry key="p.case_record.bt_prescribe">Назначение</entry>
+    <entry key="p.case_record.bt_interview">Опрос</entry>
+    <entry key="p.case_record.bt_prescribe">Назначение</entry>
 
 
 	<entry key="p.day_task.tb_title_ward">Палата</entry>
 	<entry key="p.day_task.tb_title_patient">Пациент</entry>
 	<entry key="p.day_task.tb_title_diagnoz">Текущий диагноз</entry>
 	<entry key="p.day_task.tb_title_day">Продолжительность лечения</entry>
+
+    <entry key="p.interview.lb_textarea">Запись врача</entry>
+	<entry key="p.interview.lb_ds">Диагноз</entry>
 
 
 

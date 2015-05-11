@@ -6,43 +6,49 @@
 	</h3>
 	<br />
 	<div  wicket:id="infPanel" ></div>
-	<form action="" wicket:id="patientRegForm">
-	<table>
-		<tr>
-			<td align="right">
-					<wicket:message key="p.patient_reg.form_social_num" />: 
-					<br /> <wicket:message key="p.patient_reg.form_name" />:
-					<br /> <wicket:message key="p.patient_reg.form_surname" />:
-					<br /> <wicket:message key="p.patient_reg.form_address" />:
-					<br /> <wicket:message key="p.patient_reg.form_birth_day" />:
-				 
-			</td>
-			<td>
-				
-					<input type="text" id="form_social_num" wicket:id="socialNumber" />
-					<br /> <input type="text" id="form_name" wicket:id="firstName" />
-					<br /> <input type="text" id="form_surname" wicket:id="lastName" />
-					<br /> <input type="text" id="form_address" wicket:id="address" />
-					<br /> <input type="text" id="form_birth_day" wicket:id="birthDt" />
-					
-				 <!-- <wicket:message key="p.patient_reg.form_sex" /> <br /> 
-				    <span wicket:id="sex">
-						<input type="radio">
-				    </span> -->
-			</td>
-			<td><wicket:message key="p.patient_reg.form_ward" /> <br /> 
-			<select	wicket:id="wardNum">
+	
+	
+	
+	<form class="contact_form"  action="" wicket:id="patientRegForm">
+    <ul>
+       
+       <li>
+       </li>
+        <li>
+            <label ><wicket:message key="p.patient_reg.form_social_num" /></label>
+           <input type="text" id="form_social_num" wicket:id="socialNumber" />
+        </li>
+        <li>
+            <label ><wicket:message key="p.patient_reg.form_name" /></label>
+            <input type="text" id="form_name" wicket:id="firstName" />
+        </li>
+        <li>
+            <label ><wicket:message key="p.patient_reg.form_surname" /></label>
+            <input type="text" id="form_surname" wicket:id="lastName" />
+        </li>
+        <li>
+            <label ><wicket:message key="p.patient_reg.form_address" /></label>
+            <input type="text" id="form_address" wicket:id="address" />
+        </li>
+        <li>
+            <label ><wicket:message key="p.patient_reg.form_birth_day" /></label>
+            <input type="text" id="form_birth_day" wicket:id="birthDt" />
+        </li>
+        
+        <li>
+            <label ><wicket:message key="p.patient_reg.form_ward" /></label>
+           <select	wicket:id="wardNum">
 					<option>1</option>
 			</select>
-			</td>
-		</tr>
-	</table>
-	<br /><input type="submit" value="" name="save"  wicket:id="submitButton" />
-	</form>
-	<br />
-
-
-
-
+        </li>    
+        
+        <li>
+        <button class="submit" type="submit"  wicket:id="submitButton" > <wicket:message key="button.save" /></button>
+        	
+        </li>
+    </ul>
+</form>
+	
+	
 
 </wicket:extend>

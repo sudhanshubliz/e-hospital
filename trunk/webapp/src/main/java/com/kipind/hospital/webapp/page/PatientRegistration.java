@@ -89,20 +89,21 @@ public class PatientRegistration extends BaseLayout {
 
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
+				if (!patient.getSocialNumber().equals(null)) {
+					List<Patient> p = patientService.getAllByField(Patient_.socialNumber, patient.getSocialNumber());
+					if (p.size() != 0) {
+						patient.setAddress(p.get(0).getAddress());
+						patient.setBirthDt(p.get(0).getBirthDt());
+						patient.setFirstName(p.get(0).getFirstName());
+						patient.setLastName(p.get(0).getLastName());
+						patient.setSex(p.get(0).getSex());
+						patient.setId(p.get(0).getId());
 
-				List<Patient> p = patientService.getAllByField(Patient_.socialNumber, patient.getSocialNumber());
-				if (p.size() != 0) {
-					patient.setAddress(p.get(0).getAddress());
-					patient.setBirthDt(p.get(0).getBirthDt());
-					patient.setFirstName(p.get(0).getFirstName());
-					patient.setLastName(p.get(0).getLastName());
-					patient.setSex(p.get(0).getSex());
-					patient.setId(p.get(0).getId());
+					}
 
+					target.add(patientRegForm);
+					target.add(feedbackPanel);
 				}
-
-				target.add(patientRegForm);
-				target.add(feedbackPanel);
 			}
 		};
 		textFormFields.get("form_social_num").add(tfOnBlurAjax);

@@ -30,4 +30,7 @@ public interface IVisitService {
 
 	List<Visit> getAllVisits(); // с ограничением
 
+	// -----------------------
+	Visit getOpenVisitForPatient(Long patientId);
+
 }
