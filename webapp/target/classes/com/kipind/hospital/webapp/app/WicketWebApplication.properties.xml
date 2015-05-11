@@ -13,6 +13,7 @@
 	<!--Standart Buttons -->
 	<entry key="button.save">Сохранить</entry>
 	<entry key="button.delete">Удалить</entry>
+<entry key="button.add">Добавить</entry>
 
 
 	<!-- end -->

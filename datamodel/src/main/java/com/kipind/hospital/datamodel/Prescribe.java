@@ -21,6 +21,7 @@ public class Prescribe extends AbstractEntity {
 	private Personal resPersonal;
 	@OneToMany(fetch = FetchType.LAZY, targetEntity = ResultSource.class)
 	private Set<ResultSource> resSourseList;
+	private Long periodGroupKey;
 
 	public Checkup getCheckup() {
 		return checkup;
@@ -49,6 +50,11 @@ public class Prescribe extends AbstractEntity {
 		return resSourseList;
 	}
 
+	@Column
+	public Long getPeriodGroupKey() {
+		return periodGroupKey;
+	}
+
 	public void setCheckup(Checkup checkup) {
 		this.checkup = checkup;
 	}
@@ -71,6 +77,10 @@ public class Prescribe extends AbstractEntity {
 
 	public void setResSourseList(Set<ResultSource> resSourseList) {
 		this.resSourseList = resSourseList;
+	}
+
+	public void setPeriodGroupKey(Long periodGroupKey) {
+		this.periodGroupKey = periodGroupKey;
 	}
 
 }
