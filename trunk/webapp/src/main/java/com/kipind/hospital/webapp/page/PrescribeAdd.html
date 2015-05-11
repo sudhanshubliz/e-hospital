@@ -1,0 +1,47 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<div wicket:id="visitPanel"></div>
+	<ul class="menu5">
+		<li><a wicket:id="btInterview"><b><wicket:message
+						key="p.case_record.bt_interview" /></b></a></li>
+		<li><a wicket:id="btPrescribe"><b><wicket:message
+						key="p.case_record.bt_prescribe" /></b></a></li>
+
+	</ul>
+
+
+	<table style="width: 100%;">
+		<tr>
+			<table class="CSS_Table_Example" style="width: 100%;">
+				<tr>
+					<td><wicket:message key="p.case_record.tb_title_date" /></td>
+					<td><wicket:message key="p.case_record.tb_title_record" /></td>
+					<td><wicket:message key="p.case_record.tb_title_executor" /></td>
+				</tr>
+				<wicket:container wicket:id="caseRecord">
+					<tr wicket:id="elemList">
+						<td><div wicket:id="caseRecordDate"></div></td>
+						<td><div wicket:id="caseRecordData"></div></td>
+						<td><div wicket:id="caseRecordExecutor"></div></td>
+					</tr>
+				</wicket:container>
+
+			</table>
+		</tr>
+		<tr>
+			<form class="contact_form" 	wicket:id="prescribeForm">
+				<ul>
+					<li></li>
+					<li><label><wicket:message	key="p.prescribe.lb_textarea" /></label>
+					 <textarea cols="40" rows="6" wicket:id="interview"></textarea></li>
+					
+						<button class="submit" type="submit" wicket:id="submitButton">
+							<wicket:message key="button.add" />
+						</button>
+					</li>
+				</ul>
+			</form>
+
+		</tr>
+
+	</table>
+</wicket:extend>
