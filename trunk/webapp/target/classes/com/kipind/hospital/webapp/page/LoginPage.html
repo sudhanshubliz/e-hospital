@@ -1,23 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru"
+	xmlns:wicket="http://wicket.apache.org">
+
 <head>
-	<meta charset="utf8">
-	<title>Авторизация</title>
-	<link rel='StyleSheet' href='login.css' type='text/css'>
-	<!-- <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
-	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
-	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title><wicket:message	key="page.login.label"/></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/login.css" />
+<link href="./images/hart_ico.png" type="image/vnd.microsoft.icon"
+	rel="icon" />
+
 </head>
 <body>
 
-
 <div id="login_container">
 	<div id="form_container">
-		<p class="login-text">Авторизация</p>
-		<form method='POST'>
-		<input type='text' onFocus="if(this.value=='Логин')this.value=''" onblur="if(this.value=='')this.value='Логин'" name='username' value='Логин' class='text_input' />
-		<input type="password" onFocus="if(this.value=='Пароль')this.value=''" onblur="if(this.value=='')this.value='Пароль'" name='password' value='Пароль' class='text_input' />
-		<input type='submit' value='' id='login' name='login' />
+		<p class="login-text"><wicket:message	key="p.login.lb_form_head"/></p>
+		<form  wicket:id="fmLogin" >
+		 <input type='text'  class='text_input' wicket:id="itLogin"/>
+		<input type='password'  class='text_input' wicket:id="itPass"/>
+		<div  class="info_panel" wicket:id="infPanel" ></div>
+	 <input type='submit'id='login' name='login' value="" />
 		</form>
 	</div>
 </div>

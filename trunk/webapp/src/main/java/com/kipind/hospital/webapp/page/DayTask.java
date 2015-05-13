@@ -20,6 +20,7 @@ import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IWardService;
 import com.kipind.hospital.webapp.HelpUtil;
+import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 
 @SuppressWarnings("serial")
 public class DayTask extends BaseLayout {
@@ -33,8 +34,7 @@ public class DayTask extends BaseLayout {
 
 	public DayTask() {
 		super();
-		// TODO: id from session
-		this.user = personalService.getByIdFull(2629l);// из сессии
+		this.user = personalService.getByIdFull(BasicAuthenticationSession.get().getUserId());
 
 		// setOutputMarkupId(true);
 		DayTaskDataProvider dayTaskDataProvider = new DayTaskDataProvider();

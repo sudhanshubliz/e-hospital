@@ -21,7 +21,7 @@
 
 	<entry key="header.to_mainMenu">Главное меню</entry>
 	<entry key="header.to_logout">Выход</entry>
-	<entry key="header.lb_hello">Здравствуйте: Иван Петович </entry>
+	<entry key="header.lb_hello">Здравствуйте: </entry>
 
 	
 	<entry key="panel.visit_details.name">Пациент:</entry>

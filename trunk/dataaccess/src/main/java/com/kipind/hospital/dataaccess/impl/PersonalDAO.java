@@ -3,6 +3,7 @@ package com.kipind.hospital.dataaccess.impl;
 import java.util.List;
 
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -194,6 +195,29 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 		// }
 
 		return getEm().createQuery(criteriaQuery).getResultList();
+	}
+
+	@Override
+	public Personal getPersonalByTab(Integer tabNum) throws NonUniqueResultException {
+		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+
+		CriteriaQuery<Personal> criteriaQuery = cBuilder.createQuery(Personal.class);
+		Root<Personal> personal = criteriaQuery.from(Personal.class);
+
+		criteriaQuery.select(personal);
+		criteriaQuery.where(cBuilder.and(cBuilder.equal(personal.get(Personal_.tabelNumber), tabNum),
+				cBuilder.equal(personal.get(Personal_.delMarker), false)));
+
+		TypedQuery<Personal> query = getEm().createQuery(criteriaQuery);
+		Personal results;
+		try {
+			results = query.getSingleResult();
+		} catch (NoResultException e) {
+			results = null;
+		} catch (NonUniqueResultException e) {
+			results = null;
+		}
+		return results;
 	}
 
 }

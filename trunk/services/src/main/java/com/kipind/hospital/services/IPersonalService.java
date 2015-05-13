@@ -39,6 +39,8 @@ public interface IPersonalService {
 
 	List<Visit> GetLinkedPatientsWithPaging(Long personalId, Integer first, Integer count);
 
+	Personal getPersonalByTab(String tabNum);
+
 	// Object getAllByFieldFull(SingularAttribute<Personal, EProf> prof, int
 	// ordinal, SetAttribute<Personal, Ward> wards);
 }

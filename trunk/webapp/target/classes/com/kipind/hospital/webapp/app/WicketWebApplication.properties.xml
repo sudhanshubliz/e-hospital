@@ -7,6 +7,7 @@
 	<entry key="page.case_record.label">История болезни.</entry>
 	<entry key="page.day_task.label">Дневной план.</entry>
 <entry key="page.interview.label">Осмотр пациента.</entry>
+<entry key="page.login.label">Авторизация.</entry>
 
 
 	<!-- end -->
@@ -20,7 +21,7 @@
 
 	<entry key="header.to_mainMenu">Главное меню</entry>
 	<entry key="header.to_logout">Выход</entry>
-	<entry key="header.lb_hello">Здравствуйте: Иван Петович </entry>
+	<entry key="header.lb_hello">Здравствуйте: </entry>
 
 	
 	<entry key="panel.visit_details.name">Пациент:</entry>
@@ -63,6 +64,10 @@
 
     <entry key="p.interview.lb_textarea">Запись врача</entry>
 	<entry key="p.interview.lb_ds">Диагноз</entry>
+
+<entry key="p.login.it_login">Введите табельный</entry>
+<entry key="p.login.it_pass">Введите пароль</entry>
+<entry key="p.login.lb_form_head">Проидите авторизацию</entry>
 
 
 
