@@ -11,4 +11,6 @@ public interface IPersonalDAO extends IAbstractDAO<Long, Personal> {
 
 	List<Visit> GetLinkedPatientsWithPaging(Long personalId, int first, int count);
 
+	Personal getPersonalByTab(Integer tabNum);
+
 }

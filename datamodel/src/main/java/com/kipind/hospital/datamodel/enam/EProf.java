@@ -1,6 +1,6 @@
 package com.kipind.hospital.datamodel.enam;
 
 public enum EProf {
-	DOCTOR, NERS;
+	DOCTOR, NERS, LEAD_DOCTOR;
 
 }

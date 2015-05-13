@@ -1,8 +1,5 @@
 package com.kipind.hospital.webapp.app;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-
 import javax.inject.Inject;
 
 import org.apache.wicket.Session;
@@ -10,22 +7,20 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.kipind.hospital.webapp.app.auth.AuthenticationManager;
+import com.kipind.hospital.datamodel.Personal;
+import com.kipind.hospital.datamodel.enam.EProf;
+import com.kipind.hospital.services.IPersonalService;
 
 public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(BasicAuthenticationSession.class);
-
-	public static final String ROLE_SIGNED_IN = "SIGNED_IN";
+	private Long userId;
 	private String userName;
-
+	private EProf userRoleId;
 	private Roles resultRoles;
 
 	@Inject
-	private AuthenticationManager authenticationManager;
+	private IPersonalService personalService;
 
 	public BasicAuthenticationSession(final Request request) {
 		super(request);
@@ -37,14 +32,16 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 	}
 
 	@Override
-	public boolean authenticate(final String userName, final String password) {
-		boolean authenticationResult;
-		try {
-			authenticationResult = authenticationManager.authenticate(userName, password);
-			this.userName = userName;
-		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-			LOGGER.error("Internal error on attempt to authenticate user.", e);
-			return false;
+	public boolean authenticate(final String userTab, final String password) {
+		boolean authenticationResult = false;
+
+		Personal account = personalService.getPersonalByTab(userTab);
+
+		if (account != null && account.getPass().equals(password)) {
+			this.userId = account.getId();
+			this.userName = account.getSecondName() + " " + account.getFirstName();
+			this.userRoleId = account.getProf();
+			authenticationResult = true;
 		}
 		return authenticationResult;
 	}
@@ -53,8 +50,7 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 	public Roles getRoles() {
 		if (isSignedIn() && (resultRoles == null)) {
 			resultRoles = new Roles();
-			resultRoles.add(ROLE_SIGNED_IN);
-			resultRoles.addAll(authenticationManager.resolveRoles(userName));
+			resultRoles.add(userRoleId.name());
 		}
 		return resultRoles;
 	}
@@ -62,11 +58,15 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 	@Override
 	public void signOut() {
 		super.signOut();
-		userName = null;
+		this.userId = null;
 	}
 
 	public String getUserName() {
-		return userName;
+		return this.userName;
+	}
+
+	public Long getUserId() {
+		return this.userId;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 
@@ -106,5 +107,17 @@ public class PersonalService implements IPersonalService {
 	public List<Personal> getAllByFieldFull(SingularAttribute<? super Personal, ?> whereAttr, Object whereVal,
 			SetAttribute<? super Personal, ?> fetchArr) {
 		return personalDAO.getAllByFieldFull(whereAttr, whereVal, fetchArr);
+	}
+
+	@Override
+	public Personal getPersonalByTab(String tabNum) throws NumberFormatException, NonUniqueResultException {
+		try {
+			return personalDAO.getPersonalByTab(Integer.valueOf(tabNum));
+
+		} catch (NumberFormatException e) {
+			return null;
+		} catch (NonUniqueResultException e) {
+			return null;
+		}
 	}
 }

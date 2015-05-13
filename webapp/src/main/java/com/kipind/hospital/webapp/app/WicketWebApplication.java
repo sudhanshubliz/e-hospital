@@ -20,6 +20,8 @@ import com.kipind.hospital.webapp.page.LoginPage;
 @Component("wicketWebApplicationBean")
 public class WicketWebApplication extends AuthenticatedWebApplication {
 
+	public static final String LOGIN_URL = "/login";
+
 	@Inject
 	private ApplicationContext applicationContext;
 
@@ -54,6 +56,8 @@ public class WicketWebApplication extends AuthenticatedWebApplication {
 			getMarkupSettings().setCompressWhitespace(true);
 			getMarkupSettings().setStripWicketTags(true);
 		}
+
+		mountPage(LOGIN_URL, LoginPage.class);
 
 	}
 
