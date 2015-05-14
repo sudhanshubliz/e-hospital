@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
@@ -19,6 +20,7 @@ import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
+@AuthorizeInstantiation({ "DOCTOR", "LEAD_DOCTOR" })
 public class Interview extends BaseLayout {
 
 	@Inject
