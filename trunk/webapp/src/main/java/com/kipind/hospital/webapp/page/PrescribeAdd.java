@@ -9,32 +9,46 @@ import javax.persistence.metamodel.SingularAttribute;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
+import com.kipind.hospital.datamodel.Assign;
 import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.ICheckupService;
+import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
+import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
-public class CaseRecord extends BaseLayout {
+public class PrescribeAdd extends BaseLayout {
 
 	@Inject
 	private ICheckupService checkupService;
 	@Inject
 	private IVisitService visitService;
-	private Visit visit;
+	@Inject
+	private IPersonalService personalService;
 
-	public CaseRecord(Visit curVisit) {
+	private Visit visit;
+	private Assign assign;
+
+	private Integer assignPeriod;
+
+	public PrescribeAdd(Visit curVisit) {
 		this.visit = curVisit;
 	}
 
-	public CaseRecord(Long vId) {
+	public PrescribeAdd(Long vId) {
 		this.visit = visitService.getByIdFull(vId);
 	}
 
@@ -63,23 +77,32 @@ public class CaseRecord extends BaseLayout {
 
 			}
 		};
-
 		iterBody.add(dataView);
 
-		add(new Link<Void>("btInterview") {
+		Form<Assign> prescribeForm = new Form<Assign>("prescribeForm", new CompoundPropertyModel<Assign>(assign));
+
+		prescribeForm.add(new TextField<Date>("prscDt"));
+		prescribeForm.add(new TextArea<String>("prscText"));
+		prescribeForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")));
+
+		Button submitButton = new Button("submitButton") {
 
 			@Override
-			public void onClick() {
-				setResponsePage(new Interview(visit));
-			}
-		});
-		add(new Link<Void>("btPrescribe") {
+			public void onSubmit() {
+				// TODO: user из сессии
+				assign.setPrscPersonal(personalService.getByIdFull(BasicAuthenticationSession.get().getUserId()));
+				// assign.setPeriodGroupKey(assignServise.getMaxGroupId()+1);
+				// ?? assign.setResSourseList(resSourseList);
+				assign.setVisit(visit);
+				// assignServise.saveOrUpdate(checkup);
 
-			@Override
-			public void onClick() {
-				setResponsePage(new PrescribeAdd(visit));
+				setResponsePage(new CaseRecord(visit.getId()));
 			}
-		});
+		};
+		// submitButton.add(AttributeModifier.append("value", new
+		// ResourceModel("button.save").getObject()));
+		prescribeForm.add(submitButton);
+		add(prescribeForm);
 
 	}
 

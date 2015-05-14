@@ -10,30 +10,45 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Prescribe extends AbstractEntity {
+public class Assign extends AbstractEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Checkup.class)
-	private Checkup checkup;
-	private String prescribeText;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Visit.class)
+	private Visit visit;
+
+	private String prscText;
+	private Date prscDt;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Personal.class)
+	private Personal prscPersonal;
+
 	private String resText;
 	private Date resDt;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Personal.class)
 	private Personal resPersonal;
+
 	@OneToMany(fetch = FetchType.LAZY, targetEntity = ResultSource.class)
 	private Set<ResultSource> resSourseList;
 	private Long periodGroupKey;
 
-	public Checkup getCheckup() {
-		return checkup;
+	public Visit getVisit() {
+		return visit;
 	}
 
 	@Column
-	public String getComent() {
-		return prescribeText;
+	public String getPrscText() {
+		return prscText;
 	}
 
 	@Column
-	public String getResValue() {
+	public Date getPrscDt() {
+		return prscDt;
+	}
+
+	public Personal getPrscPersonal() {
+		return prscPersonal;
+	}
+
+	@Column
+	public String getResText() {
 		return resText;
 	}
 
@@ -55,16 +70,24 @@ public class Prescribe extends AbstractEntity {
 		return periodGroupKey;
 	}
 
-	public void setCheckup(Checkup checkup) {
-		this.checkup = checkup;
+	public void setVisit(Visit visit) {
+		this.visit = visit;
 	}
 
-	public void setComent(String coment) {
-		this.prescribeText = coment;
+	public void setPrscText(String prscText) {
+		this.prscText = prscText;
 	}
 
-	public void setResValue(String resValue) {
-		this.resText = resValue;
+	public void setPrscDt(Date prscDt) {
+		this.prscDt = prscDt;
+	}
+
+	public void setPrscPersonal(Personal prscPersonal) {
+		this.prscPersonal = prscPersonal;
+	}
+
+	public void setResText(String resText) {
+		this.resText = resText;
 	}
 
 	public void setResDt(Date resDt) {

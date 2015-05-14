@@ -43,7 +43,7 @@ public class DayTask extends BaseLayout {
 		tableBody.setOutputMarkupId(true);
 		add(tableBody);
 
-		DataView<Visit> dataView = new DataView<Visit>("taskList", dayTaskDataProvider, 3) {
+		DataView<Visit> dataView = new DataView<Visit>("taskList", dayTaskDataProvider) {
 
 			String patientName;
 
