@@ -2,26 +2,8 @@
 	<div wicket:id="visitPanel"></div>
 	
 	<table>
-		<tr>
+	<tr>
 			<td>
-				<table class="CSS_Table_Example" style="width: 100%;">
-					<tr>
-						<td><wicket:message key="p.case_record.tb_title_date" /></td>
-						<td><wicket:message key="p.case_record.tb_title_record" /></td>
-						<td><wicket:message key="p.case_record.tb_title_executor" /></td>
-					</tr>
-					<wicket:container wicket:id="caseRecord">
-						<tr wicket:id="elemList">
-							<td><div wicket:id="caseRecordDate"></div></td>
-							<td><div wicket:id="caseRecordData"></div></td>
-							<td><div wicket:id="caseRecordExecutor"></div></td>
-						</tr>
-					</wicket:container>
-
-				</table>
-			</td>
-		
-			<td >
 				<form class="contact_form" name="prescribe_form"
 					wicket:id="prescribeForm">
 
@@ -46,5 +28,25 @@
 				</form>
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<table class="CSS_Table_Example" style="width: 100%;">
+					<tr>
+						<td><wicket:message key="p.case_record.tb_title_date" /></td>
+						<td><wicket:message key="p.case_record.tb_title_record" /></td>
+						<td><wicket:message key="p.case_record.tb_title_executor" /></td>
+					</tr>
+					<wicket:container wicket:id="record">
+						<tr wicket:id="elemList">
+							<td><div wicket:id="caseRecordDate"></div></td>
+							<td><div wicket:id="caseRecordText"></div></td>
+							<td><div wicket:id="caseRecordExecutor"></div></td>
+						</tr>
+					</wicket:container>
+
+				</table>
+			</td>
+		</tr>
+		
 	</table>
 </wicket:extend>

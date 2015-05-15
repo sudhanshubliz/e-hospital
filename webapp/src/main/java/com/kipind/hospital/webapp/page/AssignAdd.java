@@ -22,33 +22,32 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
 import com.kipind.hospital.datamodel.Assign;
-import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Visit;
-import com.kipind.hospital.services.ICheckupService;
+import com.kipind.hospital.services.IAssignServise;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
-public class PrescribeAdd extends BaseLayout {
+public class AssignAdd extends BaseLayout {
 
 	@Inject
-	private ICheckupService checkupService;
+	private IPersonalService personalService;
 	@Inject
 	private IVisitService visitService;
 	@Inject
-	private IPersonalService personalService;
+	private IAssignServise assignServiсe;
 
 	private Visit visit;
-	private Assign assign;
+	private Assign assign = new Assign();
 
 	private Integer assignPeriod;
 
-	public PrescribeAdd(Visit curVisit) {
+	public AssignAdd(Visit curVisit) {
 		this.visit = curVisit;
 	}
 
-	public PrescribeAdd(Long vId) {
+	public AssignAdd(Long vId) {
 		this.visit = visitService.getByIdFull(vId);
 	}
 
@@ -57,71 +56,72 @@ public class PrescribeAdd extends BaseLayout {
 		super.onInitialize();
 		add(new VisitDetailsPanel("visitPanel", visit));
 
-		CaseRecordDataProvider caseRecordDataProvider = new CaseRecordDataProvider();
+		AssignRecordDataProvider assignRecordDataProvider = new AssignRecordDataProvider();
 
-		WebMarkupContainer iterBody = new WebMarkupContainer("caseRecord");
+		WebMarkupContainer iterBody = new WebMarkupContainer("record");
 		iterBody.setOutputMarkupId(true);
 		add(iterBody);
 
-		DataView<Checkup> dataView = new DataView<Checkup>("elemList", caseRecordDataProvider) {
+		DataView<Assign> dataView = new DataView<Assign>("elemList", assignRecordDataProvider) {
 
 			String personalName;
 
 			@Override
-			protected void populateItem(Item<Checkup> item) {
-				Checkup checkup = item.getModelObject();
-				personalName = checkup.getPersonal().getSecondName() + " " + checkup.getPersonal().getFirstName().substring(0, 1) + ".";
-				item.add(new Label("caseRecordDate", new Model<Date>(checkup.getChDt())));
-				item.add(new Label("caseRecordData", new Model<String>(checkup.getInterview())));
+			protected void populateItem(Item<Assign> item) {
+				Assign assign = item.getModelObject();
+				personalName = assign.getPrscPersonal().getSecondName() + " " + assign.getPrscPersonal().getFirstName().substring(0, 1) + ".";
+				item.add(new Label("caseRecordDate", new Model<Date>(assign.getPrscDt())));
+				item.add(new Label("caseRecordText", new Model<String>(assign.getPrscText())));
 				item.add(new Label("caseRecordExecutor", new Model<String>(personalName)));
-
+				// TODO: дл разых пользоателей разый исполитель
 			}
 		};
 		iterBody.add(dataView);
 
-		Form<Assign> prescribeForm = new Form<Assign>("prescribeForm", new CompoundPropertyModel<Assign>(assign));
+		Form<Assign> assignForm = new Form<Assign>("prescribeForm", new CompoundPropertyModel<Assign>(assign));
 
-		prescribeForm.add(new TextField<Date>("prscDt"));
-		prescribeForm.add(new TextArea<String>("prscText"));
-		prescribeForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")));
+		assignForm.add(new TextField<Date>("prscDt"));
+		assignForm.add(new TextArea<String>("prscText"));
+		assignForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")));
 
 		Button submitButton = new Button("submitButton") {
 
 			@Override
 			public void onSubmit() {
-				// TODO: user из сессии
+				// fill by form prscText and prscDt
 				assign.setPrscPersonal(personalService.getByIdFull(BasicAuthenticationSession.get().getUserId()));
-				// assign.setPeriodGroupKey(assignServise.getMaxGroupId()+1);
+				assign.setPeriodGroupKey(assignServiсe.getFreeGroupId());
 				// ?? assign.setResSourseList(resSourseList);
 				assign.setVisit(visit);
-				// assignServise.saveOrUpdate(checkup);
 
-				setResponsePage(new CaseRecord(visit.getId()));
+				assignServiсe.saveOrUpdate(assign);
+
+				// setResponsePage(new CaseRecord(visit.getId()));
 			}
 		};
 		// submitButton.add(AttributeModifier.append("value", new
 		// ResourceModel("button.save").getObject()));
-		prescribeForm.add(submitButton);
-		add(prescribeForm);
+		assignForm.add(submitButton);
+		add(assignForm);
 
 	}
 
-	private class CaseRecordDataProvider extends SortableDataProvider<Checkup, SingularAttribute<Checkup, ?>> {
+	private class AssignRecordDataProvider extends SortableDataProvider<Assign, SingularAttribute<Assign, ?>> {
 
 		@Override
-		public Iterator<? extends Checkup> iterator(long first, long count) {
-			return checkupService.getAllCheckupsOfVisit(visit.getId()).iterator();
+		public Iterator<? extends Assign> iterator(long first, long count) {
+			return assignServiсe.getAllAssignsOfVisit(visit.getId()).iterator();
 
 		}
 
 		@Override
 		public long size() {
-			return checkupService.getAllCheckupsOfVisit(visit.getId()).size();
+			return assignServiсe.getAllAssignsOfVisit(visit.getId()).size();
 		}
 
 		@Override
-		public IModel<Checkup> model(Checkup checkupObj) {
-			return new Model<Checkup>(checkupObj);
+		public IModel<Assign> model(Assign assignObj) {
+			return new Model<Assign>(assignObj);
 		}
 
 	}

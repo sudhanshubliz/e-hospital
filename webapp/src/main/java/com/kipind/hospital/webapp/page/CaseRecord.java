@@ -58,7 +58,7 @@ public class CaseRecord extends BaseLayout {
 				Checkup checkup = item.getModelObject();
 				personalName = checkup.getPersonal().getSecondName() + " " + checkup.getPersonal().getFirstName().substring(0, 1) + ".";
 				item.add(new Label("caseRecordDate", new Model<Date>(checkup.getChDt())));
-				item.add(new Label("caseRecordData", new Model<String>(checkup.getInterview())));
+				item.add(new Label("caseRecordText", new Model<String>(checkup.getInterview())));
 				item.add(new Label("caseRecordExecutor", new Model<String>(personalName)));
 
 			}
@@ -77,7 +77,7 @@ public class CaseRecord extends BaseLayout {
 
 			@Override
 			public void onClick() {
-				setResponsePage(new PrescribeAdd(visit));
+				setResponsePage(new AssignAdd(visit));
 			}
 		});
 
