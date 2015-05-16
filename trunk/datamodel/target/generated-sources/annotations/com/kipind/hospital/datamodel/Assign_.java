@@ -3,7 +3,6 @@ package com.kipind.hospital.datamodel;
 import java.util.Date;
 
 import javax.annotation.Generated;
-import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
@@ -21,6 +20,6 @@ public abstract class Assign_ extends com.kipind.hospital.datamodel.AbstractEnti
 	public static volatile SingularAttribute<Assign, Date> resDt;
 
 	public static volatile SingularAttribute<Assign, Long> periodGroupKey;
-	public static volatile SetAttribute<Assign, ResultSource> resSourseList;
+	// public static volatile SetAttribute<Assign, ResultSource> resSourseList;
 
 }

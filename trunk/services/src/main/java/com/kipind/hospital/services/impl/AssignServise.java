@@ -1,11 +1,13 @@
 package com.kipind.hospital.services.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -85,6 +87,34 @@ public class AssignServise implements IAssignServise {
 	@Override
 	public List<Assign> getAllAssignsOfVisit(Long visitId) {
 		return assignDAO.getAllAssignsOfVisit(visitId);
+
+	}
+
+	@Override
+	public void saveAssignGroup(Assign assign, Integer period) {
+
+		assign.setPeriodGroupKey(this.getFreeGroupId());
+		assign.setPrscDt(Calendar.getInstance().getTime());
+
+		for (int i = 0; i < period; i++) {
+			Assign insAssign = new Assign();
+			insAssign.setPrscPersonal(assign.getPrscPersonal());
+			insAssign.setVisit(assign.getVisit());
+			insAssign.setPrscText(assign.getPrscText());
+			insAssign.setPeriodGroupKey(assign.getPeriodGroupKey());
+			insAssign.setPrscDt(DateUtils.addDays(assign.getPrscDt(), i));
+			assignDAO.insert(insAssign);
+		}
+
+		/*
+		 * assign.setPeriodGroupKey(this.getFreeGroupId());
+		 * assign.setPrscDt(Calendar.getInstance().getTime()); for (int i = 0; i
+		 * < period; i++) {
+		 * 
+		 * assign.setPrscDt(DateUtils.addDays(assign.getPrscDt(), i));
+		 * 
+		 * assignDAO.insert(assign); assign.setId(null); }
+		 */
 
 	}
 

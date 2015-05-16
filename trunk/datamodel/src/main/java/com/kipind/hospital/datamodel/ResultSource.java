@@ -8,24 +8,24 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ResultSource extends AbstractEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Prescribe.class)
-	private Prescribe prescribe;
-	private String sourseLink;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Assign.class)
+	private Assign assign;
+	private String sourceLink;
 
-	public Prescribe getPrescribe() {
-		return prescribe;
-	}
-
-	public void setPrescribe(Prescribe prescribe) {
-		this.prescribe = prescribe;
+	public Assign getAssign() {
+		return assign;
 	}
 
 	@Column
-	public String getSourseLink() {
-		return sourseLink;
+	public String getSourceLink() {
+		return sourceLink;
 	}
 
-	public void setSourseLink(String sourseLink) {
-		this.sourseLink = sourseLink;
+	public void setAssign(Assign assign) {
+		this.assign = assign;
+	}
+
+	public void setSourceLink(String sourceLink) {
+		this.sourceLink = sourceLink;
 	}
 }

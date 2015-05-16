@@ -9,12 +9,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
 import com.kipind.hospital.dataaccess.IAssignDAO;
 import com.kipind.hospital.datamodel.Assign;
 import com.kipind.hospital.datamodel.Assign_;
-import com.kipind.hospital.datamodel.Visit;
 
 @Repository
 public class AssignDAO extends AbstractDAO<Long, Assign> implements IAssignDAO {
@@ -36,7 +36,7 @@ public class AssignDAO extends AbstractDAO<Long, Assign> implements IAssignDAO {
 		assign.fetch(Assign_.prscPersonal, JoinType.LEFT);
 		assign.fetch(Assign_.resPersonal, JoinType.LEFT);
 		assign.fetch(Assign_.visit, JoinType.LEFT);
-		assign.fetch(Assign_.resSourseList, JoinType.LEFT);
+		// assign.fetch(Assign_.resSourseList, JoinType.LEFT);
 
 		TypedQuery<Assign> query = getEm().createQuery(criteriaQuery);
 
@@ -72,7 +72,6 @@ public class AssignDAO extends AbstractDAO<Long, Assign> implements IAssignDAO {
 
 		CriteriaQuery<Assign> criteriaQuery = cBuilder.createQuery(Assign.class);
 		Root<Assign> assign = criteriaQuery.from(Assign.class);
-		Root<Visit> visit = criteriaQuery.from(Visit.class);
 
 		criteriaQuery.select(assign);
 
@@ -80,10 +79,12 @@ public class AssignDAO extends AbstractDAO<Long, Assign> implements IAssignDAO {
 
 		assign.fetch(Assign_.visit, JoinType.LEFT);
 		assign.fetch(Assign_.prscPersonal, JoinType.LEFT);
-		assign.fetch(Assign_.prscPersonal, JoinType.LEFT);
+		assign.fetch(Assign_.resPersonal, JoinType.LEFT);
 		criteriaQuery.distinct(true);
+		criteriaQuery.orderBy(new OrderImpl(assign.get(Assign_.prscDt), false));
 
 		TypedQuery<Assign> query = getEm().createQuery(criteriaQuery);
+
 		List<Assign> results = query.getResultList();
 		return results;
 	}
