@@ -49,7 +49,7 @@ public class Interview extends BaseLayout {
 	protected void onInitialize() {
 		super.onInitialize();
 		add(new VisitDetailsPanel("visitPanel", visit));
-
+		checkup.setDiagnosis(visit.getFirstDs());
 		Form<Checkup> interviewForm = new Form<Checkup>("interviewForm", new CompoundPropertyModel<Checkup>(checkup));
 
 		interviewForm.add(new TextField<String>("diagnosis"));
@@ -58,12 +58,15 @@ public class Interview extends BaseLayout {
 
 			@Override
 			public void onSubmit() {
-				// TODO: user из сессии
 				checkup.setPersonal(personalService.getAllPersonal().get(0));
 				checkup.setVisit(visit);
 				checkup.setChDt(Calendar.getInstance().getTime());
 
 				checkupService.saveOrUpdate(checkup);
+				if (!checkup.getDiagnosis().equals(visit.getFirstDs())) {
+					visit.setFirstDs(checkup.getDiagnosis());
+					visitService.saveOrUpdate(visit);
+				}
 
 				setResponsePage(new CaseRecord(visit.getId()));
 			}

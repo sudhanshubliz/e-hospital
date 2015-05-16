@@ -1,22 +1,22 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
 	<div wicket:id="visitPanel"></div>
-	
+
 	<table>
-	<tr>
+		<tr>
 			<td>
 				<form class="contact_form" name="prescribe_form"
 					wicket:id="prescribeForm">
 
 					<ul>
-						<li></li>
+						<li><div wicket:id="infPanel"></div></li>
 						<li><label><wicket:message
-									key="p.prescribe_dotor.lb_prescribe" /></label> <textarea cols="40"
+									key="p.assign_add.lb_prescribe" /></label> <textarea cols="40"
 								rows="6" wicket:id="prscText"></textarea></li>
+						<!-- <li><label><wicket:message
+									key="p.assign_add.lb_prescribe_start" /></label> <input type="text"
+							wicket:id="prscDt" /></li> -->
 						<li><label><wicket:message
-									key="p.prescribe_dotor.lb_prescribe_start" /></label> <input
-							type="text" wicket:id="prscDt" /></li>
-						<li><label><wicket:message
-									key="p.prescribe_dotor.lb_period" /></label> <input type="text"
+									key="p.assign_add.lb_period" /></label> <input type="text"
 							wicket:id="period" /></li>
 
 						<li>
@@ -32,13 +32,14 @@
 			<td>
 				<table class="CSS_Table_Example" style="width: 100%;">
 					<tr>
-						<td><wicket:message key="p.case_record.tb_title_date" /></td>
-						<td><wicket:message key="p.case_record.tb_title_record" /></td>
-						<td><wicket:message key="p.case_record.tb_title_executor" /></td>
+						<td><wicket:message key="p.assign_add.tb_title_date" /></td>
+						<td><wicket:message key="p.assign_add.tb_title_record" /></td>
+						<td><wicket:message key="p.assign_add.tb_title_sender" /></td>
 					</tr>
 					<wicket:container wicket:id="record">
 						<tr wicket:id="elemList">
 							<td><div wicket:id="caseRecordDate"></div></td>
+							
 							<td><div wicket:id="caseRecordText"></div></td>
 							<td><div wicket:id="caseRecordExecutor"></div></td>
 						</tr>
@@ -47,6 +48,6 @@
 				</table>
 			</td>
 		</tr>
-		
+
 	</table>
 </wicket:extend>

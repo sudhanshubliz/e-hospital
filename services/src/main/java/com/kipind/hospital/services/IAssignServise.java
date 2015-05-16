@@ -28,4 +28,6 @@ public interface IAssignServise {
 
 	List<Assign> getAllAssignsOfVisit(Long visitId);
 
+	@Transactional
+	void saveAssignGroup(Assign assign, Integer period);
 }

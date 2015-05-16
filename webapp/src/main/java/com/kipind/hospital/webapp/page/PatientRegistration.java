@@ -1,5 +1,6 @@
 package com.kipind.hospital.webapp.page;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,9 +13,11 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -49,7 +52,6 @@ public class PatientRegistration extends BaseLayout {
 
 	private Patient patient;
 	private Visit visit = new Visit();
-	private Ward ward = new Ward();
 
 	private List<Ward> choiceList;
 
@@ -89,7 +91,7 @@ public class PatientRegistration extends BaseLayout {
 
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
-				if (!patient.getSocialNumber().equals(null)) {
+				if (patient.getSocialNumber() != null) {
 					List<Patient> p = patientService.getAllByField(Patient_.socialNumber, patient.getSocialNumber());
 					if (p.size() != 0) {
 						patient.setAddress(p.get(0).getAddress());
@@ -104,19 +106,28 @@ public class PatientRegistration extends BaseLayout {
 					target.add(patientRegForm);
 					target.add(feedbackPanel);
 				}
+
 			}
 		};
 		textFormFields.get("form_social_num").add(tfOnBlurAjax);
 		patientRegForm.add(textFormFields.get("form_social_num"));
+
+		patientRegForm.add(new RadioChoice<EHumanSex>("sex", Arrays.asList(EHumanSex.values()), new ChoiceRenderer<EHumanSex>() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getDisplayValue(EHumanSex sexType) {
+				return getString(sexType.toString());
+			}
+		}));
 
 		choiceList = wardService.getAllWards();
 		patientRegForm.add(new DropDownChoice<Ward>("wardNum", new PropertyModel<Ward>(visit, "ward"), choiceList, new IChoiceRenderer<Ward>() {
 
 			@Override
 			public Object getDisplayValue(Ward object) {
-				return object.getWardNum() + "(" + object.getPlaceNumBisy() + "/" + object.getPlaceNumSum() + ")";// -
-																													// "+
-																													// doctor.get;
+				return object.getWardNum() + "(" + object.getPlaceNumBisy() + "/" + object.getPlaceNumSum() + ")";
 			}
 
 			@Override

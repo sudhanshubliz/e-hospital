@@ -45,7 +45,7 @@
 	<entry key="p.patient_reg.form_birth_day">Дата рождения</entry>
 	<entry key="p.patient_reg.form_address">Адрес</entry>
 	<entry key="p.patient_reg.form_social_num">Номер соц. страховки</entry>
-	<entry key="p.patient_reg.form_sex">Пол</entry>
+	<entry key="p.patient_reg.form_gender">Пол</entry>
 	<entry key="p.patient_reg.form_sex_FEMALE">Женский</entry>
 	<entry key="p.patient_reg.form_sex_MALE">Мужской</entry>
 	<entry key="p.patient_reg.form_ward">Палата № (занято\всего коек)</entry>
@@ -70,9 +70,12 @@
 <entry key="p.login.it_pass">Введите пароль</entry>
 <entry key="p.login.lb_form_head">Проидите авторизацию</entry>
 
-<entry key="p.prescribe_dotor.lb_prescribe">Текст назначения:</entry>
-<entry key="p.prescribe_dotor.lb_prescribe_start">Дата исполнения:</entry>
-<entry key="p.prescribe_dotor.lb_period">Продолжительность (дней):</entry>
+<entry key="p.assign_add.lb_prescribe">Текст назначения:</entry>
+<entry key="p.assign_add.lb_prescribe_start">Дата исполнения:</entry>
+<entry key="p.assign_add.lb_period">Продолжительность (дней):</entry>
+<entry key="p.assign_add.tb_title_date">Дата</entry>
+<entry key="p.assign_add.tb_title_record">Назначение</entry>
+<entry key="p.assign_add.tb_title_sender">Врач</entry>
 
 
 

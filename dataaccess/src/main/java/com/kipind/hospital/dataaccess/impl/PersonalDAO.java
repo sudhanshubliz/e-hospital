@@ -14,6 +14,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.commons.lang3.Validate;
+import org.hibernate.jpa.criteria.OrderImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -146,7 +147,7 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 		visit.fetch(Visit_.patient);
 		visit.fetch(Visit_.ward);
 		criteriaQuery.distinct(true);
-		// criteriaQuery.orderBy(new OrderImpl(visit.get(Visit_.ward.), true));
+		criteriaQuery.orderBy(new OrderImpl(visit.get(Visit_.ward), true));
 
 		TypedQuery<Visit> query = getEm().createQuery(criteriaQuery);
 		List<Visit> results = query.getResultList();

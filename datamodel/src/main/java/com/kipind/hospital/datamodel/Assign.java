@@ -1,13 +1,11 @@
 package com.kipind.hospital.datamodel;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Assign extends AbstractEntity {
@@ -25,8 +23,10 @@ public class Assign extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Personal.class)
 	private Personal resPersonal;
 
-	@OneToMany(fetch = FetchType.LAZY, targetEntity = ResultSource.class)
-	private Set<ResultSource> resSourseList;
+	/*
+	 * @OneToMany(fetch = FetchType.LAZY, targetEntity = ResultSource.class)
+	 * private Set<ResultSource> resultSource;
+	 */
 	private Long periodGroupKey;
 
 	public Visit getVisit() {
@@ -61,10 +61,9 @@ public class Assign extends AbstractEntity {
 		return resPersonal;
 	}
 
-	public Set<ResultSource> getResSourseList() {
-		return resSourseList;
-	}
-
+	/*
+	 * public Set<ResultSource> getResultSource() { return resultSource; }
+	 */
 	@Column
 	public Long getPeriodGroupKey() {
 		return periodGroupKey;
@@ -98,10 +97,10 @@ public class Assign extends AbstractEntity {
 		this.resPersonal = resPersonal;
 	}
 
-	public void setResSourseList(Set<ResultSource> resSourseList) {
-		this.resSourseList = resSourseList;
-	}
-
+	/*
+	 * public void setResultSource(Set<ResultSource> resultSource) {
+	 * this.resultSource = resultSource; }
+	 */
 	public void setPeriodGroupKey(Long periodGroupKey) {
 		this.periodGroupKey = periodGroupKey;
 	}

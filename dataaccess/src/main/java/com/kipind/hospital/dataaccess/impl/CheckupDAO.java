@@ -9,12 +9,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
 import com.kipind.hospital.dataaccess.ICheckupDAO;
 import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Checkup_;
-import com.kipind.hospital.datamodel.Visit;
 
 @Repository
 public class CheckupDAO extends AbstractDAO<Long, Checkup> implements ICheckupDAO {
@@ -53,7 +53,6 @@ public class CheckupDAO extends AbstractDAO<Long, Checkup> implements ICheckupDA
 
 		CriteriaQuery<Checkup> criteriaQuery = cBuilder.createQuery(Checkup.class);
 		Root<Checkup> checkup = criteriaQuery.from(Checkup.class);
-		Root<Visit> visit = criteriaQuery.from(Visit.class);
 
 		criteriaQuery.select(checkup);
 
@@ -62,6 +61,7 @@ public class CheckupDAO extends AbstractDAO<Long, Checkup> implements ICheckupDA
 		checkup.fetch(Checkup_.visit, JoinType.LEFT);
 		checkup.fetch(Checkup_.personal, JoinType.LEFT);
 		criteriaQuery.distinct(true);
+		criteriaQuery.orderBy(new OrderImpl(checkup.get(Checkup_.chDt), false));
 
 		TypedQuery<Checkup> query = getEm().createQuery(criteriaQuery);
 		List<Checkup> results = query.getResultList();

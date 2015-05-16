@@ -8,8 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(ResultSource.class)
 public abstract class ResultSource_ extends com.kipind.hospital.datamodel.AbstractEntity_ {
 
-	public static volatile SingularAttribute<ResultSource, Prescribe> prescribe;
+	public static volatile SingularAttribute<ResultSource, Assign> assign;
 	public static volatile SingularAttribute<ResultSource, String> sourseLink;
 
 }
-

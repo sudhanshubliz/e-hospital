@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -41,7 +42,7 @@ public class AssignAdd extends BaseLayout {
 	private Visit visit;
 	private Assign assign = new Assign();
 
-	private Integer assignPeriod;
+	private Integer assignPeriod = 1;
 
 	public AssignAdd(Visit curVisit) {
 		this.visit = curVisit;
@@ -73,14 +74,18 @@ public class AssignAdd extends BaseLayout {
 				item.add(new Label("caseRecordDate", new Model<Date>(assign.getPrscDt())));
 				item.add(new Label("caseRecordText", new Model<String>(assign.getPrscText())));
 				item.add(new Label("caseRecordExecutor", new Model<String>(personalName)));
-				// TODO: дл разых пользоателей разый исполитель
+				// TODO: для разых пользоателей разый исполитель
 			}
 		};
 		iterBody.add(dataView);
 
 		Form<Assign> assignForm = new Form<Assign>("prescribeForm", new CompoundPropertyModel<Assign>(assign));
 
-		assignForm.add(new TextField<Date>("prscDt"));
+		FeedbackPanel feedbackPanel = new FeedbackPanel("infPanel");
+		feedbackPanel.setOutputMarkupId(true);
+		assignForm.add(feedbackPanel);
+
+		// assignForm.add(new TextField<Date>("prscDt"));
 		assignForm.add(new TextArea<String>("prscText"));
 		assignForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")));
 
@@ -88,15 +93,24 @@ public class AssignAdd extends BaseLayout {
 
 			@Override
 			public void onSubmit() {
-				// fill by form prscText and prscDt
-				assign.setPrscPersonal(personalService.getByIdFull(BasicAuthenticationSession.get().getUserId()));
-				assign.setPeriodGroupKey(assignServiсe.getFreeGroupId());
-				// ?? assign.setResSourseList(resSourseList);
-				assign.setVisit(visit);
+				try {
+					assign.setVisit(visit);
+					assign.setPrscPersonal(personalService.getByIdFull(BasicAuthenticationSession.get().getUserId()));
+					assignServiсe.saveAssignGroup(assign, assignPeriod);
 
-				assignServiсe.saveOrUpdate(assign);
+					cleanAssignForm();
+				} catch (RuntimeException e) {
+					// TODO:ошибку в лог фаил
+					info("Ошибка при сохранении даных. обатитесь в ИТ-отел по тел.250" + e);
+
+				}
 
 				// setResponsePage(new CaseRecord(visit.getId()));
+			}
+
+			private void cleanAssignForm() {
+				assign.setPrscText(null);
+				assignPeriod = 1;
 			}
 		};
 		// submitButton.add(AttributeModifier.append("value", new
