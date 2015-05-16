@@ -447,10 +447,10 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 /* === Form Elements === */
 .contact_form label {
 	width:150px;
-	margin-top: 3px;
-	display:inline-block;
+	/* margin-top: 3px;
+	 */display:inline-block;
 	float:left;
-	padding:3px;
+	/* padding:3px; */
 }
 .contact_form input {
 	height:20px; 

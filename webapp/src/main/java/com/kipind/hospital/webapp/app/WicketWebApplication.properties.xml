@@ -40,15 +40,15 @@
 	<entry key="p.start.meeting">Совещание</entry>
 
 
-	<entry key="p.patient_reg.form_name">Имя</entry>
-	<entry key="p.patient_reg.form_surname">Фамилия</entry>
-	<entry key="p.patient_reg.form_birth_day">Дата рождения</entry>
-	<entry key="p.patient_reg.form_address">Адрес</entry>
-	<entry key="p.patient_reg.form_social_num">Номер соц. страховки</entry>
-	<entry key="p.patient_reg.form_gender">Пол</entry>
+	<entry key="p.patient_reg.form_name">Имя:</entry>
+	<entry key="p.patient_reg.form_surname">Фамилия:</entry>
+	<entry key="p.patient_reg.form_birth_day">Дата рождения:</entry>
+	<entry key="p.patient_reg.form_address">Адрес:</entry>
+	<entry key="p.patient_reg.form_social_num">Номер соц. страховки:</entry>
+	<entry key="p.patient_reg.form_gender">Пол:</entry>
 	<entry key="p.patient_reg.form_sex_FEMALE">Женский</entry>
 	<entry key="p.patient_reg.form_sex_MALE">Мужской</entry>
-	<entry key="p.patient_reg.form_ward">Палата № (занято\всего коек)</entry>
+	<entry key="p.patient_reg.form_ward">Палата № (занято\всего мест)</entry>
 
 
 	<entry key="p.case_record.tb_title_date">Дата записи</entry>

@@ -109,16 +109,25 @@ public class PatientRegistration extends BaseLayout {
 
 			}
 		};
+
 		textFormFields.get("form_social_num").add(tfOnBlurAjax);
 		patientRegForm.add(textFormFields.get("form_social_num"));
 
 		patientRegForm.add(new RadioChoice<EHumanSex>("sex", Arrays.asList(EHumanSex.values()), new ChoiceRenderer<EHumanSex>() {
 
-			private static final long serialVersionUID = 1L;
+			String choiceLabel;
 
 			@Override
 			public String getDisplayValue(EHumanSex sexType) {
-				return getString(sexType.toString());
+
+				return new ResourceModel("p.patient_reg.form_sex_" + sexType.getName()).getObject();
+				/*
+				 * switch (sexType) { case FEMALE: choiceLabel=new
+				 * ResourceModel("p.patient_reg." + entry.getKey()).getObject()
+				 * break; case MALE: choiceLabel= break;
+				 * 
+				 * default: break; } return choiceLabel;
+				 */
 			}
 		}));
 
@@ -141,14 +150,16 @@ public class PatientRegistration extends BaseLayout {
 
 			@Override
 			public void onSubmit() {
-				patient.setSex(EHumanSex.MALE);
 
 				visit.setPatient(patientService.saveOrUpdate(patient));
 				visit.setStartDt(Calendar.getInstance().getTime());
 				visit.setImportantFlag(0);
 				visit.setDischargeFlag(EDischargeStatus.CURING);
-				if (visit.getWard().equals(null)) {
-					visit.setWard(WardAvtoSelect());
+				if (visit.getWard().equals(null)) {// TODO: подсчет затых
+													// вободых койко мест
+					visit.setWard(WardAvtoSelect()); // TODO: релизация
+														// алгоритма автовыбоа
+														// лучшей палаты
 				}
 				visitService.saveOrUpdate(visit);
 
