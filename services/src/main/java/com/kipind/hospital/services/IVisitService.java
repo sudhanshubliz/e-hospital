@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Visit;
 
 public interface IVisitService {
@@ -33,4 +34,5 @@ public interface IVisitService {
 	// -----------------------
 	Visit getOpenVisitForPatient(Long patientId);
 
+	List<Checkup> getCaseRecordForVisit(Long visitId);
 }
