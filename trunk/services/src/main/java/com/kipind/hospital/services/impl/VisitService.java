@@ -1,6 +1,7 @@
 package com.kipind.hospital.services.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.kipind.hospital.dataaccess.IVisitDAO;
+import com.kipind.hospital.datamodel.Assign;
+import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Visit;
+import com.kipind.hospital.services.IAssignServise;
+import com.kipind.hospital.services.ICheckupService;
 import com.kipind.hospital.services.IVisitService;
 
 @Service
@@ -23,6 +28,10 @@ public class VisitService implements IVisitService {
 
 	@Inject
 	private IVisitDAO VisitDAO;
+	@Inject
+	private ICheckupService checkupService;
+	@Inject
+	private IAssignServise assignServise;
 
 	@PostConstruct
 	private void init() {
@@ -103,4 +112,54 @@ public class VisitService implements IVisitService {
 	public Visit getOpenVisitForPatient(Long patientId) {
 		return getOpenVisitForPatient(patientId);
 	}
+
+	@Override
+	public List<Checkup> getCaseRecordForVisit(Long visitId) {
+		List<Checkup> res = checkupService.getAllCheckupsOfVisit(visitId);
+		int i = 0;
+		Date prsExecDate;
+		for (Assign assign : assignServise.getAllAssignsOfVisit(visitId)) {
+
+			if (assign.getResDt() != null) {
+				prsExecDate = assign.getResDt();
+			} else {
+				prsExecDate = assign.getPrscDt();
+			}
+			if (assign.getPrscDt().after(res.get(i).getChDt()) || (prsExecDate.after(res.get(i).getChDt()))) {
+				Checkup checkAssign = new Checkup();
+				checkAssign.setChDt(assign.getPrscDt());
+				checkAssign.setInterview(createAssignInfo(assign));
+				checkAssign.setPersonal(assign.getPrscPersonal());
+				res.add(i, checkAssign);
+				i++;
+			} else {
+				i++;
+				while (assign.getPrscDt().before(res.get(i).getChDt()) && prsExecDate.before(res.get(i).getChDt()) && i < res.size()) {
+					i++;
+				}
+				if (i < res.size()) {
+					Checkup checkAssign = new Checkup();
+					checkAssign.setChDt(assign.getPrscDt());
+					checkAssign.setInterview(createAssignInfo(assign));
+					checkAssign.setPersonal(assign.getPrscPersonal());
+					res.add(i, checkAssign);
+					i++;
+				}
+			}
+
+		}
+
+		return res;
+	}
+
+	private String createAssignInfo(Assign assign) {
+		String res;
+		res = "[assign]\r   \n" + assign.getPrscText();
+		if (assign.getResText() != null) {
+			res = res + "/n  \n[result]/n  \n" + assign.getResText() + "( " + assign.getResPersonal().getSecondName() + " "
+					+ assign.getResPersonal().getFirstName().substring(0, 1) + "., " + assign.getResDt() + " )";
+		}
+		return res;
+	}
+
 }

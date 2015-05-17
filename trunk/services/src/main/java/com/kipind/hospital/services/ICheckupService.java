@@ -28,6 +28,6 @@ public interface ICheckupService {
 
 	List<Checkup> getAllCheckups();
 
-	List<Checkup> getAllCheckupsOfVisit(Long vistId);
+	List<Checkup> getAllCheckupsOfVisit(Long visitId);
 
 }

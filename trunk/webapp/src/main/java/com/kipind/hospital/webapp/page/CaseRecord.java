@@ -87,13 +87,17 @@ public class CaseRecord extends BaseLayout {
 
 		@Override
 		public Iterator<? extends Checkup> iterator(long first, long count) {
-			return checkupService.getAllCheckupsOfVisit(visit.getId()).iterator();
-
+			// return
+			// checkupService.getAllCheckupsOfVisit(visit.getId()).iterator();
+			return visitService.getCaseRecordForVisit(visit.getId()).iterator();
 		}
 
 		@Override
 		public long size() {
-			return checkupService.getAllCheckupsOfVisit(visit.getId()).size();
+			// return
+			// checkupService.getAllCheckupsOfVisit(visit.getId()).size();
+			return visitService.getCaseRecordForVisit(visit.getId()).size();
+
 		}
 
 		@Override
