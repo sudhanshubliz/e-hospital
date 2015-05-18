@@ -85,7 +85,6 @@ public class AssignAdd extends BaseLayout {
 		feedbackPanel.setOutputMarkupId(true);
 		assignForm.add(feedbackPanel);
 
-		// assignForm.add(new TextField<Date>("prscDt"));
 		assignForm.add(new TextArea<String>("prscText"));
 		assignForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")));
 
@@ -101,11 +100,10 @@ public class AssignAdd extends BaseLayout {
 					cleanAssignForm();
 				} catch (RuntimeException e) {
 					// TODO:ошибку в лог фаил
-					info("Ошибка при сохранении даных. обатитесь в ИТ-отел по тел.250" + e);
+					error(new ResourceModel("error.general_save.callIT").getObject());
 
 				}
 
-				// setResponsePage(new CaseRecord(visit.getId()));
 			}
 
 			private void cleanAssignForm() {

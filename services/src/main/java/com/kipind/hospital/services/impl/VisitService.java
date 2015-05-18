@@ -117,6 +117,7 @@ public class VisitService implements IVisitService {
 	public List<Checkup> getCaseRecordForVisit(Long visitId) {
 		List<Checkup> res = checkupService.getAllCheckupsOfVisit(visitId);
 		int i = 0;
+		Boolean addRestFlag = false;
 		Date prsExecDate;
 		for (Assign assign : assignServise.getAllAssignsOfVisit(visitId)) {
 
@@ -125,38 +126,48 @@ public class VisitService implements IVisitService {
 			} else {
 				prsExecDate = assign.getPrscDt();
 			}
-			if (assign.getPrscDt().after(res.get(i).getChDt()) || (prsExecDate.after(res.get(i).getChDt()))) {
-				Checkup checkAssign = new Checkup();
-				checkAssign.setChDt(assign.getPrscDt());
-				checkAssign.setInterview(createAssignInfo(assign));
-				checkAssign.setPersonal(assign.getPrscPersonal());
-				res.add(i, checkAssign);
+			if (addRestFlag || assign.getPrscDt().after(res.get(i).getChDt()) || (prsExecDate.after(res.get(i).getChDt()))) {
+				res.add(i, createAssign(assign));
 				i++;
 			} else {
+				res.get(i).setInterview("[interview] " + res.get(i).getInterview());
 				i++;
-				while (assign.getPrscDt().before(res.get(i).getChDt()) && prsExecDate.before(res.get(i).getChDt()) && i < res.size()) {
+				while (i < res.size() && assign.getPrscDt().before(res.get(i).getChDt()) && prsExecDate.before(res.get(i).getChDt())) {
+					res.get(i).setInterview("[interview] " + res.get(i).getInterview());
 					i++;
 				}
 				if (i < res.size()) {
-					Checkup checkAssign = new Checkup();
-					checkAssign.setChDt(assign.getPrscDt());
-					checkAssign.setInterview(createAssignInfo(assign));
-					checkAssign.setPersonal(assign.getPrscPersonal());
-					res.add(i, checkAssign);
+					res.add(i, createAssign(assign));
+					i++;
+				} else {
+					addRestFlag = true;
+					res.add(i, createAssign(assign));
 					i++;
 				}
 			}
 
 		}
+		while (i < res.size()) {
+			res.get(i).setInterview("[interview] " + res.get(i).getInterview());
+			i++;
+		}
 
 		return res;
 	}
 
+	private Checkup createAssign(Assign assign) {
+		Checkup checkAssign = new Checkup();
+		checkAssign.setChDt(assign.getPrscDt());
+		checkAssign.setInterview(createAssignInfo(assign));
+		checkAssign.setPersonal(assign.getPrscPersonal());
+		return checkAssign;
+	}
+
 	private String createAssignInfo(Assign assign) {
 		String res;
-		res = "[assign]\r   \n" + assign.getPrscText();
+		res = "[assign] " + assign.getPrscText();
 		if (assign.getResText() != null) {
-			res = res + "/n  \n[result]/n  \n" + assign.getResText() + "( " + assign.getResPersonal().getSecondName() + " "
+			res = res + "<<|>> [result] " + assign.getResText() + "( " + assign.getResPersonal().getSecondName() + " "
 					+ assign.getResPersonal().getFirstName().substring(0, 1) + "., " + assign.getResDt() + " )";
 		}
 		return res;

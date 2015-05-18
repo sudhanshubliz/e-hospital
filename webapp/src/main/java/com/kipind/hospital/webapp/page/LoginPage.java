@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.string.Strings;
 
 public class LoginPage extends WebPage {
@@ -28,15 +29,15 @@ public class LoginPage extends WebPage {
 
 			@Override
 			protected void onSubmit() {
+
 				if (Strings.isEmpty(itLogin) || Strings.isEmpty(itPass)) {
 					return;
 				}
 				final boolean authResult = AuthenticatedWebSession.get().signIn(itLogin, itPass);
 				if (authResult) {
-					// continueToOriginalDestination();
 					setResponsePage(Application.get().getHomePage());
 				} else {
-					error("Ошибка авторизации");
+					error(new ResourceModel("error.autor_fail").getObject());
 				}
 			}
 		};
