@@ -51,14 +51,18 @@ public class CaseRecord extends BaseLayout {
 
 		DataView<Checkup> dataView = new DataView<Checkup>("elemList", caseRecordDataProvider) {
 
-			String personalName;
+			String personalName, strInterview;
 
 			@Override
 			protected void populateItem(Item<Checkup> item) {
 				Checkup checkup = item.getModelObject();
 				personalName = checkup.getPersonal().getSecondName() + " " + checkup.getPersonal().getFirstName().substring(0, 1) + ".";
+				strInterview = checkup.getInterview().replace("[assign]", new ResourceModel("p.case_record.txt_prescribe").getObject())
+						.replace("[result]", new ResourceModel("p.case_record.txt_prsc_res").getObject())
+						.replace("[interview]", new ResourceModel("p.case_record.txt_interview").getObject());
+
 				item.add(new Label("caseRecordDate", new Model<Date>(checkup.getChDt())));
-				item.add(new Label("caseRecordText", new Model<String>(checkup.getInterview())));
+				item.add(new Label("caseRecordText", new Model<String>(strInterview)));
 				item.add(new Label("caseRecordExecutor", new Model<String>(personalName)));
 
 			}

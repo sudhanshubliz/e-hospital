@@ -71,12 +71,12 @@ public class PatientRegistration extends BaseLayout {
 
 	private void InitGui() {
 
-		FeedbackPanel feedbackPanel = new FeedbackPanel("infPanel");
-		feedbackPanel.setOutputMarkupId(true);
-		add(feedbackPanel);
-
 		Form<Patient> patientRegForm = new Form<Patient>("patientRegForm", new CompoundPropertyModel<Patient>(patient));
 		patientRegForm.setOutputMarkupId(true);
+
+		FeedbackPanel feedbackPanel = new FeedbackPanel("infPanel");
+		feedbackPanel.setOutputMarkupId(true);
+		patientRegForm.add(feedbackPanel);
 
 		Map<String, TextField<?>> textFormFields = new HashMap<String, TextField<?>>();
 		textFormFields.put("form_name", new TextField<String>("firstName"));
@@ -115,19 +115,9 @@ public class PatientRegistration extends BaseLayout {
 
 		patientRegForm.add(new RadioChoice<EHumanSex>("sex", Arrays.asList(EHumanSex.values()), new ChoiceRenderer<EHumanSex>() {
 
-			String choiceLabel;
-
 			@Override
 			public String getDisplayValue(EHumanSex sexType) {
-
 				return new ResourceModel("p.patient_reg.form_sex_" + sexType.getName()).getObject();
-				/*
-				 * switch (sexType) { case FEMALE: choiceLabel=new
-				 * ResourceModel("p.patient_reg." + entry.getKey()).getObject()
-				 * break; case MALE: choiceLabel= break;
-				 * 
-				 * default: break; } return choiceLabel;
-				 */
 			}
 		}));
 
@@ -150,22 +140,28 @@ public class PatientRegistration extends BaseLayout {
 
 			@Override
 			public void onSubmit() {
+				try {
+					visit.setPatient(patientService.saveOrUpdate(patient));
+					visit.setStartDt(Calendar.getInstance().getTime());
+					visit.setImportantFlag(0);
+					visit.setDischargeFlag(EDischargeStatus.CURING);
+					if (visit.getWard().equals(null)) {// TODO: подсчет затых
+														// вободых койко мест
+						visit.setWard(WardAvtoSelect()); // TODO: релизация
+															// алгоритма
+															// автовыбоа
+															// лучшей палаты
+					}
+					visitService.saveOrUpdate(visit);
 
-				visit.setPatient(patientService.saveOrUpdate(patient));
-				visit.setStartDt(Calendar.getInstance().getTime());
-				visit.setImportantFlag(0);
-				visit.setDischargeFlag(EDischargeStatus.CURING);
-				if (visit.getWard().equals(null)) {// TODO: подсчет затых
-													// вободых койко мест
-					visit.setWard(WardAvtoSelect()); // TODO: релизация
-														// алгоритма автовыбоа
-														// лучшей палаты
+					PatientRegistration respPage = new PatientRegistration();
+					respPage.info(new ResourceModel("info.visit_save").getObject() + visit.getWard().getWardNum());
+					setResponsePage(respPage);
+				} catch (RuntimeException e) {
+					// TODO:ошибку в лог фаил
+					error(new ResourceModel("error.general_save.callIT").getObject());
+
 				}
-				visitService.saveOrUpdate(visit);
-
-				PatientRegistration respPage = new PatientRegistration();
-				respPage.info("ward number: " + visit.getWard().getWardNum() + "   " + visit.getWard().getComfortLvl());
-				setResponsePage(respPage);
 			}
 		};
 		submitButton.add(AttributeModifier.append("value", new ResourceModel("button.save").getObject()));

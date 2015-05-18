@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -41,7 +42,6 @@ public class Interview extends BaseLayout {
 
 	public Interview(Long vId) {
 		this.visit = visitService.getByIdFull(vId);
-		// visit = visitService.getOpenVisitForPatient(this.patient.getId());
 
 	}
 
@@ -52,27 +52,36 @@ public class Interview extends BaseLayout {
 		checkup.setDiagnosis(visit.getFirstDs());
 		Form<Checkup> interviewForm = new Form<Checkup>("interviewForm", new CompoundPropertyModel<Checkup>(checkup));
 
+		FeedbackPanel feedbackPanel = new FeedbackPanel("infPanel");
+		feedbackPanel.setOutputMarkupId(true);
+		interviewForm.add(feedbackPanel);
+
 		interviewForm.add(new TextField<String>("diagnosis"));
 		interviewForm.add(new TextArea<String>("interview"));
 		Button submitButton = new Button("submitButton") {
 
 			@Override
 			public void onSubmit() {
-				checkup.setPersonal(personalService.getAllPersonal().get(0));
-				checkup.setVisit(visit);
-				checkup.setChDt(Calendar.getInstance().getTime());
 
-				checkupService.saveOrUpdate(checkup);
-				if (!checkup.getDiagnosis().equals(visit.getFirstDs())) {
-					visit.setFirstDs(checkup.getDiagnosis());
-					visitService.saveOrUpdate(visit);
+				try {
+					checkup.setPersonal(personalService.getAllPersonal().get(0));
+					checkup.setVisit(visit);
+					checkup.setChDt(Calendar.getInstance().getTime());
+
+					checkupService.saveOrUpdate(checkup);
+					if (!checkup.getDiagnosis().equals(visit.getFirstDs())) {
+						visit.setFirstDs(checkup.getDiagnosis());
+						visitService.saveOrUpdate(visit);
+					}
+					setResponsePage(new CaseRecord(visit.getId()));
+				} catch (RuntimeException e) {
+					// TODO:ошибку в лог фаил
+					error(new ResourceModel("error.general_save.callIT").getObject());
+
 				}
 
-				setResponsePage(new CaseRecord(visit.getId()));
 			}
 		};
-		// submitButton.add(AttributeModifier.append("value", new
-		// ResourceModel("button.save").getObject()));
 		interviewForm.add(submitButton);
 		add(interviewForm);
 

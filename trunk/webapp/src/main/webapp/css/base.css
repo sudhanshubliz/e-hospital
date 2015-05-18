@@ -1,6 +1,26 @@
 body {
 	background: url('../images/background.png') top left repeat;
+	}
+
+.feedbackPanel .feedbackPanelINFO {
+	background-color: #e1ffe1;
+	color: green;
 }
+
+.feedbackPanel .feedbackPanelERROR {
+	background-color: #f4d7d7;
+	color: red;
+}
+
+.feedbackPanel .feedbackPanelWARNING {
+	background-color: #ffffcc;
+	color: yellow;
+}
+
+label.error {
+	text-color: red;
+}
+
 
 .CSSTableGenerator {
 	margin: 0px;
