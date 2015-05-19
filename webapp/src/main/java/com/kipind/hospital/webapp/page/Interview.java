@@ -5,6 +5,7 @@ import java.util.Calendar;
 import javax.inject.Inject;
 
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
@@ -56,8 +57,8 @@ public class Interview extends BaseLayout {
 		feedbackPanel.setOutputMarkupId(true);
 		interviewForm.add(feedbackPanel);
 
-		interviewForm.add(new TextField<String>("diagnosis"));
-		interviewForm.add(new TextArea<String>("interview"));
+		interviewForm.add(new TextField<String>("diagnosis").add(new PropertyValidator<String>()));
+		interviewForm.add(new TextArea<String>("interview").add(new PropertyValidator<String>()));
 		Button submitButton = new Button("submitButton") {
 
 			@Override

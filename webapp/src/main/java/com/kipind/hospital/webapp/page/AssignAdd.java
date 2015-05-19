@@ -6,6 +6,7 @@ import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -85,8 +86,8 @@ public class AssignAdd extends BaseLayout {
 		feedbackPanel.setOutputMarkupId(true);
 		assignForm.add(feedbackPanel);
 
-		assignForm.add(new TextArea<String>("prscText"));
-		assignForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")));
+		assignForm.add(new TextArea<String>("prscText").add(new PropertyValidator<String>()));
+		assignForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")).add(new PropertyValidator<Integer>()));
 
 		Button submitButton = new Button("submitButton") {
 

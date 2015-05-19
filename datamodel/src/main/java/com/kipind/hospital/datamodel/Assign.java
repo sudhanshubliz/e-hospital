@@ -6,39 +6,46 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Assign extends AbstractEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Visit.class)
+	@NotNull
 	private Visit visit;
 
 	private String prscText;
 	private Date prscDt;
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Personal.class)
+	@NotNull
 	private Personal prscPersonal;
 
 	private String resText;
 	private Date resDt;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Personal.class)
+	@NotNull
 	private Personal resPersonal;
+	private Long periodGroupKey;
 
 	/*
 	 * @OneToMany(fetch = FetchType.LAZY, targetEntity = ResultSource.class)
 	 * private Set<ResultSource> resultSource;
 	 */
-	private Long periodGroupKey;
 
 	public Visit getVisit() {
 		return visit;
 	}
 
 	@Column
+	@NotNull
 	public String getPrscText() {
 		return prscText;
 	}
 
 	@Column
+	@NotNull
 	public Date getPrscDt() {
 		return prscDt;
 	}
@@ -48,11 +55,13 @@ public class Assign extends AbstractEntity {
 	}
 
 	@Column
+	@NotNull
 	public String getResText() {
 		return resText;
 	}
 
 	@Column
+	@NotNull
 	public Date getResDt() {
 		return resDt;
 	}
