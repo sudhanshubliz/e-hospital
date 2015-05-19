@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -78,14 +79,17 @@ public class PatientRegistration extends BaseLayout {
 		feedbackPanel.setOutputMarkupId(true);
 		patientRegForm.add(feedbackPanel);
 
-		Map<String, TextField<?>> textFormFields = new HashMap<String, TextField<?>>();
+		Map<String, TextField<String>> textFormFields = new HashMap<String, TextField<String>>();
 		textFormFields.put("form_name", new TextField<String>("firstName"));
 		textFormFields.put("form_surname", new TextField<String>("lastName"));
 		textFormFields.put("form_address", new TextField<String>("address"));
 		textFormFields.put("form_social_num", new TextField<String>("socialNumber"));
-		textFormFields.put("form_birth_day", new TextField<Date>("birthDt"));
-
 		addTextComponentAttr(textFormFields, patientRegForm);
+
+		TextField<Date> dateField = new TextField<Date>("birthDt");
+		dateField.add(new PropertyValidator<Date>());
+		dateField.setOutputMarkupId(true);
+		patientRegForm.add(dateField);
 
 		AjaxFormComponentUpdatingBehavior tfOnBlurAjax = new AjaxFormComponentUpdatingBehavior("onblur") {
 
@@ -170,11 +174,9 @@ public class PatientRegistration extends BaseLayout {
 
 	}
 
-	private <T> void addTextComponentAttr(Map<String, TextField<?>> textField, Form<T> form) {
-		String resValue;
-		for (Map.Entry<String, TextField<?>> entry : textField.entrySet()) {
-			// entry.getValue().add(new PropertyValidator<?>());
-			resValue = new ResourceModel("p.patient_reg." + entry.getKey()).getObject();
+	private <T> void addTextComponentAttr(Map<String, TextField<String>> textField, Form<T> form) {
+		for (Map.Entry<String, TextField<String>> entry : textField.entrySet()) {
+			entry.getValue().add(new PropertyValidator<String>());
 			entry.getValue().setOutputMarkupId(true);
 			form.add(entry.getValue());
 

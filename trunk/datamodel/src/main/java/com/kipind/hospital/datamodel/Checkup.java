@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Checkup extends AbstractEntity {
@@ -18,25 +21,32 @@ public class Checkup extends AbstractEntity {
 	private String interview;
 	private String diagnosis;
 
+	@NotNull
 	public Personal getPersonal() {
 		return personal;
 	}
 
+	@NotNull
 	public Visit getVisit() {
 		return visit;
 	}
 
 	@Column
+	@NotNull
+	@Past
 	public Date getChDt() {
 		return chDt;
 	}
 
 	@Column
+	@NotNull
 	public String getInterview() {
 		return interview;
 	}
 
 	@Column
+	@NotNull
+	@Size(max = 200)
 	public String getDiagnosis() {
 		return diagnosis;
 	}

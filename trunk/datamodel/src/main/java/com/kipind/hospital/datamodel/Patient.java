@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import com.kipind.hospital.datamodel.enam.EHumanSex;
 
@@ -20,32 +23,40 @@ public class Patient extends AbstractEntity {
 	private EHumanSex sex;
 
 	@Column
+	@NotNull
 	public String getSocialNumber() {
 		return socialNumber;
 	}
 
 	@Column
+	@NotNull
+	@Size(max = 22)
 	public String getFirstName() {
 		return firstName;
 	}
 
 	@Column
+	@NotNull
 	public String getLastName() {
 		return lastName;
 	}
 
 	@Column
+	@NotNull
+	@Past
 	public Date getBirthDt() {
 		return birthDt;
 	}
 
 	@Column
+	@NotNull
 	public String getAddress() {
 		return address;
 	}
 
 	@Column
 	@Enumerated(EnumType.ORDINAL)
+	@NotNull
 	public EHumanSex getSex() {
 		return sex;
 	}
