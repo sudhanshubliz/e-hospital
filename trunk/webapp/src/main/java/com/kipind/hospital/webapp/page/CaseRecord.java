@@ -6,6 +6,7 @@ import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -22,6 +23,7 @@ import com.kipind.hospital.services.ICheckupService;
 import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
+@AuthorizeInstantiation({ "DOCTOR", "NERS", "LEAD_DOCTOR" })
 public class CaseRecord extends BaseLayout {
 
 	@Inject

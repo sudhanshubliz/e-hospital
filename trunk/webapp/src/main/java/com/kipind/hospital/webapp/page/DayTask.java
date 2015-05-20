@@ -5,6 +5,7 @@ import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -23,6 +24,7 @@ import com.kipind.hospital.webapp.HelpUtil;
 import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 
 @SuppressWarnings("serial")
+@AuthorizeInstantiation({ "DOCTOR", "NERS", "LEAD_DOCTOR" })
 public class DayTask extends BaseLayout {
 
 	@Inject

@@ -2,92 +2,92 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<!-- заголовки страниц -->
-	<entry key="page.start.label">Главное меню.</entry>
-	<entry key="page.patient_reg.label">Регистрация пациента.</entry>
-	<entry key="page.case_record.label">История болезни.</entry>
-	<entry key="page.day_task.label">Дневной план.</entry>
-	<entry key="page.interview.label">Осмотр пациента.</entry>
-	<entry key="page.login.label">Авторизация.</entry>
-	<entry key="page.prescribe_dotor.label">Назначения.</entry>
+	<entry key="page.start.label">[en]Главное меню.</entry>
+	<entry key="page.patient_reg.label">[en]Регистрация пациента.</entry>
+	<entry key="page.case_record.label">[en]История болезни.</entry>
+	<entry key="page.day_task.label">[en]Дневной план.</entry>
+	<entry key="page.interview.label">[en]Осмотр пациента.</entry>
+	<entry key="page.login.label">[en]Авторизация.</entry>
+	<entry key="page.prescribe_dotor.label">[en]Назначения.</entry>
 
 
 	<!-- end -->
 	<!--Standart Buttons -->
-	<entry key="button.save">Сохранить</entry>
-	<entry key="button.delete">Удалить</entry>
-	<entry key="button.add">Добавить</entry>
+	<entry key="button.save">[en]Сохранить</entry>
+	<entry key="button.delete">[en]Удалить</entry>
+	<entry key="button.add">[en]Добавить</entry>
 
 
 	<!-- end -->
     <!--Standart messages -->
-	<entry key="error.autor_fail">Ошибка авторизации</entry>
-    <entry key="error.general_save.callIT">Ошибка при сохранении данных. Обратитесь в ИТ-отдел по тел.250</entry>
+	<entry key="error.autor_fail">[en]Ошибка авторизации</entry>
+    <entry key="error.general_save.callIT">[en]Ошибка при сохранении данных. Обратитесь в ИТ-отдел по тел.250</entry>
 
-    <entry key="info.visit_save">Визит пациета успешно оформлен. Палата номер: </entry>
+    <entry key="info.visit_save">[en]Визит пациета успешно оформлен. Палата номер: </entry>
 
 	<!-- end -->
 
 
 
-	<entry key="header.to_mainMenu">Главное меню</entry>
-	<entry key="header.to_logout">Выход</entry>
-	<entry key="header.lb_hello">Здравствуйте: </entry>
+	<entry key="header.to_mainMenu">[en]Главное меню</entry>
+	<entry key="header.to_logout">[en]Выход</entry>
+	<entry key="header.lb_hello">[en]Здравствуйте: </entry>
 
 
-	<entry key="panel.visit_details.name">Пациент:</entry>
-	<entry key="panel.visit_details.age">Возраст:</entry>
-	<entry key="panel.visit_details.diagnoz">Текущий диагноз:</entry>
-	<entry key="panel.visit_details.start_dt">Дата поступления:</entry>
+	<entry key="panel.visit_details.name">[en]Пациент:</entry>
+	<entry key="panel.visit_details.age">[en]Возраст:</entry>
+	<entry key="panel.visit_details.diagnoz">[en]Текущий диагноз:</entry>
+	<entry key="panel.visit_details.start_dt">[en]Дата поступления:</entry>
 
 
 
 
 
-	<entry key="p.start.patients">Пациенты</entry>
-	<entry key="p.start.reports">Отчетность</entry>
-	<entry key="p.start.patient_reg">Регистратура</entry>
-	<entry key="p.start.meeting">Совещание</entry>
+	<entry key="p.start.patients">[en]Пациенты</entry>
+	<entry key="p.start.reports">[en]Отчетность</entry>
+	<entry key="p.start.patient_reg">[en]Регистратура</entry>
+	<entry key="p.start.meeting">[en]Совещание</entry>
 
 
-	<entry key="p.patient_reg.form_name">Имя:</entry>
-	<entry key="p.patient_reg.form_surname">Фамилия:</entry>
-	<entry key="p.patient_reg.form_birth_day">Дата рождения:</entry>
-	<entry key="p.patient_reg.form_address">Адрес:</entry>
-	<entry key="p.patient_reg.form_social_num">Номер соц. страховки:</entry>
-	<entry key="p.patient_reg.form_gender">Пол:</entry>
-	<entry key="p.patient_reg.form_sex_FEMALE">Женский</entry>
-	<entry key="p.patient_reg.form_sex_MALE">Мужской</entry>
-	<entry key="p.patient_reg.form_ward">Палата № (занято\всего мест)</entry>
+	<entry key="p.patient_reg.form_name">[en]Имя:</entry>
+	<entry key="p.patient_reg.form_surname">[en]Фамилия:</entry>
+	<entry key="p.patient_reg.form_birth_day">[en]Дата рождения:</entry>
+	<entry key="p.patient_reg.form_address">[en]Адрес:</entry>
+	<entry key="p.patient_reg.form_social_num">[en]Номер соц. страховки:</entry>
+	<entry key="p.patient_reg.form_gender">[en]Пол:</entry>
+	<entry key="p.patient_reg.form_sex_FEMALE">[en]Женский</entry>
+	<entry key="p.patient_reg.form_sex_MALE">[en]Мужской</entry>
+	<entry key="p.patient_reg.form_ward">[en]Палата № (занято\всего мест)</entry>
 
 
-	<entry key="p.case_record.tb_title_date">Дата записи</entry>
-	<entry key="p.case_record.tb_title_record">Запись</entry>
-	<entry key="p.case_record.tb_title_executor">Доктор</entry>
-	<entry key="p.case_record.bt_interview">Опрос</entry>
-	<entry key="p.case_record.bt_prescribe">Назначение</entry>
-	<entry key="p.case_record.txt_prsc_res">ИСПОЛНЕНИЕ:</entry>
-	<entry key="p.case_record.txt_prescribe">НАЗНАЧЕНИЕ:</entry>
-	<entry key="p.case_record.txt_interview">ОПРОС:</entry>
+	<entry key="p.case_record.tb_title_date">[en]Дата записи</entry>
+	<entry key="p.case_record.tb_title_record">[en]Запись</entry>
+	<entry key="p.case_record.tb_title_executor">[en]Доктор</entry>
+	<entry key="p.case_record.bt_interview">[en]Опрос</entry>
+	<entry key="p.case_record.bt_prescribe">[en]Назначение</entry>
+	<entry key="p.case_record.txt_prsc_res">[en]ИСПОЛНЕНИЕ:</entry>
+	<entry key="p.case_record.txt_prescribe">[en]НАЗНАЧЕНИЕ:</entry>
+	<entry key="p.case_record.txt_interview">[en]ОПРОС:</entry>
 
 
-	<entry key="p.day_task.tb_title_ward">Палата</entry>
-	<entry key="p.day_task.tb_title_patient">Пациент</entry>
-	<entry key="p.day_task.tb_title_diagnoz">Текущий диагноз</entry>
-	<entry key="p.day_task.tb_title_day">Продолжительность лечения</entry>
+	<entry key="p.day_task.tb_title_ward">[en]Палата</entry>
+	<entry key="p.day_task.tb_title_patient">[en]Пациент</entry>
+	<entry key="p.day_task.tb_title_diagnoz">[en]Текущий диагноз</entry>
+	<entry key="p.day_task.tb_title_day">[en]Продолжительность лечения</entry>
 
-	<entry key="p.interview.lb_textarea">Запись врача:</entry>
-	<entry key="p.interview.lb_ds">Диагноз:</entry>
+	<entry key="p.interview.lb_textarea">[en]Запись врача:</entry>
+	<entry key="p.interview.lb_ds">[en]Диагноз:</entry>
 
-	<entry key="p.login.it_login">Введите табельный номер</entry>
-	<entry key="p.login.it_pass">Введите пароль</entry>
-	<entry key="p.login.lb_form_head">Проидите авторизацию</entry>
+	<entry key="p.login.it_login">[en]Введите табельный номер</entry>
+	<entry key="p.login.it_pass">[en]Введите пароль</entry>
+	<entry key="p.login.lb_form_head">[en]Проидите авторизацию</entry>
 	
-	<entry key="p.assign_add.lb_prescribe">Текст назначения:</entry>
-	<entry key="p.assign_add.lb_prescribe_start">Дата исполнения:</entry>
-	<entry key="p.assign_add.lb_period">Продолжительность (дней):</entry>
-	<entry key="p.assign_add.tb_title_date">Дата</entry>
-	<entry key="p.assign_add.tb_title_record">Назначение</entry>
-	<entry key="p.assign_add.tb_title_sender">Врач</entry>
+	<entry key="p.assign_add.lb_prescribe">[en]Текст назначения:</entry>
+	<entry key="p.assign_add.lb_prescribe_start">[en]Дата исполнения:</entry>
+	<entry key="p.assign_add.lb_period">[en]Продолжительность (дней):</entry>
+	<entry key="p.assign_add.tb_title_date">[en]Дата</entry>
+	<entry key="p.assign_add.tb_title_record">[en]Назначение</entry>
+	<entry key="p.assign_add.tb_title_sender">[en]Врач</entry>
 
 
 

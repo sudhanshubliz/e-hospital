@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
@@ -36,6 +37,7 @@ import com.kipind.hospital.services.IPatientService;
 import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.services.IWardService;
 
+@AuthorizeInstantiation({ "DOCTOR", "NERS", "LEAD_DOCTOR" })
 public class PatientRegistration extends BaseLayout {
 
 	/*
@@ -77,7 +79,7 @@ public class PatientRegistration extends BaseLayout {
 
 		FeedbackPanel feedbackPanel = new FeedbackPanel("infPanel");
 		feedbackPanel.setOutputMarkupId(true);
-		patientRegForm.add(feedbackPanel);
+		add(feedbackPanel);
 
 		Map<String, TextField<String>> textFormFields = new HashMap<String, TextField<String>>();
 		textFormFields.put("form_name", new TextField<String>("firstName"));
@@ -88,6 +90,7 @@ public class PatientRegistration extends BaseLayout {
 
 		TextField<Date> dateField = new TextField<Date>("birthDt");
 		dateField.add(new PropertyValidator<Date>());
+		dateField.setLabel(new ResourceModel("p.patient_reg.form_birth_day"));
 		dateField.setOutputMarkupId(true);
 		patientRegForm.add(dateField);
 
@@ -123,7 +126,7 @@ public class PatientRegistration extends BaseLayout {
 			public String getDisplayValue(EHumanSex sexType) {
 				return new ResourceModel("p.patient_reg.form_sex_" + sexType.getName()).getObject();
 			}
-		}));
+		}).setLabel(new ResourceModel("p.patient_reg.form_gender")));
 
 		choiceList = wardService.getAllWards();
 		patientRegForm.add(new DropDownChoice<Ward>("wardNum", new PropertyModel<Ward>(visit, "ward"), choiceList, new IChoiceRenderer<Ward>() {
@@ -138,7 +141,7 @@ public class PatientRegistration extends BaseLayout {
 				return object.getId().toString();
 			}
 
-		}));
+		}).setLabel(new ResourceModel("p.patient_reg.form_ward")));
 
 		Button submitButton = new Button("submitButton") {
 
@@ -177,6 +180,7 @@ public class PatientRegistration extends BaseLayout {
 	private <T> void addTextComponentAttr(Map<String, TextField<String>> textField, Form<T> form) {
 		for (Map.Entry<String, TextField<String>> entry : textField.entrySet()) {
 			entry.getValue().add(new PropertyValidator<String>());
+			entry.getValue().setLabel(new ResourceModel("p.patient_reg." + entry.getKey()));
 			entry.getValue().setOutputMarkupId(true);
 			form.add(entry.getValue());
 
