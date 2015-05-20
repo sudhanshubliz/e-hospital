@@ -38,6 +38,7 @@ public class UpPanel extends Panel {
 				final HttpServletRequest servletReq = (HttpServletRequest) getRequest().getContainerRequest();
 				servletReq.getSession().invalidate();
 				getSession().invalidate();
+
 				getRequestCycle().scheduleRequestHandlerAfterCurrent(new RedirectRequestHandler(WicketWebApplication.LOGIN_URL));
 
 			}
