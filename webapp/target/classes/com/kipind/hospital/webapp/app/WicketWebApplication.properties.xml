@@ -9,6 +9,7 @@
 	<entry key="page.interview.label">[en]Осмотр пациента.</entry>
 	<entry key="page.login.label">[en]Авторизация.</entry>
 	<entry key="page.prescribe_dotor.label">[en]Назначения.</entry>
+<entry key="page.report_personal.label">[en]Информация по персоналу.</entry>
 
 
 	<!-- end -->
@@ -89,6 +90,16 @@
 	<entry key="p.assign_add.tb_title_record">[en]Назначение</entry>
 	<entry key="p.assign_add.tb_title_sender">[en]Врач</entry>
 
+<entry key="p.menu_panel_report.bt_personal">[en]Персонал</entry>
+<entry key="p.menu_panel_report.bt_patient">[en]Пациенты</entry>
+<entry key="p.menu_panel_report.bt_hospital">[en]Палаты</entry>
 
+<entry key="p.report_personal.lb_name">[en]Имя</entry>
+<entry key="p.report_personal.lb_surname">[en]Фамилия</entry>
+<entry key="p.report_personal.lb_ward_list">[en]Список закрепленных палат</entry>
+<entry key="p.report_personal.lb_prof">[en]Статус</entry>
+<entry key="p.report_personal.lb_load_lvl">[en]Загруженноть</entry>
+<entry key="p.report_personal.lb_active_status">[en]Рабочий статус</entry>
+	
 
 </properties>
