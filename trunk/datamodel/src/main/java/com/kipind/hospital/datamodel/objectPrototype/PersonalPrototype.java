@@ -1,11 +1,12 @@
-package com.kipind.hospital.services.utilObject;
+package com.kipind.hospital.datamodel.objectPrototype;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import com.kipind.hospital.datamodel.Ward;
 import com.kipind.hospital.datamodel.enam.EProf;
 
-public class PersonalPrototype {
+public class PersonalPrototype implements Serializable {
 
 	private Long Id;
 	private String firstName;
@@ -56,11 +57,7 @@ public class PersonalPrototype {
 	}
 
 	public String getWardsString() {
-		String res = "";
-		for (Ward ward : wards) {
-			res = res + ward.getWardNum().toString() + ";";
-		}
-		return res;
+		return wardsString;
 	}
 
 	public Float getWorkLvl() {
@@ -101,14 +98,27 @@ public class PersonalPrototype {
 
 	public void setWards(Set<Ward> wards) {
 		this.wards = wards;
+		setWardsString(wards);
+		setWorkLvl(wards);
 	}
 
-	public void setWardsString(String wardsString) {
-		this.wardsString = wardsString;
+	private void setWardsString(Set<Ward> wards) {
+		String res = "";
+		for (Ward ward : wards) {
+			res = res + ward.getWardNum().toString() + ";";
+		}
+		this.wardsString = res;
 	}
 
-	public void setWorkLvl(Float workLvl) {
-		this.workLvl = workLvl;
+	private void setWorkLvl(Set<Ward> wards) {
+		int sumKol = 0, busyKol = 0;
+		for (Ward ward : wards) {
+			sumKol = sumKol + ward.getPlaceNumSum();
+			busyKol = busyKol + ward.getPlaceNumBisy();
+		}
+		if (sumKol == 0) {
+			sumKol = 1;
+		}
+		this.workLvl = (float) (busyKol / sumKol);
 	}
-
 }

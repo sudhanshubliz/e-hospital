@@ -3,57 +3,52 @@ package com.kipind.hospital.webapp.page;
 import java.util.Iterator;
 
 import javax.inject.Inject;
-import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
+import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
-import com.kipind.hospital.datamodel.Personal;
-import com.kipind.hospital.datamodel.Personal_;
-import com.kipind.hospital.datamodel.Visit;
-import com.kipind.hospital.services.ICheckupService;
+import com.kipind.hospital.datamodel.enam.EProf;
+import com.kipind.hospital.datamodel.objectPrototype.PersonalPrototype;
 import com.kipind.hospital.services.IPersonalService;
-import com.kipind.hospital.services.IVisitService;
-import com.kipind.hospital.services.utilObject.PersonalPrototype;
 import com.kipind.hospital.webapp.panel.MenuReport;
 
 @AuthorizeInstantiation({ "DOCTOR", "NERS", "LEAD_DOCTOR" })
 public class ReportPersonal extends BaseLayout {
 
 	@Inject
-	private ICheckupService checkupService;
-	@Inject
-	private IVisitService visitService;
-	private Visit visit;
-	@Inject
 	private IPersonalService personalService;
 	private PersonalPrototype PersonalPrototype;
 
-	public ReportPersonal(Visit curVisit) {
-
+	public ReportPersonal() {
+		super();
 	}
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+
+		CaseRecordDataProvider caseRecordDataProvider = new CaseRecordDataProvider();
+
 		add(new MenuReport("menuPanel"));
-		add(new OrderByBorder<SingularAttribute<PersonalPrototype, ?>>("sortByName", Personal_.firstName, caseRecordDataProvider));
-		add(new OrderByBorder<SingularAttribute<PersonalPrototype, ?>>("sortBySecondName", Personal_.secondName, caseRecordDataProvider));
+		add(new OrderByBorder<String>("sortByName", "firstName", caseRecordDataProvider));
+		add(new OrderByBorder<String>("sortBySecondName", "secondName", caseRecordDataProvider));
 		// add(new OrderByBorder<SingularAttribute<PersonalPrototype,
 		// ?>>("sortByName",
 		// PersonalPrototype_.firstName, caseRecordDataProvider));
-		add(new OrderByBorder<SingularAttribute<PersonalPrototype, ?>>("sortByProf", Personal_.prof, caseRecordDataProvider));
-		add(new OrderByBorder<SingularAttribute<PersonalPrototype, ?>>("sortByLoadLvl", Personal_.firstName, caseRecordDataProvider));
-		add(new OrderByBorder<SingularAttribute<PersonalPrototype, ?>>("sortByWorkStatus", Personal_.basePrice, caseRecordDataProvider));
-
-		CaseRecordDataProvider caseRecordDataProvider = new CaseRecordDataProvider();
+		add(new OrderByBorder<String>("sortByProf", "prof", caseRecordDataProvider));
+		add(new OrderByBorder<String>("sortByLoadLvl", "workLvl", caseRecordDataProvider));
+		add(new OrderByBorder<String>("sortByWorkStatus", "delMarker", caseRecordDataProvider));
 
 		WebMarkupContainer iterBody = new WebMarkupContainer("caseRecord");
 		// iterBody.setOutputMarkupId(true);
@@ -61,28 +56,23 @@ public class ReportPersonal extends BaseLayout {
 
 		DataView<PersonalPrototype> dataView = new DataView<PersonalPrototype>("elemList", caseRecordDataProvider) {
 
-			String personalName, strInterview;
-
 			@Override
 			protected void populateItem(Item<PersonalPrototype> item) {
-				Personal personal = item.getModelObject();
+				PersonalPrototype personal = item.getModelObject();
 
-				/*
-				 * personalName = personal.getPersonal().getSecondName() + " " +
-				 * personal.getPersonal().getFirstName().substring(0, 1) + ".";
-				 * strInterview = personal.getInterview().replace("[assign]",
-				 * new ResourceModel("p.case_record.txt_prescribe").getObject())
-				 * .replace("[result]", new
-				 * ResourceModel("p.case_record.txt_prsc_res").getObject())
-				 * .replace("[interview]", new
-				 * ResourceModel("p.case_record.txt_interview").getObject());
-				 * 
-				 * item.add(new Label("caseRecordDate", new
-				 * Model<Date>(personal.getChDt()))); item.add(new
-				 * Label("caseRecordText", new Model<String>(strInterview)));
-				 * item.add(new Label("caseRecordExecutor", new
-				 * Model<String>(personalName)));
-				 */
+				item.add(new Label("caseRecordName", new Model<String>(personal.getFirstName())));
+				item.add(new Label("caseRecordSecondName", new Model<String>(personal.getSecondName())));
+				item.add(new Label("caseRecordWardList", new Model<String>(personal.getWardsString())));
+				item.add(new Label("caseRecordProf", new ChoiceRenderer<EProf>() {
+
+					@Override
+					public Object getDisplayValue(EProf object) {
+						return new ResourceModel("p.report_personal.prof_value_" + object.getName()).getObject();
+					}
+				}));
+				item.add(new Label("caseRecordLoadLvl", new Model<Float>(45.4f)));
+				item.add(new CheckBox("caseRecordWorkStatus", new Model<Boolean>(personal.getDelMarker())).setEnabled(personal.getDelMarker()));
+
 			}
 
 		};
@@ -91,22 +81,30 @@ public class ReportPersonal extends BaseLayout {
 
 	}
 
-	private class CaseRecordDataProvider extends SortableDataProvider<PersonalPrototype, SingularAttribute<PersonalPrototype, ?>> {
+	private class CaseRecordDataProvider extends SortableDataProvider<PersonalPrototype, String> {
+
+		public CaseRecordDataProvider() {
+			super();
+			setSort("secondName", SortOrder.ASCENDING);
+		}
 
 		@Override
 		public Iterator<? extends PersonalPrototype> iterator(long first, long count) {
-			return personalService.getAllPersonal().iterator();
+			String sortParam = getSort().getProperty();
+			SortOrder propertySortOrder = getSortState().getPropertySortOrder(sortParam);
+			boolean ascending = SortOrder.ASCENDING.equals(propertySortOrder);
+			return personalService.getAllPersonalInfo(sortParam, ascending, (int) first, (int) count).iterator();
 		}
 
 		@Override
 		public long size() {
-			return visitService.getCaseRecordForVisit(visit.getId()).size();
+			return personalService.getCount();
 
 		}
 
 		@Override
-		public IModel<Personal> model(PersonalPrototype personalObj) {
-			return new Model<Personal>(personalObj);
+		public IModel<PersonalPrototype> model(PersonalPrototype personalObj) {
+			return new Model<PersonalPrototype>(personalObj);
 		}
 
 	}

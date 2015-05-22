@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.kipind.hospital.dataaccess.IPersonalDAO;
 import com.kipind.hospital.datamodel.Personal;
 import com.kipind.hospital.datamodel.Visit;
+import com.kipind.hospital.datamodel.objectPrototype.PersonalPrototype;
 import com.kipind.hospital.services.IPersonalService;
 
 @Service
@@ -119,5 +120,34 @@ public class PersonalService implements IPersonalService {
 		} catch (NonUniqueResultException e) {
 			return null;
 		}
+	}
+
+	@Override
+	public List<PersonalPrototype> getAllPersonalInfo2(String attr, boolean ascending, int startRecord, int pageSize) {
+		return personalDAO.getAllPersonalInfo(attr, ascending, startRecord, pageSize);
+	}
+
+	@Override
+	public List<PersonalPrototype> getAllPersonalInfo(String attr, boolean ascending, int startRecord, int pageSize) {
+		List<PersonalPrototype> res = new ArrayList<PersonalPrototype>();
+		for (Personal personal : personalDAO.getAllPersonal(attr, ascending, startRecord, pageSize)) {
+			PersonalPrototype resElem = new PersonalPrototype();
+			resElem.setId(personal.getId());
+			resElem.setFirstName(personal.getFirstName());
+			resElem.setSecondName(personal.getSecondName());
+			resElem.setWards(personal.getWards());
+			resElem.setDelMarker(personal.getDelMarker());
+			resElem.setProf(personal.getProf());
+
+			res.add(resElem);
+		}
+
+		return res;
+	}
+
+	@Override
+	public Long getCount() {
+
+		return personalDAO.getCount();
 	}
 }
