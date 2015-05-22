@@ -98,8 +98,12 @@
 <entry key="p.report_personal.lb_surname">[en]Фамилия</entry>
 <entry key="p.report_personal.lb_ward_list">[en]Список закрепленных палат</entry>
 <entry key="p.report_personal.lb_prof">[en]Статус</entry>
-<entry key="p.report_personal.lb_load_lvl">[en]Загруженноть</entry>
+<entry key="p.report_personal.lb_load_lvl">[en]Загруженноть,%</entry>
 <entry key="p.report_personal.lb_active_status">[en]Рабочий статус</entry>
-	
+<entry key="p.report_personal.prof_value_DOCTOR">[en]Доктор</entry>
+<entry key="p.report_personal.prof_value_NERS">[en]Мед. сестра</entry>
+<entry key="p.report_personal.prof_value_LEAD_DOCTOR">[en]зав. отделением</entry>
+
+
 
 </properties>

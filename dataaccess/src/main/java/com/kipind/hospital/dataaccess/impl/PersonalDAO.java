@@ -25,6 +25,7 @@ import com.kipind.hospital.datamodel.Personal_;
 import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.datamodel.Visit_;
 import com.kipind.hospital.datamodel.enam.EDischargeStatus;
+import com.kipind.hospital.datamodel.objectPrototype.PersonalPrototype;
 
 @Repository
 public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersonalDAO {
@@ -219,6 +220,29 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 			results = null;
 		}
 		return results;
+	}
+
+	@Override
+	public List<PersonalPrototype> getAllPersonalInfo(String attr, boolean ascending, int startRecord, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Personal> getAllPersonal(String attr, boolean ascending, int startRecord, int pageSize) {
+		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+		CriteriaQuery<Personal> criteriaQuery = cBuilder.createQuery(Personal.class);
+		Root<Personal> entity = criteriaQuery.from(Personal.class);
+
+		criteriaQuery.select(entity);
+
+		entity.fetch(Personal_.wards, JoinType.LEFT);
+		TypedQuery<Personal> query = getEm().createQuery(criteriaQuery);
+
+		query.setFirstResult(startRecord);
+		query.setMaxResults(pageSize);
+
+		return query.getResultList();
 	}
 
 }

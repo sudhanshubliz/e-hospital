@@ -165,4 +165,17 @@ public abstract class AbstractDAO<ID, Entity> implements IAbstractDAO<ID, Entity
 		em.flush();
 	}
 
+	@Override
+	public Long getCount() {
+		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
+
+		CriteriaQuery<Long> criteria = cBuilder.createQuery(Long.class);
+		Root<Entity> root = criteria.from(getEntityClass());
+
+		criteria.select(cBuilder.count(root));
+
+		TypedQuery<Long> query = getEm().createQuery(criteria);
+		return query.getSingleResult();
+	}
+
 }

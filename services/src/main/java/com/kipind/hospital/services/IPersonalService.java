@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kipind.hospital.datamodel.Personal;
 import com.kipind.hospital.datamodel.Visit;
+import com.kipind.hospital.datamodel.objectPrototype.PersonalPrototype;
 
 public interface IPersonalService {
 
@@ -41,6 +42,9 @@ public interface IPersonalService {
 
 	Personal getPersonalByTab(String tabNum);
 
-	// Object getAllByFieldFull(SingularAttribute<Personal, EProf> prof, int
-	// ordinal, SetAttribute<Personal, Ward> wards);
+	List<PersonalPrototype> getAllPersonalInfo2(String attr, boolean ascending, int startRecord, int pageSize);
+
+	List<PersonalPrototype> getAllPersonalInfo(String attr, boolean ascending, int startRecord, int pageSize);
+
+	Long getCount();
 }

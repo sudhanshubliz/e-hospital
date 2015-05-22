@@ -6,8 +6,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.kipind.hospital.webapp.page.CaseRecord;
 import com.kipind.hospital.webapp.page.DayTask;
-import com.kipind.hospital.webapp.page.LoginPage;
 import com.kipind.hospital.webapp.page.PatientRegistration;
+import com.kipind.hospital.webapp.page.ReportPersonal;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends Panel {
@@ -24,9 +24,9 @@ public class MainMenuPanel extends Panel {
 		add(new BookmarkablePageLink<Void>("patient_reg", PatientRegistration.class));
 		// add(new BookmarkablePageLink<Void>("report", CaseRecord.class));
 		add(new BookmarkablePageLink<Void>("patient", DayTask.class));
-		add(new BookmarkablePageLink<Void>("meeting", LoginPage.class));
+		add(new BookmarkablePageLink<Void>("report", ReportPersonal.class));
 
-		Link<Void> link = new Link<Void>("report") {
+		Link<Void> link = new Link<Void>("meeting") {
 
 			@Override
 			public void onClick() {
