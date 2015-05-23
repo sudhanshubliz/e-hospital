@@ -105,8 +105,9 @@ public class LoginPage extends WebPage {
 		form.add(feedbackPanel);
 
 		form.setDefaultModel(new CompoundPropertyModel<LoginPage>(this));
-		form.add(new RequiredTextField<Integer>("itLogin"));
-		form.add(new PasswordTextField("itPass"));
+		form.add(new RequiredTextField<Integer>("itLogin").setLabel(new ResourceModel("p.login.er_login")));
+		form.add(new PasswordTextField("itPass").setLabel(new ResourceModel("p.login.er_pass")));
+
 		add(form);
 	}
 

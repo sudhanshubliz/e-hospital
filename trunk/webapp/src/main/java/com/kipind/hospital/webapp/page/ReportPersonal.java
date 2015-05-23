@@ -11,14 +11,13 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.ChoiceRenderer;
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
-import com.kipind.hospital.datamodel.enam.EProf;
 import com.kipind.hospital.datamodel.objectPrototype.PersonalPrototype;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.webapp.panel.MenuReport;
@@ -43,18 +42,16 @@ public class ReportPersonal extends BaseLayout {
 		add(new MenuReport("menuPanel"));
 		add(new OrderByBorder<String>("sortByName", "firstName", caseRecordDataProvider));
 		add(new OrderByBorder<String>("sortBySecondName", "secondName", caseRecordDataProvider));
-		// add(new OrderByBorder<SingularAttribute<PersonalPrototype,
-		// ?>>("sortByName",
-		// PersonalPrototype_.firstName, caseRecordDataProvider));
 		add(new OrderByBorder<String>("sortByProf", "prof", caseRecordDataProvider));
-		add(new OrderByBorder<String>("sortByLoadLvl", "workLvl", caseRecordDataProvider));
+		// add(new OrderByBorder<String>("sortByLoadLvl", "workLvl",
+		// caseRecordDataProvider));
 		add(new OrderByBorder<String>("sortByWorkStatus", "delMarker", caseRecordDataProvider));
 
 		WebMarkupContainer iterBody = new WebMarkupContainer("caseRecord");
 		// iterBody.setOutputMarkupId(true);
 		add(iterBody);
 
-		DataView<PersonalPrototype> dataView = new DataView<PersonalPrototype>("elemList", caseRecordDataProvider) {
+		DataView<PersonalPrototype> dataView = new DataView<PersonalPrototype>("elemList", caseRecordDataProvider, 5) {
 
 			@Override
 			protected void populateItem(Item<PersonalPrototype> item) {
@@ -63,21 +60,17 @@ public class ReportPersonal extends BaseLayout {
 				item.add(new Label("caseRecordName", new Model<String>(personal.getFirstName())));
 				item.add(new Label("caseRecordSecondName", new Model<String>(personal.getSecondName())));
 				item.add(new Label("caseRecordWardList", new Model<String>(personal.getWardsString())));
-				item.add(new Label("caseRecordProf", new ChoiceRenderer<EProf>() {
-
-					@Override
-					public Object getDisplayValue(EProf object) {
-						return new ResourceModel("p.report_personal.prof_value_" + object.getName()).getObject();
-					}
-				}));
-				item.add(new Label("caseRecordLoadLvl", new Model<Float>(45.4f)));
-				item.add(new CheckBox("caseRecordWorkStatus", new Model<Boolean>(personal.getDelMarker())).setEnabled(personal.getDelMarker()));
+				item.add(new Label("caseRecordProf", new ResourceModel("p.report_personal.prof_value_" + personal.getProf()).getObject()));
+				item.add(new Label("caseRecordLoadLvl", new Model<Float>(personal.getWorkLvl())));
+				item.add(new CheckBox("caseRecordWorkStatus", new Model<Boolean>(!personal.getDelMarker())).setEnabled(false));
 
 			}
 
 		};
 
 		iterBody.add(dataView);
+
+		add(new PagingNavigator("paging", dataView));
 
 	}
 

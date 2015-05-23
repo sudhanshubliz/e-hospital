@@ -81,6 +81,9 @@ public class AssignServise implements IAssignServise {
 
 	@Override
 	public Long getFreeGroupId() {
+		/*
+		 * Long res = assignDAO.getMaxGroupId(); if (res == null) { res = 1; }
+		 */
 		return assignDAO.getMaxGroupId() + 1l;
 	}
 

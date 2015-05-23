@@ -15,7 +15,7 @@
 	    http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 
-	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/hospitalDS" />
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/db_kudziev" />
 
 <import resource="classpath:spring-context.xml" />
 

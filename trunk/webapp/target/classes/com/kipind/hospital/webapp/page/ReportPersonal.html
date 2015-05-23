@@ -1,14 +1,14 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
 	<div wicket:id="menuPanel"></div>
 	
-	<table >
+	<table class="CSSTableGenerator" >
 		<thead>
 			<tr>
 				<th wicket:id="sortByName"><wicket:message key="p.report_personal.lb_name" /></th>
 				<th wicket:id="sortBySecondName"><wicket:message key="p.report_personal.lb_name" /></th>
 				<th><wicket:message key="p.report_personal.lb_ward_list" /></th>
 				<th wicket:id="sortByProf"><wicket:message key="p.report_personal.lb_prof" /></th>
-			    <th wicket:id="sortByLoadLvl"><wicket:message key="p.report_personal.lb_load_lvl" /></th>
+			    <th><wicket:message key="p.report_personal.lb_load_lvl" /></th>
 			    <th wicket:id="sortByWorkStatus"><wicket:message key="p.report_personal.lb_active_status" /></th>
 			</tr>
 		</thead>
@@ -19,11 +19,13 @@
 				<td><div wicket:id="caseRecordWardList"></div></td>
 				<td><div wicket:id="caseRecordProf"></div></td>
 				<td><div wicket:id="caseRecordLoadLvl"></div></td>
-				<td><div wicket:id="caseRecordWorkStatus"></div></td>
+				<td><input type="checkbox" wicket:id="caseRecordWorkStatus"></td>
 		   </tr>
 		</tbody>
 	</table>
-		
+	<div wicket:id="paging">
+	
+</div>
 	
 	<!-- <table class="CSS_Table_Example" style="width: 100%;">
 		<tr>
