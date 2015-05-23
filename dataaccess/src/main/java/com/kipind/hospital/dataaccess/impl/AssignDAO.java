@@ -59,8 +59,11 @@ public class AssignDAO extends AbstractDAO<Long, Assign> implements IAssignDAO {
 
 		TypedQuery<Long> query = getEm().createQuery(criteriaQuery);
 		try {
-			return query.getSingleResult();
-
+			Long res = query.getSingleResult();
+			if (res == null) {
+				res = 1l;
+			}
+			return res;
 		} catch (NoResultException e) {
 			return null;
 		}

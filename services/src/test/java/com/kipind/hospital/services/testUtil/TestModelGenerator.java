@@ -24,8 +24,8 @@ public abstract class TestModelGenerator extends TestRandomVal {
 		Patient patient = new Patient();
 		patient.setAddress(randomString("address-"));
 		patient.setBirthDt(randomDate());
-		patient.setFirstName(randomString("f_name-"));
-		patient.setLastName(randomString("l_name-"));
+		patient.setFirstName(randomString("f-"));
+		patient.setLastName(randomString("l-"));
 		patient.setSex(EHumanSex.values()[(randomInteger(0, EHumanSex.values().length - 1))]);
 		patient.setSocialNumber(randomString());
 		return patient;
@@ -33,8 +33,8 @@ public abstract class TestModelGenerator extends TestRandomVal {
 
 	public static Personal getPersonal() {
 		Personal personal = new Personal();
-		personal.setFirstName(randomString("f_name-"));
-		personal.setSecondName(randomString("s_name-"));
+		personal.setFirstName(randomString("f-"));
+		personal.setSecondName(randomString("s-"));
 		personal.setTabelNumber(randomInteger(1000, 99999));
 		personal.setPass(randomString());
 		personal.setDelMarker(false);

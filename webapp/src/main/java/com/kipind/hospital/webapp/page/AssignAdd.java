@@ -103,7 +103,7 @@ public class AssignAdd extends BaseLayout {
 					cleanAssignForm();
 				} catch (RuntimeException e) {
 					// TODO:ошибку в лог фаил
-					error(new ResourceModel("error.general_save.callIT").getObject());
+					error(new ResourceModel("error.general_save.callIT").getObject() + e);
 
 				}
 

@@ -62,9 +62,23 @@ public class CaseRecord extends BaseLayout {
 				strInterview = checkup.getInterview().replace("[assign]", new ResourceModel("p.case_record.txt_prescribe").getObject())
 						.replace("[result]", new ResourceModel("p.case_record.txt_prsc_res").getObject())
 						.replace("[interview]", new ResourceModel("p.case_record.txt_interview").getObject());
+				Link<Void> link = new Link<Void>("caseRecordLink") {
+
+					@Override
+					public void onClick() {
+						setResponsePage(new CaseRecord(visit.getId()));
+					}
+				};
+				if (strInterview.contains("[execute]")) {
+					link.add(new Label("caseRecordLinkText", new ResourceModel("p.case_record.txt_execute").getObject()));
+				} else {
+					link.add(new Label("caseRecordLinkText", ""));
+				}
+				strInterview = strInterview.replace("[execute]", "");
 
 				item.add(new Label("caseRecordDate", new Model<Date>(checkup.getChDt())));
 				item.add(new Label("caseRecordText", new Model<String>(strInterview)));
+				item.add(link);
 				item.add(new Label("caseRecordExecutor", new Model<String>(personalName)));
 
 			}
@@ -93,8 +107,6 @@ public class CaseRecord extends BaseLayout {
 
 		@Override
 		public Iterator<? extends Checkup> iterator(long first, long count) {
-			// return
-			// checkupService.getAllCheckupsOfVisit(visit.getId()).iterator();
 			return visitService.getCaseRecordForVisit(visit.getId()).iterator();
 		}
 

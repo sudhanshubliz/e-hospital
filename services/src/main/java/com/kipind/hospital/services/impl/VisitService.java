@@ -169,6 +169,9 @@ public class VisitService implements IVisitService {
 		if (assign.getResText() != null) {
 			res = res + "<<|>> [result] " + assign.getResText() + "( " + assign.getResPersonal().getSecondName() + " "
 					+ assign.getResPersonal().getFirstName().substring(0, 1) + "., " + assign.getResDt() + " )";
+		} else {
+
+			res = res + " [execute]";
 		}
 		return res;
 	}

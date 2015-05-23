@@ -142,8 +142,11 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 
 		criteriaQuery.select(visit);
 
-		criteriaQuery.where(cBuilder.and(cBuilder.isMember(visit.get(Visit_.ward), personal.get(Personal_.wards)), visit.get(Visit_.dischargeFlag)
-				.in(EDischargeStatus.CURING, EDischargeStatus.DENY)));
+		criteriaQuery.where(cBuilder.and(
+				cBuilder.and(cBuilder.isMember(visit.get(Visit_.ward), personal.get(Personal_.wards)),
+						cBuilder.equal(personal.get(Personal_.id), persId)), visit.get(Visit_.dischargeFlag).in(EDischargeStatus.CURING))); // ,
+																																			// EDischargeStatus.DENY,
+																																			// EDischargeStatus.REQUEST
 
 		visit.fetch(Visit_.patient);
 		visit.fetch(Visit_.ward);
@@ -230,13 +233,16 @@ public class PersonalDAO extends AbstractDAO<Long, Personal> implements IPersona
 
 	@Override
 	public List<Personal> getAllPersonal(String attr, boolean ascending, int startRecord, int pageSize) {
-		CriteriaBuilder cBuilder = getEm().getCriteriaBuilder();
-		CriteriaQuery<Personal> criteriaQuery = cBuilder.createQuery(Personal.class);
-		Root<Personal> entity = criteriaQuery.from(Personal.class);
+		CriteriaBuilder сriteriaBuilder = getEm().getCriteriaBuilder();
+		CriteriaQuery<Personal> criteriaQuery = сriteriaBuilder.createQuery(Personal.class);
+		Root<Personal> rootPersonal = criteriaQuery.from(Personal.class);
 
-		criteriaQuery.select(entity);
+		criteriaQuery.select(rootPersonal);
 
-		entity.fetch(Personal_.wards, JoinType.LEFT);
+		rootPersonal.fetch(Personal_.wards, JoinType.LEFT);
+
+		criteriaQuery.orderBy(new OrderImpl(rootPersonal.get(attr), ascending));
+
 		TypedQuery<Personal> query = getEm().createQuery(criteriaQuery);
 
 		query.setFirstResult(startRecord);

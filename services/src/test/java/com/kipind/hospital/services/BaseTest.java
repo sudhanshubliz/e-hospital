@@ -102,7 +102,7 @@ public class BaseTest extends TestModelGenerator {
 			Assert.assertEquals(n, patientService.getAllPatients().size());
 
 			// создаем палаты
-			n = TestRandomVal.randomInteger(2, Math.round(BASIC_SIZE * 0.1f));
+			n = TestRandomVal.randomInteger(2, Math.round(BASIC_SIZE * 0.2f));
 			for (int i = 1; i <= n; i++) {
 				Set<Personal> pers = TestRandomVal.randomSubCollection(personalService.getAllByField(Personal_.prof, EProf.DOCTOR.ordinal()), 1);
 				pers.addAll(TestRandomVal.randomSubCollection(personalService.getAllByField(Personal_.prof, EProf.NERS.ordinal()), 2));

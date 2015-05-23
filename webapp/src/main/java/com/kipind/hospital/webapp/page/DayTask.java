@@ -79,8 +79,6 @@ public class DayTask extends BaseLayout {
 		@Override
 		public Iterator<? extends Visit> iterator(long first, long count) {
 			return personalService.GetLinkedPatients(user.getId()).iterator();
-			// personalService.GetLinkedPatientsWithPaging(userId, (int) first,
-			// (int) count).iterator();
 
 		}
 

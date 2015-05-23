@@ -14,25 +14,20 @@ public class Assign extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Visit.class)
 	@NotNull
 	private Visit visit;
-
+	@NotNull
 	private String prscText;
+	@NotNull
 	private Date prscDt;
-
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Personal.class)
 	@NotNull
 	private Personal prscPersonal;
-
 	private String resText;
 	private Date resDt;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Personal.class)
 	@NotNull
 	private Personal resPersonal;
+	@NotNull
 	private Long periodGroupKey;
-
-	/*
-	 * @OneToMany(fetch = FetchType.LAZY, targetEntity = ResultSource.class)
-	 * private Set<ResultSource> resultSource;
-	 */
 
 	public Visit getVisit() {
 		return visit;
