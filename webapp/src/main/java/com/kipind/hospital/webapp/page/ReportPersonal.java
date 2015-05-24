@@ -61,7 +61,7 @@ public class ReportPersonal extends BaseLayout {
 				item.add(new Label("caseRecordSecondName", new Model<String>(personal.getSecondName())));
 				item.add(new Label("caseRecordWardList", new Model<String>(personal.getWardsString())));
 				item.add(new Label("caseRecordProf", new ResourceModel("p.report_personal.prof_value_" + personal.getProf()).getObject()));
-				item.add(new Label("caseRecordLoadLvl", new Model<Float>(personal.getWorkLvl())));
+				item.add(new Label("caseRecordLoadLvl", new Model<Float>(personal.getWorkLvl())).setVisible(false));
 				item.add(new CheckBox("caseRecordWorkStatus", new Model<Boolean>(!personal.getDelMarker())).setEnabled(false));
 
 			}

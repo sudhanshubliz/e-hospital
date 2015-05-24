@@ -1,5 +1,7 @@
 package com.kipind.hospital.webapp.panel;
 
+import org.apache.wicket.authorization.Action;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -14,7 +16,7 @@ public class MainMenuPanel extends Panel {
 
 	public MainMenuPanel(String id) {
 		super(id);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
@@ -22,9 +24,8 @@ public class MainMenuPanel extends Panel {
 		super.onInitialize();
 
 		add(new BookmarkablePageLink<Void>("patient_reg", PatientRegistration.class));
-		// add(new BookmarkablePageLink<Void>("report", CaseRecord.class));
 		add(new BookmarkablePageLink<Void>("patient", DayTask.class));
-		add(new BookmarkablePageLink<Void>("report", ReportPersonal.class));
+		add(new LinkForDoctor("report", ReportPersonal.class));
 
 		Link<Void> link = new Link<Void>("meeting") {
 
@@ -36,8 +37,16 @@ public class MainMenuPanel extends Panel {
 
 			}
 		};
-		add(link);
+		add(link.setVisible(false));
 
+	}
+
+	@AuthorizeAction(action = Action.RENDER, roles = { "LEAD_DOCTOR" })
+	private class LinkForDoctor extends BookmarkablePageLink<Void> {
+
+		public LinkForDoctor(String id, Class cl) {
+			super(id, cl);
+		}
 	}
 
 }
