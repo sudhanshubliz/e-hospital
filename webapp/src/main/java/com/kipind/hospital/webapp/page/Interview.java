@@ -22,14 +22,13 @@ import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.ICheckupService;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
-import com.kipind.hospital.services.impl.PersonalService;
 import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
 @AuthorizeInstantiation({ "DOCTOR", "LEAD_DOCTOR" })
 public class Interview extends BaseLayout {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PersonalService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Interview.class);
 
 	@Inject
 	private ICheckupService checkupService;

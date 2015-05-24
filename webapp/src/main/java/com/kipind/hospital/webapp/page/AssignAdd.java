@@ -23,6 +23,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.kipind.hospital.datamodel.Assign;
 import com.kipind.hospital.datamodel.Visit;
@@ -34,6 +36,8 @@ import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
 @AuthorizeInstantiation({ "DOCTOR", "LEAD_DOCTOR" })
 public class AssignAdd extends BaseLayout {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(AssignAdd.class);
 
 	@Inject
 	private IPersonalService personalService;
@@ -88,8 +92,11 @@ public class AssignAdd extends BaseLayout {
 		feedbackPanel.setOutputMarkupId(true);
 		assignForm.add(feedbackPanel);
 
-		assignForm.add(new TextArea<String>("prscText").add(new PropertyValidator<String>()));
-		assignForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")).add(new PropertyValidator<Integer>()));
+		assignForm
+				.add(new TextArea<String>("prscText").add(new PropertyValidator<String>()).setLabel(new ResourceModel("p.assign_add.lb_prescribe")));
+
+		assignForm.add(new TextField<Integer>("period", new PropertyModel<Integer>(this, "assignPeriod")).add(new PropertyValidator<Integer>())
+				.setLabel(new ResourceModel("p.assign_add.lb_period")));
 
 		Button submitButton = new Button("submitButton") {
 
@@ -102,8 +109,8 @@ public class AssignAdd extends BaseLayout {
 
 					cleanAssignForm();
 				} catch (RuntimeException e) {
-					// TODO:ошибку в лог фаил
-					error(new ResourceModel("error.general_save.callIT").getObject() + e);
+					LOGGER.error("try to save assign execute. Class is: {}" + e, getClass().getName());
+					error(new ResourceModel("error.general_save.callIT").getObject());
 
 				}
 
@@ -114,8 +121,6 @@ public class AssignAdd extends BaseLayout {
 				assignPeriod = 1;
 			}
 		};
-		// submitButton.add(AttributeModifier.append("value", new
-		// ResourceModel("button.save").getObject()));
 		assignForm.add(submitButton);
 		add(assignForm);
 

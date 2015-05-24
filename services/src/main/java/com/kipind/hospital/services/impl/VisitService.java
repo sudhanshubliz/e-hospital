@@ -157,6 +157,7 @@ public class VisitService implements IVisitService {
 
 	private Checkup createAssign(Assign assign) {
 		Checkup checkAssign = new Checkup();
+		checkAssign.setId(assign.getId());
 		checkAssign.setChDt(assign.getPrscDt());
 		checkAssign.setInterview(createAssignInfo(assign));
 		checkAssign.setPersonal(assign.getPrscPersonal());
