@@ -66,7 +66,7 @@ public class CaseRecord extends BaseLayout {
 
 					@Override
 					public void onClick() {
-						setResponsePage(new CaseRecord(visit.getId()));
+						setResponsePage(new AssignExec(visit.getId(), checkup.getId()));
 					}
 				};
 				if (strInterview.contains("[execute]")) {

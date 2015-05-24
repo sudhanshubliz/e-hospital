@@ -1,5 +1,7 @@
 package com.kipind.hospital.webapp.page;
 
+import java.util.Calendar;
+
 import javax.inject.Inject;
 
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
@@ -19,13 +21,13 @@ import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.IAssignServise;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
-import com.kipind.hospital.services.impl.PersonalService;
+import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
-@AuthorizeInstantiation({ "DOCTOR", "LEAD_DOCTOR" })
+@AuthorizeInstantiation({ "DOCTOR", "LEAD_DOCTOR", "NORS" })
 public class AssignExec extends BaseLayout {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PersonalService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AssignExec.class);
 
 	@Inject
 	private IAssignServise assignService;
@@ -34,7 +36,6 @@ public class AssignExec extends BaseLayout {
 	@Inject
 	private IPersonalService personalService;
 
-	// private Patient patient;
 	private Visit visit;
 	private Assign assign;
 
@@ -45,7 +46,7 @@ public class AssignExec extends BaseLayout {
 
 	public AssignExec(Long vId, Long aId) {
 		this.visit = visitService.getByIdFull(vId);
-		this.assign = assignService.getById(aId);// TODO:
+		this.assign = assignService.getByIdFull(aId);
 	}
 
 	@Override
@@ -66,19 +67,13 @@ public class AssignExec extends BaseLayout {
 			public void onSubmit() {
 
 				try {
-					/*
-					 * checkup.setPersonal(personalService.getByIdFull(
-					 * BasicAuthenticationSession.get().getUserId()));
-					 * checkup.setVisit(visit);
-					 * checkup.setChDt(Calendar.getInstance().getTime());
-					 * 
-					 * checkupService.saveOrUpdate(checkup); if
-					 * (!checkup.getDiagnosis().equals(visit.getFirstDs())) {
-					 * visit.setFirstDs(checkup.getDiagnosis());
-					 * visitService.saveOrUpdate(visit); } setResponsePage(new
-					 * CaseRecord(visit.getId()));
-					 */} catch (RuntimeException e) {
-					LOGGER.error("try to save interview. Class is: {}" + e, getClass().getName());
+					assign.setResPersonal(personalService.getByIdFull(BasicAuthenticationSession.get().getUserId()));
+					assign.setResDt(Calendar.getInstance().getTime());
+					assignService.saveOrUpdate(assign);
+
+					setResponsePage(new CaseRecord(visit));
+				} catch (RuntimeException e) {
+					LOGGER.error("try to save assign execute. Class is: {}" + e, getClass().getName());
 					error(new ResourceModel("error.general_save.callIT").getObject());
 
 				}

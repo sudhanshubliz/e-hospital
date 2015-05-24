@@ -38,6 +38,12 @@ public class AssignServise implements IAssignServise {
 	}
 
 	@Override
+	public Assign getByIdFull(Long id) {
+		Assign entity = assignDAO.getByIdFull(id);
+		return entity;
+	}
+
+	@Override
 	public void saveOrUpdate(Assign assign) {
 		if (assign.getId() == null) {
 			assignDAO.insert(assign);
@@ -94,8 +100,9 @@ public class AssignServise implements IAssignServise {
 	}
 
 	@Override
-	public void saveAssignGroup(Assign assign, Integer period) {
-
+	public void saveAssignGroup(Assign assign, Integer period) {// throws
+																// Exception {
+		// try {
 		assign.setPeriodGroupKey(this.getFreeGroupId());
 		assign.setPrscDt(Calendar.getInstance().getTime());
 
@@ -108,17 +115,11 @@ public class AssignServise implements IAssignServise {
 			insAssign.setPrscDt(DateUtils.addDays(assign.getPrscDt(), i));
 			assignDAO.insert(insAssign);
 		}
-
 		/*
-		 * assign.setPeriodGroupKey(this.getFreeGroupId());
-		 * assign.setPrscDt(Calendar.getInstance().getTime()); for (int i = 0; i
-		 * < period; i++) {
+		 * } catch (Exception e) {
 		 * 
-		 * assign.setPrscDt(DateUtils.addDays(assign.getPrscDt(), i));
-		 * 
-		 * assignDAO.insert(assign); assign.setId(null); }
+		 * }
 		 */
-
 	}
 
 }

@@ -108,8 +108,8 @@
 <entry key="p.report_personal.prof_value_NERS">[en]Мед. персонал</entry>
 <entry key="p.report_personal.prof_value_LEAD_DOCTOR">[en]Глав. врач</entry>
 
-<entry key="p.assign_exeс.lb_assign">[en]Назначение врача:</entry>
-<entry key="p.assign_exeс.lb_assign_exec">[en]Запись о исполнении:</entry>
+<entry key="p.assign_exec.lb_assign">[en]Назначение врача:</entry>
+<entry key="p.assign_exec.lb_assign_exec">[en]Запись о исполнении:</entry>
 	
 
 </properties>

@@ -10,6 +10,8 @@ public interface IAssignServise {
 
 	Assign getById(Long id);
 
+	Assign getByIdFull(Long id);
+
 	@Transactional
 	void saveOrUpdate(Assign assign);
 
@@ -29,5 +31,5 @@ public interface IAssignServise {
 	List<Assign> getAllAssignsOfVisit(Long visitId);
 
 	@Transactional
-	void saveAssignGroup(Assign assign, Integer period);
+	void saveAssignGroup(Assign assign, Integer period);// throws Exception;
 }
