@@ -24,7 +24,7 @@ import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
-@AuthorizeInstantiation({ "DOCTOR", "LEAD_DOCTOR", "NORS" })
+@AuthorizeInstantiation({ "DOCTOR", "LEAD_DOCTOR", "NERS" })
 public class AssignExec extends BaseLayout {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssignExec.class);
@@ -60,13 +60,18 @@ public class AssignExec extends BaseLayout {
 		assignExecForm.add(feedbackPanel);
 
 		assignExecForm.add(new TextArea<String>("prscText").add(new PropertyValidator<String>()).setEnabled(false));
-		assignExecForm.add(new TextArea<String>("resText").add(new PropertyValidator<String>()));
+		assignExecForm.add(new TextArea<String>("resText").add(new PropertyValidator<String>()).setLabel(
+				new ResourceModel("p.assign_exec.lb_assign_exec")));
 		Button submitButton = new Button("submitButton") {
 
 			@Override
 			public void onSubmit() {
 
 				try {
+					if (assign.getResText() == null) {
+						error(new ResourceModel("p.assign_exec.err_null_restext").getObject());
+						return;
+					}
 					assign.setResPersonal(personalService.getByIdFull(BasicAuthenticationSession.get().getUserId()));
 					assign.setResDt(Calendar.getInstance().getTime());
 					assignService.saveOrUpdate(assign);

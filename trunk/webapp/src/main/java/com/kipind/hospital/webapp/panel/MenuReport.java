@@ -27,7 +27,7 @@ public class MenuReport extends Panel {
 			public void onClick() {
 				setResponsePage(new AssignAdd(1l));
 			}
-		});
+		}.setVisible(false));
 
 		add(new Link<Void>("btHaspitalStat") {
 
@@ -35,7 +35,7 @@ public class MenuReport extends Panel {
 			public void onClick() {
 				setResponsePage(new AssignAdd(1l));
 			}
-		});
+		}.setVisible(false));
 	}
 
 }

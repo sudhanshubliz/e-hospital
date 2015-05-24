@@ -21,6 +21,7 @@ import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.ICheckupService;
 import com.kipind.hospital.services.IVisitService;
+import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
 @AuthorizeInstantiation({ "DOCTOR", "NERS", "LEAD_DOCTOR" })
@@ -31,6 +32,9 @@ public class CaseRecord extends BaseLayout {
 	@Inject
 	private IVisitService visitService;
 	private Visit visit;
+
+	private Link interViewLink;
+	private Link assignLink;
 
 	public CaseRecord(Visit curVisit) {
 		this.visit = curVisit;
@@ -86,20 +90,22 @@ public class CaseRecord extends BaseLayout {
 
 		iterBody.add(dataView);
 
-		add(new Link<Void>("btInterview") {
+		interViewLink = new Link<Void>("btInterview") {
 
 			@Override
 			public void onClick() {
 				setResponsePage(new Interview(visit));
 			}
-		});
-		add(new Link<Void>("btPrescribe") {
+		};
+		assignLink = new Link<Void>("btPrescribe") {
 
 			@Override
 			public void onClick() {
 				setResponsePage(new AssignAdd(visit));
 			}
-		});
+		};
+		add(interViewLink);
+		add(assignLink);
 
 	}
 
@@ -112,8 +118,6 @@ public class CaseRecord extends BaseLayout {
 
 		@Override
 		public long size() {
-			// return
-			// checkupService.getAllCheckupsOfVisit(visit.getId()).size();
 			return visitService.getCaseRecordForVisit(visit.getId()).size();
 
 		}
@@ -124,6 +128,15 @@ public class CaseRecord extends BaseLayout {
 		}
 
 	}
+
+	protected void onBeforeRender() {
+		if (BasicAuthenticationSession.get().getRoles().contains("NERS")) {
+			interViewLink.setVisible(false);
+			assignLink.setVisible(false);
+		}
+
+		super.onBeforeRender();
+	};
 
 	@Override
 	protected IModel<String> getPageTitle() {

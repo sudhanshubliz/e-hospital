@@ -46,7 +46,7 @@
 
 
 	<entry key="p.start.patients">[en]Пациенты</entry>
-	<entry key="p.start.reports">[en]Отчетность</entry>
+	<entry key="p.start.reports">[en]Информация</entry>
 	<entry key="p.start.patient_reg">[en]Регистратура</entry>
 	<entry key="p.start.meeting">[en]Совещание</entry>
 
@@ -110,6 +110,7 @@
 
 <entry key="p.assign_exec.lb_assign">[en]Назначение врача:</entry>
 <entry key="p.assign_exec.lb_assign_exec">[en]Запись о исполнении:</entry>
+<entry key="p.assign_exec.err_null_restext">[en]Поле 'запись о исполнении' не должно быть пустым.</entry>
 	
 
 </properties>
