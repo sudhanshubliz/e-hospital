@@ -133,7 +133,9 @@ public class PatientRegistration extends BaseLayout {
 
 			@Override
 			public Object getDisplayValue(Ward object) {
-				return object.getWardNum() + "(" + object.getPlaceNumBisy() + "/" + object.getPlaceNumSum() + ")";
+				return object.getWardNum();// + "(" + object.getPlaceNumBisy() +
+											// "/" + object.getPlaceNumSum() +
+											// ")";
 			}
 
 			@Override

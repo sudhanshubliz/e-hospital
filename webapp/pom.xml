@@ -58,8 +58,5 @@
 		</dependency>
 	</dependencies>
 	
-	<build>
-	<finalName>kudziev</finalName>
-	</build>
-
+	
 </project>

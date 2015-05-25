@@ -138,7 +138,7 @@ public class PersonalService implements IPersonalService {
 			resElem.setWards(personal.getWards());
 			resElem.setDelMarker(personal.getDelMarker());
 			resElem.setProf(personal.getProf());
-
+			resElem.setTabelNumber(personal.getTabelNumber());
 			res.add(resElem);
 		}
 

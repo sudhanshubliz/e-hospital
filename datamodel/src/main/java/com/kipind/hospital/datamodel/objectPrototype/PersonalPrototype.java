@@ -6,6 +6,7 @@ import java.util.Set;
 import com.kipind.hospital.datamodel.Ward;
 import com.kipind.hospital.datamodel.enam.EProf;
 
+@SuppressWarnings("serial")
 public class PersonalPrototype implements Serializable {
 
 	private Long Id;
@@ -18,7 +19,6 @@ public class PersonalPrototype implements Serializable {
 	private String secondName;
 	private Set<Ward> wards;
 	private String wardsString;
-	private Float workLvl;
 
 	public Long getId() {
 		return Id;
@@ -60,10 +60,6 @@ public class PersonalPrototype implements Serializable {
 		return wardsString;
 	}
 
-	public Float getWorkLvl() {
-		return workLvl;
-	}
-
 	public void setId(Long id) {
 		Id = id;
 	}
@@ -99,7 +95,7 @@ public class PersonalPrototype implements Serializable {
 	public void setWards(Set<Ward> wards) {
 		this.wards = wards;
 		setWardsString(wards);
-		setWorkLvl(wards);
+
 	}
 
 	private void setWardsString(Set<Ward> wards) {
@@ -110,15 +106,4 @@ public class PersonalPrototype implements Serializable {
 		this.wardsString = res;
 	}
 
-	private void setWorkLvl(Set<Ward> wards) {
-		int sumKol = 0, busyKol = 0;
-		for (Ward ward : wards) {
-			sumKol = sumKol + ward.getPlaceNumSum();
-			busyKol = busyKol + ward.getPlaceNumBisy();
-		}
-		if (sumKol == 0) {
-			sumKol = 1;
-		}
-		this.workLvl = (float) (busyKol / sumKol);
-	}
 }

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kipind.hospital.datamodel.Assign;
 
-public interface IAssignServise {
+public interface IAssignServiсe {
 
 	Assign getById(Long id);
 

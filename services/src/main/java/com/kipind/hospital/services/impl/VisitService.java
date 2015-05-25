@@ -17,7 +17,7 @@ import com.kipind.hospital.dataaccess.IVisitDAO;
 import com.kipind.hospital.datamodel.Assign;
 import com.kipind.hospital.datamodel.Checkup;
 import com.kipind.hospital.datamodel.Visit;
-import com.kipind.hospital.services.IAssignServise;
+import com.kipind.hospital.services.IAssignServiсe;
 import com.kipind.hospital.services.ICheckupService;
 import com.kipind.hospital.services.IVisitService;
 
@@ -31,7 +31,7 @@ public class VisitService implements IVisitService {
 	@Inject
 	private ICheckupService checkupService;
 	@Inject
-	private IAssignServise assignServise;
+	private IAssignServiсe assignServiсe;
 
 	@PostConstruct
 	private void init() {
@@ -119,7 +119,7 @@ public class VisitService implements IVisitService {
 		int i = 0;
 		Boolean addRestFlag = false;
 		Date prsExecDate;
-		for (Assign assign : assignServise.getAllAssignsOfVisit(visitId)) {
+		for (Assign assign : assignServiсe.getAllAssignsOfVisit(visitId)) {
 
 			if (assign.getResDt() != null) {
 				prsExecDate = assign.getResDt();

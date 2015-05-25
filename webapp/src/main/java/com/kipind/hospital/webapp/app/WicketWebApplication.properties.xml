@@ -80,6 +80,7 @@
 
 	<entry key="p.interview.lb_textarea">[en]Запись врача:</entry>
 	<entry key="p.interview.lb_ds">[en]Диагноз:</entry>
+<entry key="p.interview.cb_discharg">[en]На выписку</entry>
 
 	<entry key="p.login.it_login">[en]Введите табельный номер</entry>
 	<entry key="p.login.it_pass">[en]Введите пароль</entry>
@@ -102,7 +103,7 @@
 <entry key="p.report_personal.lb_surname">[en]Фамилия</entry>
 <entry key="p.report_personal.lb_ward_list">[en]Список закрепленных палат</entry>
 <entry key="p.report_personal.lb_prof">[en]Должность</entry>
-<entry key="p.report_personal.lb_load_lvl">[en]Загруженноть,%</entry>
+<entry key="p.report_personal.lb_tab">[en]Табельный номер</entry>
 <entry key="p.report_personal.lb_active_status">[en]Рабочий статус</entry>
 <entry key="p.report_personal.prof_value_DOCTOR">[en]Доктор</entry>
 <entry key="p.report_personal.prof_value_NERS">[en]Мед. персонал</entry>
@@ -112,5 +113,7 @@
 <entry key="p.assign_exec.lb_assign_exec">[en]Запись о исполнении:</entry>
 <entry key="p.assign_exec.err_null_restext">[en]Поле 'запись о исполнении' не должно быть пустым.</entry>
 	
+<entry key="p.report_patient.gender_value_MALE">[en]мужчина</entry>
+<entry key="p.report_patient.gender_value_FEMALE">[en]женщина</entry>
 
 </properties>

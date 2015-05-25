@@ -22,12 +22,13 @@ import com.kipind.hospital.datamodel.objectPrototype.PersonalPrototype;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.webapp.panel.MenuReport;
 
-@AuthorizeInstantiation({ "DOCTOR", "NERS", "LEAD_DOCTOR" })
+@AuthorizeInstantiation({ "LEAD_DOCTOR" })
 public class ReportPersonal extends BaseLayout {
 
 	@Inject
 	private IPersonalService personalService;
-	private PersonalPrototype PersonalPrototype;
+
+	private PersonalPrototype personalPrototype;
 
 	public ReportPersonal() {
 		super();
@@ -43,8 +44,7 @@ public class ReportPersonal extends BaseLayout {
 		add(new OrderByBorder<String>("sortByName", "firstName", caseRecordDataProvider));
 		add(new OrderByBorder<String>("sortBySecondName", "secondName", caseRecordDataProvider));
 		add(new OrderByBorder<String>("sortByProf", "prof", caseRecordDataProvider));
-		// add(new OrderByBorder<String>("sortByLoadLvl", "workLvl",
-		// caseRecordDataProvider));
+		add(new OrderByBorder<String>("sortByTab", "tabelNumber", caseRecordDataProvider));
 		add(new OrderByBorder<String>("sortByWorkStatus", "delMarker", caseRecordDataProvider));
 
 		WebMarkupContainer iterBody = new WebMarkupContainer("caseRecord");
@@ -61,7 +61,7 @@ public class ReportPersonal extends BaseLayout {
 				item.add(new Label("caseRecordSecondName", new Model<String>(personal.getSecondName())));
 				item.add(new Label("caseRecordWardList", new Model<String>(personal.getWardsString())));
 				item.add(new Label("caseRecordProf", new ResourceModel("p.report_personal.prof_value_" + personal.getProf()).getObject()));
-				item.add(new Label("caseRecordLoadLvl", new Model<Float>(personal.getWorkLvl())).setVisible(false));
+				item.add(new Label("caseRecordTab", new Model<Integer>(personal.getTabelNumber())));
 				item.add(new CheckBox("caseRecordWorkStatus", new Model<Boolean>(!personal.getDelMarker())).setEnabled(false));
 
 			}

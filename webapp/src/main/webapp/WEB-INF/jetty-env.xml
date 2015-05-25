@@ -3,7 +3,7 @@
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
     <New id="testDS" class="org.eclipse.jetty.plus.jndi.Resource">
         <Arg></Arg>
-        <Arg>jdbc/db_kudziev</Arg>
+        <Arg>jdbc/ds_kudziev</Arg>
         <Arg>
 	         <New class="org.postgresql.ds.PGSimpleDataSource">
 	           <Set name="User">test</Set>

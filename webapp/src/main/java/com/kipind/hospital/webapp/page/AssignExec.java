@@ -18,7 +18,8 @@ import org.slf4j.LoggerFactory;
 
 import com.kipind.hospital.datamodel.Assign;
 import com.kipind.hospital.datamodel.Visit;
-import com.kipind.hospital.services.IAssignServise;
+import com.kipind.hospital.datamodel.enam.EDischargeStatus;
+import com.kipind.hospital.services.IAssignServiсe;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
@@ -30,7 +31,7 @@ public class AssignExec extends BaseLayout {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssignExec.class);
 
 	@Inject
-	private IAssignServise assignService;
+	private IAssignServiсe assignService;
 	@Inject
 	private IVisitService visitService;
 	@Inject
@@ -72,9 +73,17 @@ public class AssignExec extends BaseLayout {
 						error(new ResourceModel("p.assign_exec.err_null_restext").getObject());
 						return;
 					}
+
 					assign.setResPersonal(personalService.getByIdFull(BasicAuthenticationSession.get().getUserId()));
 					assign.setResDt(Calendar.getInstance().getTime());
+
 					assignService.saveOrUpdate(assign);
+
+					if (assign.getPeriodGroupKey() < 0) {
+						visit.setEndDt(Calendar.getInstance().getTime());
+						visit.setDischargeFlag(EDischargeStatus.ASSENT);
+						visitService.saveOrUpdate(visit);
+					}
 
 					setResponsePage(new CaseRecord(visit));
 				} catch (RuntimeException e) {

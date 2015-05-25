@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.kipind.hospital.datamodel.Assign;
 import com.kipind.hospital.datamodel.Visit;
-import com.kipind.hospital.services.IAssignServise;
+import com.kipind.hospital.services.IAssignServiсe;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
 import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
@@ -44,7 +44,7 @@ public class AssignAdd extends BaseLayout {
 	@Inject
 	private IVisitService visitService;
 	@Inject
-	private IAssignServise assignServiсe;
+	private IAssignServiсe assignServiсe;
 
 	private Visit visit;
 	private Assign assign = new Assign();
