@@ -1,0 +1,1 @@
+2015-05-26 01:27:12,453 ERROR webapp.page.Interview:106 [] -> try to save interview. Class is: com.kipind.hospital.webapp.page.Interview$1java.lang.RuntimeException: test

@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 
 import com.kipind.hospital.dataaccess.IAssignDAO;
 import com.kipind.hospital.datamodel.Assign;
-import com.kipind.hospital.services.IAssignServise;
+import com.kipind.hospital.services.IAssignServiсe;
 
 @Service
-public class AssignServise implements IAssignServise {
+public class AssignServise implements IAssignServiсe {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssignServise.class);
 

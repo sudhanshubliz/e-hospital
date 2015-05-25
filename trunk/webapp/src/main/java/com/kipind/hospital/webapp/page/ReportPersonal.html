@@ -8,7 +8,7 @@
 				<th wicket:id="sortBySecondName"><wicket:message key="p.report_personal.lb_name" /></th>
 				<th><wicket:message key="p.report_personal.lb_ward_list" /></th>
 				<th wicket:id="sortByProf"><wicket:message key="p.report_personal.lb_prof" /></th>
-			    <th><wicket:message key="p.report_personal.lb_load_lvl" /></th>
+			    <th wicket:id="sortByTab"><wicket:message key="p.report_personal.lb_tab" /></th>
 			    <th wicket:id="sortByWorkStatus"><wicket:message key="p.report_personal.lb_active_status" /></th>
 			</tr>
 		</thead>
@@ -18,7 +18,7 @@
 				<td><div wicket:id="caseRecordSecondName"></div></td>
 				<td><div wicket:id="caseRecordWardList"></div></td>
 				<td><div wicket:id="caseRecordProf"></div></td>
-				<td><div wicket:id="caseRecordLoadLvl"></div></td>
+				<td><div wicket:id="caseRecordTab"></div></td>
 				<td><input type="checkbox" wicket:id="caseRecordWorkStatus"></td>
 		   </tr>
 		</tbody>
@@ -27,20 +27,5 @@
 	
 </div>
 	
-	<!-- <table class="CSS_Table_Example" style="width: 100%;">
-		<tr>
-			<td><wicket:message key="p.case_record.tb_title_date" /></td>
-			<td><wicket:message key="p.case_record.tb_title_record" /></td>
-			<td><wicket:message key="p.case_record.tb_title_executor" /></td>
-		</tr>
-		<wicket:container wicket:id="caseRecord">
-			<tr  wicket:id="elemList">
-				<td><div wicket:id="caseRecordDate"></div></td>
-				<td><div wicket:id="caseRecordText"></div></td>
-				<td><div wicket:id="caseRecordExecutor"></div></td>
-			</tr>
-		</wicket:container>
-
-	</table> -->
-
+	
 </wicket:extend>

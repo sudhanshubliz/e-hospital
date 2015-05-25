@@ -35,4 +35,5 @@ public interface IVisitService {
 	Visit getOpenVisitForPatient(Long patientId);
 
 	List<Checkup> getCaseRecordForVisit(Long visitId);
+
 }
