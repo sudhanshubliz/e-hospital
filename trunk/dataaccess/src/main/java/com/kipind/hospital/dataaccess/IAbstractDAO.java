@@ -29,6 +29,6 @@ public interface IAbstractDAO<ID, Entity> {
 
 	void deleteAll(); //
 
-	public Long getCount();
+	Long getCount();
 
 }

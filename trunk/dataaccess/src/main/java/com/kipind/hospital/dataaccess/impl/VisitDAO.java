@@ -17,8 +17,6 @@ import com.kipind.hospital.dataaccess.IVisitDAO;
 import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.datamodel.Visit_;
 
-//import by.dzhvisuhko.sample.datamodel.Product_;
-
 @Repository
 public class VisitDAO extends AbstractDAO<Long, Visit> implements IVisitDAO {
 
@@ -107,4 +105,5 @@ public class VisitDAO extends AbstractDAO<Long, Visit> implements IVisitDAO {
 		}
 
 	}
+
 }

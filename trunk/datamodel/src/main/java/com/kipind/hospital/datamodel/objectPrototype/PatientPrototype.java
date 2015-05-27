@@ -3,6 +3,7 @@ package com.kipind.hospital.datamodel.objectPrototype;
 import java.util.Date;
 
 import com.kipind.hospital.datamodel.AbstractEntity;
+import com.kipind.hospital.datamodel.Patient;
 import com.kipind.hospital.datamodel.enam.EHumanSex;
 
 @SuppressWarnings("serial")
@@ -12,10 +13,28 @@ public class PatientPrototype extends AbstractEntity {
 	private String firstName;
 	private String lastName;
 	private Date birthDt;
-	private Integer yearsOld;
+	// private Integer yearsOld;
 	private String address;
 	private EHumanSex sex;
-	private Integer visitsNum;
+	private Long visitsNum;
+
+	public PatientPrototype(Patient patient, Long visitCount) {
+		this.setSocialNumber(patient.getSocialNumber());
+		this.setFirstName(patient.getFirstName());
+		;
+		this.setBirthDt(patient.getBirthDt());
+		;
+		this.setAddress(patient.getAddress());
+		;
+		this.setId(patient.getId());
+		;
+		this.setLastName(patient.getLastName());
+		;
+		this.setSex(patient.getSex());
+		;
+		// this.setYearsOld(yearsOld);;
+		this.setVisitsNum(visitCount);
+	};
 
 	public String getSocialNumber() {
 		return socialNumber;
@@ -29,10 +48,6 @@ public class PatientPrototype extends AbstractEntity {
 		return lastName;
 	}
 
-	public Integer getYearsOld() {
-		return yearsOld;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -41,7 +56,7 @@ public class PatientPrototype extends AbstractEntity {
 		return sex;
 	}
 
-	public Integer getVisitsNum() {
+	public Long getVisitsNum() {
 		return visitsNum;
 	}
 
@@ -57,11 +72,6 @@ public class PatientPrototype extends AbstractEntity {
 		this.lastName = lastName;
 	}
 
-	public void setYearsOld(Integer yearsOld) {
-
-		this.yearsOld = yearsOld;
-	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -70,7 +80,7 @@ public class PatientPrototype extends AbstractEntity {
 		this.sex = sex;
 	}
 
-	public void setVisitsNum(Integer visitsNum) {
+	public void setVisitsNum(Long visitsNum) {
 		this.visitsNum = visitsNum;
 	}
 

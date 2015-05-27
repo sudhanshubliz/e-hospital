@@ -7,6 +7,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kipind.hospital.datamodel.Patient;
+import com.kipind.hospital.datamodel.objectPrototype.PatientPrototype;
 
 public interface IPatientService {
 
@@ -27,5 +28,9 @@ public interface IPatientService {
 	List<Patient> getAllPatients();
 
 	List<Patient> getAllByField(SingularAttribute<? super Patient, ?> attribute, Object value);
+
+	List<PatientPrototype> getAllPatientInfo(String sortParam, boolean ascending, int first, int count);
+
+	Long getCount();
 
 }

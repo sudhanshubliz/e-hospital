@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.kipind.hospital.webapp.page.AssignAdd;
+import com.kipind.hospital.webapp.page.ReportPatient;
 import com.kipind.hospital.webapp.page.ReportPersonal;
 
 @SuppressWarnings("serial")
@@ -25,9 +26,9 @@ public class MenuReport extends Panel {
 
 			@Override
 			public void onClick() {
-				setResponsePage(new AssignAdd(1l));
+				setResponsePage(new ReportPatient());
 			}
-		}.setVisible(false));
+		}.setVisible(true));
 
 		add(new Link<Void>("btHaspitalStat") {
 

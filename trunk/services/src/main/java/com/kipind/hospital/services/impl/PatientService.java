@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.kipind.hospital.dataaccess.IPatientDAO;
 import com.kipind.hospital.datamodel.Patient;
+import com.kipind.hospital.datamodel.objectPrototype.PatientPrototype;
 import com.kipind.hospital.services.IPatientService;
 
 @Service
@@ -83,6 +84,17 @@ public class PatientService implements IPatientService {
 
 		return patientDAO.getAllByField(attribute, value);
 
+	}
+
+	@Override
+	public List<PatientPrototype> getAllPatientInfo(String sortParam, boolean ascending, int first, int count) {
+		// TODO Auto-generated method stub
+		return patientDAO.getAllPatientInfo(sortParam, ascending, first, count);
+	}
+
+	@Override
+	public Long getCount() {
+		return patientDAO.getCount();
 	};
 
 }
