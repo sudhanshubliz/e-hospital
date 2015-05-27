@@ -19,6 +19,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import com.kipind.hospital.datamodel.objectPrototype.PatientPrototype;
 import com.kipind.hospital.services.IPatientService;
+import com.kipind.hospital.webapp.HelpUtil;
 import com.kipind.hospital.webapp.panel.MenuReport;
 
 @AuthorizeInstantiation({ "LEAD_DOCTOR" })
@@ -62,10 +63,10 @@ public class ReportPatient extends BaseLayout {
 				item.add(new Label("caseRecordSNumber", new Model<String>(patient.getSocialNumber())));
 				item.add(new Label("caseRecordFirstName", new Model<String>(patient.getFirstName())));
 				item.add(new Label("caseRecordLastName", new Model<String>(patient.getLastName())));
-				item.add(new Label("caseRecordOld", new Model<Integer>(patient.getYearsOld())));
+				item.add(new Label("caseRecordOld", new Model<Integer>(HelpUtil.getAge(patient.getBirthDt()))));
 				item.add(new Label("caseRecordAddress", new Model<String>(patient.getAddress())));
 				item.add(new Label("caseRecordGender", new ResourceModel("p.report_patient.gender_value_" + patient.getSex()).getObject()));
-				item.add(new Label("caseRecordVisitNum", new Model<Integer>(patient.getVisitsNum())));
+				item.add(new Label("caseRecordVisitNum", new Model<Long>(patient.getVisitsNum())));
 
 			}
 
@@ -81,7 +82,7 @@ public class ReportPatient extends BaseLayout {
 
 		public CaseRecordDataProvider() {
 			super();
-			setSort("secondName", SortOrder.ASCENDING);
+			setSort("lastName", SortOrder.ASCENDING);
 		}
 
 		@Override

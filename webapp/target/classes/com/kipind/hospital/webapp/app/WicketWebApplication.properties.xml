@@ -10,6 +10,7 @@
 	<entry key="page.login.label">[en]Авторизация.</entry>
 	<entry key="page.prescribe_dotor.label">[en]Назначения.</entry>
     <entry key="page.report_personal.label">[en]Информация по персоналу.</entry>
+    <entry key="page.report_patient.label">[en]Информация по пациентам.</entry>
     <entry key="page.assign_exeс.label">[en]Исполнение назначения.</entry>
 
 
@@ -112,7 +113,15 @@
 <entry key="p.assign_exec.lb_assign">[en]Назначение врача:</entry>
 <entry key="p.assign_exec.lb_assign_exec">[en]Запись о исполнении:</entry>
 <entry key="p.assign_exec.err_null_restext">[en]Поле 'запись о исполнении' не должно быть пустым.</entry>
-	
+
+
+<entry key="p.report_patient.lb_snum">[en]№ соц. страховки</entry>	
+<entry key="p.report_patient.lb_fname">[en]Имя</entry>	
+<entry key="p.report_patient.lb_sname">[en]Фамилия</entry>	
+<entry key="p.report_patient.lb_old">[en]Возраст</entry>	
+<entry key="p.report_patient.lb_address">[en]Адрес</entry>	
+<entry key="p.report_patient.lb_visit_num">[en]Кол-во визитов</entry>	
+<entry key="p.report_patient.lb_gender">[en]Пол</entry>	
 <entry key="p.report_patient.gender_value_MALE">[en]мужчина</entry>
 <entry key="p.report_patient.gender_value_FEMALE">[en]женщина</entry>
 

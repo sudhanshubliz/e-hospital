@@ -4,22 +4,25 @@
 	<table class="CSSTableGenerator" >
 		<thead>
 			<tr>
-				<th wicket:id="sortByName"><wicket:message key="p.report_personal.lb_name" /></th>
-				<th wicket:id="sortBySecondName"><wicket:message key="p.report_personal.lb_name" /></th>
-				<th><wicket:message key="p.report_personal.lb_ward_list" /></th>
-				<th wicket:id="sortByProf"><wicket:message key="p.report_personal.lb_prof" /></th>
-			    <th wicket:id="sortByTab"><wicket:message key="p.report_personal.lb_tab" /></th>
-			    <th wicket:id="sortByWorkStatus"><wicket:message key="p.report_personal.lb_active_status" /></th>
+				<th wicket:id="sortBySNumber"><wicket:message key="p.report_patient.lb_snum" /></th>
+				<th wicket:id="sortByFirstName"><wicket:message key="p.report_patient.lb_fname" /></th>
+				<th wicket:id="sortByLastName"><wicket:message key="p.report_patient.lb_sname" /></th>
+				<th wicket:id="sortByOld"><wicket:message key="p.report_patient.lb_old" /></th>
+				<th wicket:id="sortByAddress"><wicket:message key="p.report_patient.lb_address" /></th>
+				<th wicket:id="sortByGender"><wicket:message key="p.report_patient.lb_gender" /></th>
+				<th wicket:id="sortByVisitNum"><wicket:message key="p.report_patient.lb_visit_num" /></th>
 			</tr>
 		</thead>
 		<tbody  wicket:id="caseRecord">
 			<tr wicket:id="elemList">
-				<td><div wicket:id="caseRecordName"></div></td>
-				<td><div wicket:id="caseRecordSecondName"></div></td>
-				<td><div wicket:id="caseRecordWardList"></div></td>
-				<td><div wicket:id="caseRecordProf"></div></td>
-				<td><div wicket:id="caseRecordTab"></div></td>
-				<td><input type="checkbox" wicket:id="caseRecordWorkStatus"></td>
+				<td><div wicket:id="caseRecordSNumber"></div></td>
+				<td><div wicket:id="caseRecordFirstName"></div></td>
+				<td><div wicket:id="caseRecordLastName"></div></td>
+				<td><div wicket:id="caseRecordOld"></div></td>
+				<td><div wicket:id="caseRecordAddress"></div></td>
+				<td><div wicket:id="caseRecordGender"></div></td>
+				<td><div wicket:id="caseRecordVisitNum"></div></td>
+				
 		   </tr>
 		</tbody>
 	</table>
