@@ -20,6 +20,7 @@ import com.kipind.hospital.datamodel.Visit;
 import com.kipind.hospital.services.IAssignServiсe;
 import com.kipind.hospital.services.ICheckupService;
 import com.kipind.hospital.services.IVisitService;
+import com.kipind.hospital.services.IWardService;
 
 @Service
 public class VisitService implements IVisitService {
@@ -32,6 +33,8 @@ public class VisitService implements IVisitService {
 	private ICheckupService checkupService;
 	@Inject
 	private IAssignServiсe assignServiсe;
+	@Inject
+	private IWardService wardServiсe;
 
 	@PostConstruct
 	private void init() {
@@ -54,11 +57,14 @@ public class VisitService implements IVisitService {
 
 	@Override
 	public Visit saveOrUpdate(Visit visit) {
+		Visit res;
 		if (visit.getId() == null) {
-			return VisitDAO.insert(visit);
+			res = VisitDAO.insert(visit);
+
 		} else {
-			return VisitDAO.update(visit);
+			res = VisitDAO.update(visit);
 		}
+		return res;
 
 	}
 

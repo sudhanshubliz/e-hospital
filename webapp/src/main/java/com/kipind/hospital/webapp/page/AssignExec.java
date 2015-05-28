@@ -22,6 +22,7 @@ import com.kipind.hospital.datamodel.enam.EDischargeStatus;
 import com.kipind.hospital.services.IAssignServiсe;
 import com.kipind.hospital.services.IPersonalService;
 import com.kipind.hospital.services.IVisitService;
+import com.kipind.hospital.services.IWardService;
 import com.kipind.hospital.webapp.app.BasicAuthenticationSession;
 import com.kipind.hospital.webapp.panel.VisitDetailsPanel;
 
@@ -36,6 +37,8 @@ public class AssignExec extends BaseLayout {
 	private IVisitService visitService;
 	@Inject
 	private IPersonalService personalService;
+	@Inject
+	private IWardService wardService;
 
 	private Visit visit;
 	private Assign assign;
@@ -83,6 +86,8 @@ public class AssignExec extends BaseLayout {
 						visit.setEndDt(Calendar.getInstance().getTime());
 						visit.setDischargeFlag(EDischargeStatus.ASSENT);
 						visitService.saveOrUpdate(visit);
+						wardService.busyPlaceChange(visit.getWard(), -1);
+
 					}
 
 					setResponsePage(new CaseRecord(visit));
