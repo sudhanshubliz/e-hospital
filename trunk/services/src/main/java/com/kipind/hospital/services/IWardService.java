@@ -23,6 +23,7 @@ public interface IWardService {
 
 	List<Ward> getAllWards();
 
+	@Transactional
 	void busyPlaceChange(Ward ward, int i);
 
 	// ----

@@ -26,6 +26,8 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.kipind.hospital.datamodel.Patient;
 import com.kipind.hospital.datamodel.Patient_;
@@ -40,11 +42,7 @@ import com.kipind.hospital.services.IWardService;
 @AuthorizeInstantiation({ "DOCTOR", "NERS", "LEAD_DOCTOR" })
 public class PatientRegistration extends BaseLayout {
 
-	/*
-	 * private String socialNumber; private String firstName; private String
-	 * lastName; private Date birthDt; private String address; private Integer
-	 * sex; private String wardNum;
-	 */
+	private static final Logger LOGGER = LoggerFactory.getLogger(PatientRegistration.class);
 
 	@Inject
 	private IWardService wardService;
@@ -152,8 +150,8 @@ public class PatientRegistration extends BaseLayout {
 					visit.setStartDt(Calendar.getInstance().getTime());
 					visit.setImportantFlag(0);
 					visit.setDischargeFlag(EDischargeStatus.CURING);
-					if (visit.getWard().equals(null)) {// TODO: подсчет затых
-														// вободых койко мест
+					if (visit.getWard() == null) {// TODO: подсчет затых
+													// вободых койко мест
 						visit.setWard(WardAvtoSelect()); // TODO: релизация
 															// алгоритма
 															// автовыбоа
@@ -166,7 +164,7 @@ public class PatientRegistration extends BaseLayout {
 					respPage.info(new ResourceModel("info.visit_save").getObject() + visit.getWard().getWardNum());
 					setResponsePage(respPage);
 				} catch (RuntimeException e) {
-					// TODO:ошибку в лог фаил
+					LOGGER.error("try to save new visit Class is: {}" + e, getClass().getName());
 					error(new ResourceModel("error.general_save.callIT").getObject());
 
 				}
