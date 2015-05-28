@@ -23,6 +23,8 @@ public interface IWardService {
 
 	List<Ward> getAllWards();
 
+	void busyPlaceChange(Ward ward, int i);
+
 	// ----
 
 }

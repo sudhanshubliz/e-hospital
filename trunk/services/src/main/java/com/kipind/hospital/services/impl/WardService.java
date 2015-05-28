@@ -69,4 +69,10 @@ public class WardService implements IWardService {
 
 	}
 
+	@Override
+	public void busyPlaceChange(Ward ward, int i) {
+		ward.setPlaceNumBisy(ward.getPlaceNumBisy() + i);
+		WardDAO.update(ward);
+	}
+
 }

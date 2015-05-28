@@ -133,9 +133,7 @@ public class PatientRegistration extends BaseLayout {
 
 			@Override
 			public Object getDisplayValue(Ward object) {
-				return object.getWardNum();// + "(" + object.getPlaceNumBisy() +
-											// "/" + object.getPlaceNumSum() +
-											// ")";
+				return object.getWardNum() + "(" + object.getPlaceNumBisy() + "/" + object.getPlaceNumSum() + ")";
 			}
 
 			@Override
@@ -162,6 +160,7 @@ public class PatientRegistration extends BaseLayout {
 															// лучшей палаты
 					}
 					visitService.saveOrUpdate(visit);
+					wardService.busyPlaceChange(visit.getWard(), 1);
 
 					PatientRegistration respPage = new PatientRegistration();
 					respPage.info(new ResourceModel("info.visit_save").getObject() + visit.getWard().getWardNum());
